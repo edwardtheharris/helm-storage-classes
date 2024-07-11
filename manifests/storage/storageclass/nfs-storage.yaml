@@ -2,8 +2,8 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    storageclass.kubernetes.io/is-default-class: "true"
-  name: local-storage
+    storageclass.kubernetes.io/is-default-class: "false"
+  name: nfs
 provisioner: kubernetes.io/no-provisioner
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer

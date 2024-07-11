@@ -15,7 +15,7 @@ title: Template Helm Chart
 :maxdepth: 2
 
 manifests/index
-resources/index
+storage/index
 workflows/index
 ```
 

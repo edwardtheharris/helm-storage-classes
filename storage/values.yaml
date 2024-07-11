@@ -1,0 +1,19 @@
+###
+# Default values for template.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+hdd:
+  default: false
+  name: hdd
+  provisioner: local
+  type: magnetic
+local:
+  default: true
+  name: local
+  provisioner: local
+  type: ssd
+usb: 
+  default: false
+  name: usb
+  provisioner: removable
+  type: ssd

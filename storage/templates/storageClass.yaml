@@ -1,0 +1,45 @@
+{{- with .Values.hdd }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ .default | quote }}
+    storageclass.kubernetes.io/name: {{ .name }}
+    storageclass.kubernetes.io/provisioner: {{ .provisioner }}
+    storageclass.kubernetes.io/type: {{ .type }}
+  name: {{ .name | quote }}
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+{{- end }}
+{{- with .Values.local }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ .default | quote }}  
+    storageclass.kubernetes.io/name: {{ .name }}
+    storageclass.kubernetes.io/provisioner: {{ .provisioner }}
+    storageclass.kubernetes.io/type: {{ .type }}
+  name: {{ .name }}
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+{{- end }}
+{{- with .Values.usb }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: {{ .default | quote }}  
+    storageclass.kubernetes.io/name: {{ .name }}
+    storageclass.kubernetes.io/provisioner: {{ .provisioner }}
+    storageclass.kubernetes.io/type: {{ .type }}
+  name: {{ .name }}
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+{{- end }}
