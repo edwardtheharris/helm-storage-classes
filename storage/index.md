@@ -11,10 +11,10 @@ Typical Helm chart rules.
 
 ### Chart
 
-```{autoyaml} resources/Chart.yaml
+```{autoyaml} storage/Chart.yaml
 ```
 
 #### Values
 
-```{autoyaml} resources/values.yaml
+```{autoyaml} storage/values.yaml
 ```
