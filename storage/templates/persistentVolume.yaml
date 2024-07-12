@@ -1,0 +1,30 @@
+{{- range .Values.persistentVolumes.local }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "local-{{ .local.hostname }}"
+  annotations:
+    storage.kubernetes.io/class: local
+    storage.kubernetes.io/hostname: {{ .local.hostname }}
+  labels:
+    storage.kubernetes.io/node: {{ .local.hostname }}
+spec:
+  capacity:
+    storage: {{ .local.capacity }}
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local
+  local:
+    path: /mnt/k8s
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ .local.hostname }}
+{{- end }}
