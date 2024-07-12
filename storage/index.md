@@ -11,12 +11,17 @@ To install this chart you can run the following command from the root
 of this repository.
 
 ```{code-block} shell
-helm install --update storage storage/
+helm upgrade --install storage storage/
 ```
 
 This will install the `StorageClass` objects described in the file
 {file}`storage/templates/storageClass.yaml`, then use them to create
 `PersistentVolumes` as appropriate for the nodes in your cluster and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
+
+```{note}
+The default values are those used with the author's personal cluster
+and should be changed in the {file}`storage/values.yaml`
+```
 
 ### Chart
 
