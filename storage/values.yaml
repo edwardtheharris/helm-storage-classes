@@ -61,5 +61,15 @@ usb:
   type: ssd
 persistentVolumes:
   local:
-    capacity: 418.3G
-    hostname: k8s01.breeze-blocks.net
+    - local:
+        capacity: 418.3Gi
+        hostname: k8s01.breeze-blocks.net
+    - local:
+        capacity: 418.3Gi
+        hostname: k8s02.breeze-blocks.net
+    - local:
+        capacity: 418.3Gi
+        hostname: k8s03.breeze-blocks.net
+    - local:
+        capacity: 418.3Gi
+        hostname: k8s04.breeze-blocks.net

@@ -16,7 +16,7 @@ helm install --update storage storage/
 
 This will install the `StorageClass` objects described in the file
 {file}`storage/templates/storageClass.yaml`, then use them to create
-`PersistentVolumes` as appropriate for the nodes in your cluster and described in the file {file}`storage/templates/persistentVolume.yaml`.
+`PersistentVolumes` as appropriate for the nodes in your cluster and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
 
 ### Chart
 
@@ -103,3 +103,6 @@ provisioner: kubernetes.io/no-provisioner
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ```
+
+[^pv]: Information about the `range` function can be found in the
+    [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
