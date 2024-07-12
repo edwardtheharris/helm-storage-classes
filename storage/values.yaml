@@ -1,19 +1,61 @@
 ###
-# Default values for template.
+# ```{rubric} Storage Classes
+# ```
+# ---
+# These are default values for the `StorageClass` template.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+#
+# ```{rubric} HDD
+# ```
+# ---
+# This defines magnetic storage.
 hdd:
+  ###
+  # It is not the default class.
   default: false
+  ###
+  # It uses the archaic name `hdd`.
   name: hdd
+  ###
+  # Technically there is no provisioner, but this is local storage.
   provisioner: local
+  ###
+  # This class is defined by using magnetic storage.
   type: magnetic
+###
+# ```{rubric} Local
+# ```
+# ---
+# This defines the default local storage.
 local:
+  ###
+  # This is the default storage class.
   default: true
+  ###
+  # It uses the name `local`.
   name: local
+  ###
+  # It uses the local provisioner.
   provisioner: local
+  ###
+  # The storage is solid-state.
   type: ssd
+###
+# ```{rubric} USB
+# ```
+# ---
+# This defines USB storage.
 usb: 
+  ###
+  # It is not the default class.
   default: false
+  ###
+  # The name is `usb`.
   name: usb
+  ###
+  # The provisioner is still technically none.
   provisioner: removable
+  ###
+  # The storage is solid-state.
   type: ssd
