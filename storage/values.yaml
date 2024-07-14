@@ -42,31 +42,86 @@ local:
   # The storage is solid-state.
   type: ssd
 persistentVolumes:
-  local:
-  - local:
-      capacity: 418.3Gi
-      hostname: k8s01.breeze-blocks.net
-  - local:
-      capacity: 418.3Gi
-      hostname: k8s02.breeze-blocks.net
-  - local:
-      capacity: 418.3Gi
-      hostname: k8s03.breeze-blocks.net
-  - local:
-      capacity: 418.3Gi
-      hostname: k8s04.breeze-blocks.net
-  - local:
-      capacity: 174.9Gi
-      hostname: k8s07.breeze-blocks.net
-  - local:
-      capacity: 174.9Gi
-      hostname: k8s08.breeze-blocks.net
-  - local:
-      capacity: 175.9Gi
-      hostname: k8s09.breeze-blocks.net
-  - local:
-      capacity: 175.9Gi
-      hostname: k8s10.breeze-blocks.net
+  - capacity: 931.5Gi
+    class: hdd
+    hostname: k8s01.breeze-blocks.net
+    name: k8s01-hdd
+  - capacity: 931.5Gi
+    class: hdd
+    hostname: k8s02.breeze-blocks.net
+    name: k8s02-hdd
+  - capacity: 931.5Gi
+    class: hdd
+    hostname: k8s03.breeze-blocks.net
+    name: k8s03-hdd
+  - capacity: 931.5Gi
+    class: hdd
+    hostname: k8s04.breeze-blocks.net
+    name: k8s04-hdd
+  - capacity: 418.3Gi
+    class: local
+    hostname: k8s01.breeze-blocks.net
+    name: k8s01-local
+  - capacity: 418.3Gi
+    class: local
+    hostname: k8s02.breeze-blocks.net
+    name: k8s02-local
+  - capacity: 418.3Gi
+    class: local
+    hostname: k8s03.breeze-blocks.net
+    name: k8s03-local
+  - capacity: 418.3Gi
+    class: local
+    hostname: k8s04.breeze-blocks.net
+    name: k8s04-local
+  - capacity: 174.9Gi
+    class: local
+    hostname: k8s07.breeze-blocks.net
+    name: k8s07-local
+  - capacity: 174.9Gi
+    class: local
+    hostname: k8s08.breeze-blocks.net
+    name: k8s08-local
+  - capacity: 175.9Gi
+    class: local
+    hostname: k8s09.breeze-blocks.net
+    name: k8s09-local
+  - capacity: 175.9Gi
+    class: local
+    hostname: k8s10.breeze-blocks.net
+    name: k8s10-local
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s01.breeze-blocks.net
+    name: k8s01-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s02.breeze-blocks.net
+    name: k8s02-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s03.breeze-blocks.net
+    name: k8s03-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s04.breeze-blocks.net
+    name: k8s04-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s07.breeze-blocks.net
+    name: k8s07-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s08.breeze-blocks.net
+    name: k8s08-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s09.breeze-blocks.net
+    name: k8s09-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s10.breeze-blocks.net
+    name: k8s10-usb
 ###
 # ```{rubric} USB
 # ```
@@ -85,3 +140,4 @@ usb:
   ###
   # The storage is solid-state.
   type: ssd
+
