@@ -74,7 +74,15 @@ persistentVolumes:
     class: local
     hostname: k8s04.breeze-blocks.net
     name: k8s04-local
-  - capacity: 174.9Gi
+  - capacity: 418.3Gi
+    class: local
+    hostname: k8s05.breeze-blocks.net
+    name: k8s05-local
+  - capacity: 179.9Gi
+    class: local
+    hostname: k8s06.breeze-blocks.net
+    name: k8s06-local
+  - capacity: 179.9Gi
     class: local
     hostname: k8s07.breeze-blocks.net
     name: k8s07-local
@@ -106,6 +114,14 @@ persistentVolumes:
     class: usb
     hostname: k8s04.breeze-blocks.net
     name: k8s04-usb
+  - capacity: 58.6Gi
+    class: usb
+    hostname: k8s05.breeze-blocks.net
+    name: k8s05-usb
+  - capacity: 59.6Gi
+    class: usb
+    hostname: k8s06.breeze-blocks.net
+    name: k8s06-usb
   - capacity: 58.6Gi
     class: usb
     hostname: k8s07.breeze-blocks.net
