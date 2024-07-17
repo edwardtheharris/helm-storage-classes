@@ -6,7 +6,7 @@ apiVersion: v2
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 dependencies:
-  - name: sig-storage-local-static-provisioner
+  - name: local-static-provisioner
     repository: file://./local-static-provisioner/
     version: ~2
 description: A Helm chart for Kubernetes

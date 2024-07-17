@@ -1,6 +1,6 @@
 dependencies:
-- name: sig-storage-local-static-provisioner
+- name: local-static-provisioner
   repository: file://./local-static-provisioner/
   version: 2.0.0
-digest: sha256:b7af7cd26461ab4fd5c8e27a4e6a1e15c90a20925fbfd7d655a4993e51593d55
-generated: "2024-07-17T12:30:12.313413289-07:00"
+digest: sha256:965a7f8d190331624920f9040a5ed6e7727cc9b99cb2f8f1db8577356e461ef8
+generated: "2024-07-17T12:32:15.883460979-07:00"

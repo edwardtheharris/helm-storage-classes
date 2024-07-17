@@ -11,6 +11,7 @@ To install this chart you can run the following command from the root
 of this repository.
 
 ```{code-block} shell
+helm dependency update storage storage/
 helm upgrade --install storage storage/
 ```
 
@@ -22,6 +23,10 @@ and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
 ```{note}
 The default values are those used with the author's personal cluster
 and should be changed in the {file}`storage/values.yaml`
+```
+
+```{toctree}
+local-static-provisioner/index
 ```
 
 ### Chart

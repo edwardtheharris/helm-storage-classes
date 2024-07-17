@@ -4,3 +4,4 @@ venv/
 .values.yaml
 .vscode/
 _build
+charts/
