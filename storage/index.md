@@ -78,7 +78,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    storageclass.kubernetes.io/is-default-class: "true"  
+    storageclass.kubernetes.io/is-default-class: "true"
     storageclass.kubernetes.io/name: local
     storageclass.kubernetes.io/provisioner: local
     storageclass.kubernetes.io/type: ssd
@@ -100,7 +100,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    storageclass.kubernetes.io/is-default-class: "false"  
+    storageclass.kubernetes.io/is-default-class: "false"
     storageclass.kubernetes.io/name: usb
     storageclass.kubernetes.io/provisioner: removable
     storageclass.kubernetes.io/type: ssd
@@ -109,6 +109,11 @@ provisioner: kubernetes.io/no-provisioner
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ```
+
+## Local Provisioner Plugin
+
+This chart depends on the static local provisioner plugin described in detail
+[here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
 [^pv]: Information about the `range` function can be found in the
     [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
