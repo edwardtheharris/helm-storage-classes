@@ -115,5 +115,7 @@ volumeBindingMode: WaitForFirstConsumer
 This chart depends on the static local provisioner plugin described in detail
 [here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
+The helm chart and templates are located in {file}`local-static-provisioner`.
+
 [^pv]: Information about the `range` function can be found in the
     [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
