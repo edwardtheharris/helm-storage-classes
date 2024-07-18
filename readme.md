@@ -10,6 +10,13 @@ date: 2024-07-18
 title: Readme
 ---
 
+```{list-table}
+* - [![GitHub Actions OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat&logo=githubactions&logoColor=%232088FF&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
+  - [![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/pages.yml?branch=main&style=flat&logo=githubpages&logoColor=%23222222&label=GitHub%20Pages)](https://edwardtheharris.github.io/helm-storage-classes/)
+  - [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat&logo=helm&logoColor=%230F1689&label=Helm&color=%230F1689)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
+
+```
+
 ## Helm Charts for Static and Dynamic Storage Classes
 
 Presently this includes a provisioner for local static storage as well as

@@ -58,6 +58,18 @@ html_theme_options = {
             "icon": "fa-brands fa-square-github",
             # The type of image to be used (see below for details)
             "type": "fontawesome",
+        },
+        {
+            "name": "GitHub Pages",
+            "url": "https://edwardtheharris.github.io/helm-storage-classes/index.html",
+            "icon": "_static/githubpages.png",
+            "type": "local"
+        },
+        {
+            "name": "Helm",
+            "url": "https://helm.sh",
+            "icon": "_static/helm.png",
+            "type": "local"
         }
    ]
 }
