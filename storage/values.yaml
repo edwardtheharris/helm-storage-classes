@@ -1,3 +1,6 @@
+csi-driver-lvm:
+  lvm:
+    devicePattern: /dev/sdb1
 ###
 # ```{rubric} Storage Classes
 # ```
@@ -14,6 +17,9 @@ hdd:
   ###
   # It is not the default class.
   default: false
+  ###
+  # Enable this storage class
+  enabled: true
   ###
   # It uses the archaic name `hdd`.
   name: hdd
@@ -33,6 +39,9 @@ local:
   # This is the default storage class.
   default: true
   ###
+  # Enable this storage class
+  enabled: true
+  ###
   # It uses the name `local`.
   name: local
   ###
@@ -41,6 +50,32 @@ local:
   ###
   # The storage is solid-state.
   type: ssd
+###
+# ```{rubric} LVM
+# ```
+# ---
+# Configure the LVM CSI driver.
+lvm:
+  ###
+  # Not the default class
+  default: false
+  ###
+  # Enabled class
+  enabled: true
+  ###
+  # Storage Class Name
+  name: csi-driver-lvm-linear
+  ###
+  # Provisioner name
+  provisioner: lvm.csi.metal-stack.io
+  ###
+  # Set type
+  type: lvm
+###
+# ```{rubric} Persistent Volumes
+# ```
+# ---
+# A list of persistent volumes available on local nodes.
 persistentVolumes:
   - capacity: 931.5Gi
     class: hdd
@@ -147,6 +182,9 @@ usb:
   ###
   # It is not the default class.
   default: false
+  ###
+  # Enable this storage class
+  enabled: true
   ###
   # The name is `usb`.
   name: usb
