@@ -43,8 +43,8 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-# html_logo = '_static/img/hr-logo.svg'
-# html_favicon = '_static/img/hr-logo.svg'
+html_logo = '_static/img/StorageClasses.png'
+html_favicon = '_static/img/StorageClasses.png'
 html_static_path = ['_static']
 html_theme = 'sphinx_book_theme'
 myst_dmath_double_inline=True
@@ -66,7 +66,7 @@ myst_enable_extensions = [
     "tasklist",
 ]
 myst_title_to_header = True
-project = 'Generic Helm Chart'
+project = 'StorageClasses'
 rst_epilog = """
 .. sectionauthor:: Xander Harris <xandertheharris@gmail.com>
 """
