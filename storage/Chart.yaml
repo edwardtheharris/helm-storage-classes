@@ -5,6 +5,13 @@ apiVersion: v2
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
+dependencies:
+  - name: csi-driver-lvm
+    repository: https://helm.metal-stack.io
+    version: ~0.4
+  - name: local-static-provisioner
+    repository: file://./local-static-provisioner/
+    version: ~2
 description: A Helm chart for Kubernetes
 icon: file://./assets/icon/csi.png
 name: storage
@@ -23,4 +30,3 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 0.0.1
-

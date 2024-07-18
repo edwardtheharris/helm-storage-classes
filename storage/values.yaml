@@ -1,3 +1,20 @@
+csi-driver-lvm:
+  customCSISidecars:
+    attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
+    enabled: true
+    ## uncomment and set these if enabled=true
+
+    livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
+    nodeSelector:
+      provisioner:
+        node-role.kubernetes.io/control-plane: true
+    provisioner: k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1
+    registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
+    resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
+  lvm:
+    devicePattern: /dev/sdc1
+    driverName: lvm.csi.metal-stack.io
+    vgName: csi
 ###
 # ```{rubric} Storage Classes
 # ```
@@ -14,6 +31,9 @@ hdd:
   ###
   # It is not the default class.
   default: false
+  ###
+  # Enable this storage class
+  enabled: true
   ###
   # It uses the archaic name `hdd`.
   name: hdd
@@ -33,6 +53,9 @@ local:
   # This is the default storage class.
   default: true
   ###
+  # Enable this storage class
+  enabled: true
+  ###
   # It uses the name `local`.
   name: local
   ###
@@ -41,6 +64,32 @@ local:
   ###
   # The storage is solid-state.
   type: ssd
+###
+# ```{rubric} LVM
+# ```
+# ---
+# Configure the LVM CSI driver.
+lvm:
+  ###
+  # Not the default class
+  default: false
+  ###
+  # Enabled class
+  enabled: true
+  ###
+  # Storage Class Name
+  name: csi-driver-lvm-linear
+  ###
+  # Provisioner name
+  provisioner: lvm.csi.metal-stack.io
+  ###
+  # Set type
+  type: lvm
+###
+# ```{rubric} Persistent Volumes
+# ```
+# ---
+# A list of persistent volumes available on local nodes.
 persistentVolumes:
   - capacity: 931.5Gi
     class: hdd
@@ -147,6 +196,9 @@ usb:
   ###
   # It is not the default class.
   default: false
+  ###
+  # Enable this storage class
+  enabled: true
   ###
   # The name is `usb`.
   name: usb

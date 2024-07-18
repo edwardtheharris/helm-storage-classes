@@ -8,6 +8,9 @@ metadata:
     storage.kubernetes.io/capacity: {{ .capacity }}
     storage.kubernetes.io/class: {{ .class }}
     storage.kubernetes.io/hostname: {{ .hostname }}
+    {{ if .provisioner }}
+    storage.kubernetes.io/provisioner: {{ .provisioner }}
+    {{ end }}
   labels:
     storage.kubernetes.io/node: {{ .hostname }}
 spec:

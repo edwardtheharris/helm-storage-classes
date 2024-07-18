@@ -16,7 +16,6 @@ title: Template Helm Chart
 
 manifests/index
 storage/index
-workflows/index
 ```
 
 ### Meta Contents

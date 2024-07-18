@@ -11,6 +11,7 @@ To install this chart you can run the following command from the root
 of this repository.
 
 ```{code-block} shell
+helm dependency update storage storage/
 helm upgrade --install storage storage/
 ```
 
@@ -24,10 +25,20 @@ The default values are those used with the author's personal cluster
 and should be changed in the {file}`storage/values.yaml`
 ```
 
+```{toctree}
+local-static-provisioner/index
+```
+
 ### Chart
 
 ```{autoyaml} storage/Chart.yaml
 ```
+
+#### Sub Charts
+
+Local volume dynamic provisioning is handled using the
+[csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
+CSI Driver.
 
 #### Values
 
@@ -78,7 +89,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    storageclass.kubernetes.io/is-default-class: "true"  
+    storageclass.kubernetes.io/is-default-class: "true"
     storageclass.kubernetes.io/name: local
     storageclass.kubernetes.io/provisioner: local
     storageclass.kubernetes.io/type: ssd
@@ -100,7 +111,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   annotations:
-    storageclass.kubernetes.io/is-default-class: "false"  
+    storageclass.kubernetes.io/is-default-class: "false"
     storageclass.kubernetes.io/name: usb
     storageclass.kubernetes.io/provisioner: removable
     storageclass.kubernetes.io/type: ssd
@@ -109,6 +120,13 @@ provisioner: kubernetes.io/no-provisioner
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ```
+
+## Local Provisioner Plugin
+
+This chart depends on the static local provisioner plugin described in detail
+[here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
+
+The helm chart and templates are located in {file}`local-static-provisioner`.
 
 [^pv]: Information about the `range` function can be found in the
     [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
