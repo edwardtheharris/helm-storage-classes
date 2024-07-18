@@ -1,3 +1,13 @@
+###
+# ```{rubric} Storage Classes Helm Chart
+# ```
+# ---
+# This is the main Helm Chart for the Storage Classes and drivers deployed
+# from this repository.
+#
+# ```{literalinclude} /storage/Chart.yaml
+# :language: yaml
+# ```
 apiVersion: v2
 ###
 # This is the version number of the application being deployed. This version number should be
@@ -13,7 +23,7 @@ dependencies:
     repository: file://./local-static-provisioner/
     version: ~2
 description: A Helm chart for Kubernetes
-icon: file://./assets/icon/csi.png
+icon: file://../assets/icon/csi.png
 name: storage
 ###
 # A chart can be either an 'application' or a 'library' chart.

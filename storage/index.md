@@ -5,6 +5,12 @@ date: 2024-04-28
 title: Storage Chart and Templates
 ---
 
+## Storage Contents
+
+```{toctree}
+local-static-provisioner/index
+```
+
 ## Usage
 
 To install this chart you can run the following command from the root
@@ -23,10 +29,6 @@ and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
 ```{note}
 The default values are those used with the author's personal cluster
 and should be changed in the {file}`storage/values.yaml`
-```
-
-```{toctree}
-local-static-provisioner/index
 ```
 
 ### Chart
