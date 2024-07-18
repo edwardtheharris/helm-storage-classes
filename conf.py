@@ -47,6 +47,20 @@ html_logo = '_static/img/StorageClasses.png'
 html_favicon = '_static/img/StorageClasses.png'
 html_static_path = ['_static']
 html_theme = 'sphinx_book_theme'
+html_theme_options = {
+    "icon_links": [
+        {
+            # Label for this link
+            "name": "GitHub",
+            # URL where the link will redirect
+            "url": "https://github.com/edwardtheharris/helm-storage-classes",  # required
+            # Icon class (if "type": "fontawesome"), or path to local image (if "type": "local")
+            "icon": "fa-brands fa-square-github",
+            # The type of image to be used (see below for details)
+            "type": "fontawesome",
+        }
+   ]
+}
 myst_dmath_double_inline=True
 myst_enable_extensions = [
     "amsmath",
