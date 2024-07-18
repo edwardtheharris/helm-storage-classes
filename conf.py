@@ -8,7 +8,6 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 """
 # pylint: disable=invalid-name,redefined-builtin
-import zerovm_sphinx_theme
 
 author = 'Xander Harris'
 autoyaml_root = "."
@@ -47,8 +46,7 @@ extensions = [
 # html_logo = '_static/img/hr-logo.svg'
 # html_favicon = '_static/img/hr-logo.svg'
 html_static_path = ['_static']
-html_theme = 'zerovm'
-html_theme_path = [zerovm_sphinx_theme.theme_path]
+html_theme = 'sphinx_book_theme'
 myst_dmath_double_inline=True
 myst_enable_extensions = [
     "amsmath",
