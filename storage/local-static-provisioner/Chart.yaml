@@ -1,8 +1,18 @@
+---
+###
+# ```{rubric} Local Static Provisioner Chart
+# ```
+# ---
+# This is the chart for the local static provisioner storage provisioner.
+#
+# ```{literalinclude} /storage/local-static-provisioner/Chart.yaml
+# :language: yaml
+# ```
 apiVersion: v2
 appVersion: 2.6.0
 description: Helm chart for the SIG Storage Local Volume Static Provisioner.
 home: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/
-icon: https://avatars.githubusercontent.com/u/36015203?s=200&v=4
+icon: file://../../_static/local-static-provisioner.png
 keywords:
   - storage
   - local

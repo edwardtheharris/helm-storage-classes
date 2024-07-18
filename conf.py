@@ -43,10 +43,36 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-# html_logo = '_static/img/hr-logo.svg'
-# html_favicon = '_static/img/hr-logo.svg'
+html_logo = '_static/img/StorageClasses.png'
+html_favicon = '_static/img/StorageClasses.png'
 html_static_path = ['_static']
 html_theme = 'sphinx_book_theme'
+html_theme_options = {
+    "icon_links": [
+        {
+            # Label for this link
+            "name": "GitHub",
+            # URL where the link will redirect
+            "url": "https://github.com/edwardtheharris/helm-storage-classes",  # required
+            # Icon class (if "type": "fontawesome"), or path to local image (if "type": "local")
+            "icon": "fa-brands fa-square-github",
+            # The type of image to be used (see below for details)
+            "type": "fontawesome",
+        },
+        {
+            "name": "GitHub Pages",
+            "url": "https://edwardtheharris.github.io/helm-storage-classes/index.html",
+            "icon": "_static/githubpages.png",
+            "type": "local"
+        },
+        {
+            "name": "Helm",
+            "url": "https://helm.sh",
+            "icon": "_static/helm.png",
+            "type": "local"
+        }
+   ]
+}
 myst_dmath_double_inline=True
 myst_enable_extensions = [
     "amsmath",
@@ -66,7 +92,7 @@ myst_enable_extensions = [
     "tasklist",
 ]
 myst_title_to_header = True
-project = 'Generic Helm Chart'
+project = 'StorageClasses'
 rst_epilog = """
 .. sectionauthor:: Xander Harris <xandertheharris@gmail.com>
 """

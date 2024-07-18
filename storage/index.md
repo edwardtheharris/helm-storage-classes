@@ -5,19 +5,26 @@ date: 2024-04-28
 title: Storage Chart and Templates
 ---
 
-## Usage
+## Storage Contents
+
+```{toctree}
+local-static-provisioner/index
+```
+
+## Installation
 
 To install this chart you can run the following command from the root
 of this repository.
 
 ```{code-block} shell
+kubectl create ns storage
 helm dependency update storage storage/
-helm upgrade --install storage storage/
+helm -n storage upgrade --install storage storage/
 ```
 
-This will install the `StorageClass` objects described in the file
+This will install the {term}`StorageClass` objects described in the file
 {file}`storage/templates/storageClass.yaml`, then use them to create
-`PersistentVolumes` as appropriate for the nodes in your cluster
+{term}`PersistentVolume`s as appropriate for the nodes in your cluster
 and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
 
 ```{note}
@@ -25,8 +32,20 @@ The default values are those used with the author's personal cluster
 and should be changed in the {file}`storage/values.yaml`
 ```
 
-```{toctree}
-local-static-provisioner/index
+### Testing
+
+You can run the Helm template tests this way.
+
+```{code-block} shell
+helm -n storage test storage
+```
+
+### Uninstall
+
+To remove all resources deployed with this chart run this.
+
+```{code-block} shell
+helm -n storage uninstall storage
 ```
 
 ### Chart
@@ -40,12 +59,15 @@ Local volume dynamic provisioning is handled using the
 [csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
 CSI Driver.
 
-#### Values
+The complete list of possible settings for {term}`csi-driver-lvm` can be found
+[here](https://github.com/metal-stack/helm-charts/blob/master/charts/csi-driver-lvm/values.yaml).
+
+#### Local Chart Values
 
 ```{autoyaml} storage/values.yaml
 ```
 
-#### Templates
+#### StorageClass
 
 ```{rubric} HDD
 ```
