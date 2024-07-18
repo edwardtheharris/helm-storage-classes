@@ -34,6 +34,12 @@ local-static-provisioner/index
 ```{autoyaml} storage/Chart.yaml
 ```
 
+#### Sub Charts
+
+Local volume dynamic provisioning is handled using the
+[csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
+CSI Driver.
+
 #### Values
 
 ```{autoyaml} storage/values.yaml
