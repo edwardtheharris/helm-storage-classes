@@ -122,7 +122,7 @@ helm -n storage uninstall storage
 
 ## Chart
 
-```{autoyaml} storage/Chart.yaml
+```{autoyaml} Chart.yaml
 ```
 
 ### Sub Charts
