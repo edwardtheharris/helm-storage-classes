@@ -13,11 +13,7 @@ title: Storage Helm Chart
 
 ## Repository Contents
 
-```{toctree}
-:maxdepth: 2
-
-manifests/index
-storage/index
+```{contents}
 ```
 
 ### Meta Contents
@@ -140,7 +136,7 @@ The complete list of possible settings for {term}`csi-driver-lvm` can be found
 
 #### Local Chart Values
 
-```{autoyaml} storage/values.yaml
+```{autoyaml} values.yaml
 ```
 
 #### Local Provisioner Plugin
