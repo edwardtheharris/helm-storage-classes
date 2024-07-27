@@ -13,11 +13,7 @@ title: Storage Helm Chart
 
 ## Repository Contents
 
-```{toctree}
-:maxdepth: 2
-
-manifests/index
-storage/index
+```{contents}
 ```
 
 ### Meta Contents
@@ -80,3 +76,75 @@ StorageClass
    that may be provisioned by a cluster. Described in more detail
    [here](https://kubernetes.io/docs/concepts/storage/storage-classes/#storageclass-objects).
 ```
+
+## Storage Contents
+
+```{toctree}
+local-static-provisioner/index
+```
+
+## Installation
+
+To install this chart you can run the following command from the root
+of this repository.
+
+```{code-block} shell
+kubectl create ns storage
+helm dependency update storage storage/
+helm -n storage upgrade --install storage storage/
+```
+
+This will install the {term}`StorageClass` objects described in the file
+{file}`templates/service.yaml`, then use them to create
+{term}`PersistentVolume`s as appropriate for the nodes in your cluster
+and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
+
+```{note}
+The default values are those used with the author's personal cluster
+and should be changed in the {file}`storage/values.yaml`
+```
+
+### Testing
+
+You can run the Helm template tests this way.
+
+```{code-block} shell
+helm -n storage test storage
+```
+
+### Uninstall
+
+To remove all resources deployed with this chart run this.
+
+```{code-block} shell
+helm -n storage uninstall storage
+```
+
+## Chart
+
+```{autoyaml} Chart.yaml
+```
+
+### Sub Charts
+
+Local volume dynamic provisioning is handled using the
+[csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
+CSI Driver.
+
+The complete list of possible settings for {term}`csi-driver-lvm` can be found
+[here](https://github.com/metal-stack/helm-charts/blob/master/charts/csi-driver-lvm/values.yaml).
+
+#### Local Chart Values
+
+```{autoyaml} values.yaml
+```
+
+#### Local Provisioner Plugin
+
+This chart depends on the static local provisioner plugin described in detail
+[here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
+
+The helm chart and templates are located in {file}`local-static-provisioner`.
+
+[^pv]: Information about the `range` function can be found in the
+    [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
