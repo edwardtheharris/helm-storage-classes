@@ -1,0 +1,60 @@
+# tests/test_suite.yaml
+suite: "csi-driver-lvm-test suite"
+templates:
+  - "templates/pvc.yaml"
+  - "templates/pod.yaml"
+  - "templates/statefulset.yaml"
+
+tests:
+  - it: "should render PersistentVolumeClaim with correct name and storage"
+    set:
+      storageClassName: "csi-driver-lvm-linear"
+      resources:
+        requests:
+          storage: "100Mi"
+    asserts:
+      - isKind:
+          of: PersistentVolumeClaim
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-test$"
+      - equal:
+          path: spec.storageClassName
+          value: "csi-driver-lvm-linear"
+      - equal:
+          path: spec.resources.requests.storage
+          value: "100Mi"
+
+  - it: "should render StatefulSet with correct annotations and labels"
+    asserts:
+      - isKind:
+          of: StatefulSet
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-test$"
+      - matchRegex:
+          path: metadata.annotations."helm.sh/hook"
+          pattern: "^test$"
+      - matchRegex:
+          path: metadata.annotations."helm.sh/hook-delete-policy"
+          pattern: "hook-succeeded,hook-failed,before-hook-creation"
+      - matchRegex:
+          path: spec.template.metadata.labels.name
+          pattern: "^csi-driver-lvm-test$"
+
+  - it: "should render Pod with correct container and volumeMounts"
+    asserts:
+      - isKind:
+          of: Pod
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-test$"
+      - matchRegex:
+          path: spec.containers[0].image
+          pattern: "^dandb79/lsblk-testing:v1.2$"
+      - matchRegex:
+          path: spec.containers[0].volumeMounts[0].mountPath
+          pattern: "^/data$"
+      - equal:
+          path: spec.nodeSelector."kubernetes.io/hostname"
+          value: "k8s10.breeze-blocks.net"

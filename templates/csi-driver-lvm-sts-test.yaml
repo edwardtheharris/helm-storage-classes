@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-driver-lvm-test
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-delete-policy: hook-succeeded,hook-failed,before-hook-creation
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: csi-driver-lvm-linear
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: csi-driver-lvm-test
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-delete-policy: hook-succeeded,hook-failed,before-hook-creation
+spec:
+  selector:
+    matchLabels:
+      name: csi-driver-lvm-test
+  serviceName: "csi-driver-lvm-test"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: csi-driver-lvm-test
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: dandb79/lsblk-testing:v1.2
+          command: ["/bin/sh", "-c"]
+          args: [ "lsblk" ]
+          name: csi-driver-lvm-linear-test
+          volumeMounts:
+            - name: csi-driver-lvm-test
+              mountPath: /data
+      nodeSelector:
+        kubernetes.io/hostname: k8s10.breeze-blocks.net
+  volumeClaimTemplates:
+    - metadata:
+        name: csi-driver-lvm-test
+        annotations:
+          helm.sh/hook: test
+          helm.sh/hook-delete-policy: hook-succeeded,hook-failed,before-hook-creation
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 100Mi
+        storageClassName: csi-driver-lvm-linear
