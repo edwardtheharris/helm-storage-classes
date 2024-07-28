@@ -101,7 +101,7 @@ StorageClass
    that may be provisioned by a cluster. Described in more detail
    [here](https://kubernetes.io/docs/concepts/storage/storage-classes/#storageclass-objects).
 
-Taints
+Taint
    A condition applied to a Kubernetes node that can be used to prevent
    certain workloads from being run on it. More information is available
    [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
@@ -121,8 +121,7 @@ Tolerations
 ### Sub Charts
 
 Local volume dynamic provisioning is handled using the
-[csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
-CSI Driver.
+{term}`csi-driver-lvm` CSI Driver.
 
 The complete list of possible settings for {term}`csi-driver-lvm` can be found
 [here](https://github.com/metal-stack/helm-charts/blob/master/charts/csi-driver-lvm/values.yaml).
@@ -138,6 +137,3 @@ This chart depends on the static local provisioner plugin described in detail
 [here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
 The helm chart and templates are located in {file}`local-static-provisioner`.
-
-[^pv]: Information about the `range` function can be found in the
-    [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).

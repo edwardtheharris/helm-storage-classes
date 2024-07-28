@@ -5,7 +5,6 @@
 # This file contains the settings required to set up a {term}`StorageClass` that
 # supports dynamic provisioning of Logical Volume Manager volumes.
 #
-#
 # Enable, if you want to install storage classes with v0.3.x
 # backward-compatible `csi-lvm-sc-*` names
 compat03x: false
@@ -95,7 +94,7 @@ pluginImage:
 #
 # ```{literalinclude} /csi-driver-lvm/values.yaml
 # :language: yaml
-# :start-at: "provisionerImage\n"
+# :start-at: "provisionerImage:\n"
 # :end-at: "  tag: v0.5.2\n"
 # ```
 provisionerImage:

@@ -5,7 +5,7 @@
 # This is the main Helm Chart for the Storage Classes and drivers deployed
 # from this repository.
 #
-# ```{literalinclude} /storage/Chart.yaml
+# ```{literalinclude} /Chart.yaml
 # :language: yaml
 # ```
 apiVersion: v2
