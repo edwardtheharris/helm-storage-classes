@@ -1,9 +1,13 @@
+###
+# ```{rubric} CSI Driver LVM
+# ```
+# ---
+# Settings for the CSI Driver for Logical Volume Managers
 csi-driver-lvm:
   customCSISidecars:
     attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
     enabled: true
     ## uncomment and set these if enabled=true
-
     livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
     nodeSelector:
       provisioner:
@@ -15,3 +19,12 @@ csi-driver-lvm:
     devicePattern: /dev/sdc1
     driverName: lvm.csi.metal-stack.io
     vgName: csi
+###
+# ```{rubric} Local Static Provisioner
+# ```
+# ---
+# A driver for managing local static storage provisioning.
+#
+# Disabled by default.
+local-static-provisioner:
+  enabled: false

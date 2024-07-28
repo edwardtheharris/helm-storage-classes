@@ -1,23 +1,23 @@
+## enable, if you want to install storage classes with v0.3.x backward-compatible `csi-lvm-sc-*` names
+compat03x: false
 
 lvm:
   # This one you should change
   devicePattern: /dev/nvme[0-9]n[0-9]
-
-  # You will want to change this for read-only filesystems
+  driverName: lvm.csi.metal-stack.io
+  # You will want to change this for read-only file systems
   # For example, in Talos OS, set this to "/var/etc/lvm"
   hostWritePath: /etc/lvm
 
+
   # these are primariliy for testing purposes
-  vgName: csi-lvm
-  driverName: lvm.csi.metal-stack.io
   storageClassStub: csi-driver-lvm
+  vgName: csi-lvm
 
 rbac:
   create: true
   pspEnabled: true
 
-## enable, if you want to install storage classes with v0.3.x backward-compatible `csi-lvm-sc-*` names
-compat03x: false
 
 pluginImage:
   repository: ghcr.io/metal-stack/csi-driver-lvm

@@ -53,6 +53,12 @@ csi-driver-nfs
    More information is available
    [here](https://github.com/kubernetes-csi/csi-driver-nfs)
 
+DaemonSet
+   A Kubernetes workload object that is intended to run on all nodes in a
+   cluster by default. Can be configured to ignore control plane nodes.
+   More information is available
+   [here](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
+
 LVM
    Logical Volume Manager, described in more detail
    [here](https://wiki.archlinux.org/title/LVM)
