@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 loguru = "*"
 gitpython = "*"
-zerovm-sphinx-theme = "*"
+pipenv = "*"
 
 [dev-packages]
 "sphinxcontrib.autoyaml" = "*"

@@ -1,9 +1,18 @@
+###
+# ```{rubric} CSI Driver LVM
+# ```
+# ---
+# Settings for the CSI Driver for Logical Volume Managers
+#
+# ```{literalinclude} /values.yaml
+# :language: yaml
+# :start-at: "csi-driver-lvm:\n"
+# :end-before: "###\n"
+# ```
 csi-driver-lvm:
   customCSISidecars:
     attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
     enabled: true
-    ## uncomment and set these if enabled=true
-
     livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
     nodeSelector:
       provisioner:
@@ -11,201 +20,40 @@ csi-driver-lvm:
     provisioner: k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1
     registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
     resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
+  enabled: true
   lvm:
-    devicePattern: /dev/sdc1
+    devicePattern: /dev/sd[a-z]1
     driverName: lvm.csi.metal-stack.io
     vgName: csi
-###
-# ```{rubric} Storage Classes
-# ```
-# ---
-# These are default values for the `StorageClass` template.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-#
-# ```{rubric} HDD
-# ```
-# ---
-# This defines magnetic storage.
-hdd:
-  ###
-  # It is not the default class.
-  default: false
-  ###
-  # Enable this storage class
-  enabled: true
-  ###
-  # It uses the archaic name `hdd`.
-  name: hdd
-  ###
-  # Technically there is no provisioner, but this is local storage.
-  provisioner: local
-  ###
-  # This class is defined by using magnetic storage.
-  type: magnetic
-###
-# ```{rubric} Local
-# ```
-# ---
-# This defines the default local storage.
-local:
-  ###
-  # This is the default storage class.
-  default: true
-  ###
-  # Enable this storage class
-  enabled: true
-  ###
-  # It uses the name `local`.
-  name: local
-  ###
-  # It uses the local provisioner.
-  provisioner: local
-  ###
-  # The storage is solid-state.
-  type: ssd
-###
-# ```{rubric} LVM
-# ```
-# ---
-# Configure the LVM CSI driver.
-lvm:
-  ###
-  # Not the default class
-  default: false
-  ###
-  # Enabled class
-  enabled: true
-  ###
-  # Storage Class Name
-  name: csi-driver-lvm-linear
-  ###
-  # Provisioner name
-  provisioner: lvm.csi.metal-stack.io
-  ###
-  # Set type
-  type: lvm
-###
-# ```{rubric} Persistent Volumes
-# ```
-# ---
-# A list of persistent volumes available on local nodes.
-persistentVolumes:
-  - capacity: 931.5Gi
-    class: hdd
-    hostname: k8s01.breeze-blocks.net
-    name: k8s01-hdd
-  - capacity: 931.5Gi
-    class: hdd
-    hostname: k8s02.breeze-blocks.net
-    name: k8s02-hdd
-  - capacity: 931.5Gi
-    class: hdd
-    hostname: k8s03.breeze-blocks.net
-    name: k8s03-hdd
-  - capacity: 931.5Gi
-    class: hdd
-    hostname: k8s04.breeze-blocks.net
-    name: k8s04-hdd
-  - capacity: 418.3Gi
-    class: local
-    hostname: k8s01.breeze-blocks.net
-    name: k8s01-local
-  - capacity: 418.3Gi
-    class: local
-    hostname: k8s02.breeze-blocks.net
-    name: k8s02-local
-  - capacity: 418.3Gi
-    class: local
-    hostname: k8s03.breeze-blocks.net
-    name: k8s03-local
-  - capacity: 418.3Gi
-    class: local
-    hostname: k8s04.breeze-blocks.net
-    name: k8s04-local
-  - capacity: 418.3Gi
-    class: local
-    hostname: k8s05.breeze-blocks.net
-    name: k8s05-local
-  - capacity: 179.9Gi
-    class: local
-    hostname: k8s06.breeze-blocks.net
-    name: k8s06-local
-  - capacity: 179.9Gi
-    class: local
-    hostname: k8s07.breeze-blocks.net
-    name: k8s07-local
-  - capacity: 174.9Gi
-    class: local
-    hostname: k8s08.breeze-blocks.net
-    name: k8s08-local
-  - capacity: 175.9Gi
-    class: local
-    hostname: k8s09.breeze-blocks.net
-    name: k8s09-local
-  - capacity: 175.9Gi
-    class: local
-    hostname: k8s10.breeze-blocks.net
-    name: k8s10-local
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s01.breeze-blocks.net
-    name: k8s01-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s02.breeze-blocks.net
-    name: k8s02-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s03.breeze-blocks.net
-    name: k8s03-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s04.breeze-blocks.net
-    name: k8s04-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s05.breeze-blocks.net
-    name: k8s05-usb
-  - capacity: 59.6Gi
-    class: usb
-    hostname: k8s06.breeze-blocks.net
-    name: k8s06-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s07.breeze-blocks.net
-    name: k8s07-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s08.breeze-blocks.net
-    name: k8s08-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s09.breeze-blocks.net
-    name: k8s09-usb
-  - capacity: 58.6Gi
-    class: usb
-    hostname: k8s10.breeze-blocks.net
-    name: k8s10-usb
-###
-# ```{rubric} USB
-# ```
-# ---
-# This defines USB storage.
-usb:
-  ###
-  # It is not the default class.
-  default: false
-  ###
-  # Enable this storage class
-  enabled: true
-  ###
-  # The name is `usb`.
-  name: usb
-  ###
-  # The provisioner is still technically none.
-  provisioner: removable
-  ###
-  # The storage is solid-state.
-  type: ssd
+  rbac:
+    create: true
+    pspEnabled: true
+  storageClasses:
+    linear:
+      enabled: true
+      reclaimPolicy: Delete
+    mirror:
+      enabled: false
+      reclaimPolicy: Delete
+    striped:
+      enabled: false
+      reclaimPolicy: Delete
+    tolerations:
+      plugin:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+      provisioner:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
 
+###
+# ```{rubric} Local Static Provisioner
+# ```
+# ---
+# A driver for managing local static storage provisioning.
+#
+# Disabled by default.
+local-static-provisioner:
+  enabled: false

@@ -13,23 +13,31 @@ title: Storage Helm Chart
 
 ## Repository Contents
 
+```{toctree}
+:caption: Storage Drivers
+
+csi-driver-lvm/index
+local-static-provisioner/index
+```
+
 ```{contents}
 ```
 
-### Meta Contents
+````{sidebar} Indices and tables
+```{list-table}
+* - {ref}`genindex`
+* - {ref}`modindex`
+* - {ref}`search`
+````
 
 ```{toctree}
+:caption: Meta Pages
+
 cicd
 license
 readme
 security
 ```
-
-## Indices and tables
-
-* {ref}`genindex`
-* {ref}`modindex`
-* {ref}`search`
 
 ### Glossary
 
@@ -53,6 +61,17 @@ csi-driver-nfs
    More information is available
    [here](https://github.com/kubernetes-csi/csi-driver-nfs)
 
+DaemonSet
+   A Kubernetes workload object that is intended to run on all nodes in a
+   cluster by default. Can be configured to ignore control plane nodes.
+   More information is available
+   [here](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
+
+kubelet
+   An application that must run on every node in a Kubernetes cluster,
+   responsible for interfacing with the container runtime and the other
+   components of Kubernetes.
+
 LVM
    Logical Volume Manager, described in more detail
    [here](https://wiki.archlinux.org/title/LVM)
@@ -60,6 +79,12 @@ LVM
 NFS
    Network File Storage, described in more detail
    [here](https://wiki.archlinux.org/title/NFS).
+
+RAID
+   Redundant Array of Inexpensive Disks is a method of clustering cheap and
+   easily replaced disks into an array that appears to an operating system
+   as a single disk. More information is available
+   [here](https://en.wikipedia.org/wiki/RAID).
 
 PersistentVolume
    A Kubernetes object that is statically defined by a cluster administrator
@@ -75,49 +100,17 @@ StorageClass
    A Kubernetes object that describes a persistent or ephemeral form of storage
    that may be provisioned by a cluster. Described in more detail
    [here](https://kubernetes.io/docs/concepts/storage/storage-classes/#storageclass-objects).
-```
 
-## Storage Contents
+Taint
+   A condition applied to a Kubernetes node that can be used to prevent
+   certain workloads from being run on it. More information is available
+   [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 
-```{toctree}
-local-static-provisioner/index
-```
-
-## Installation
-
-To install this chart you can run the following command from the root
-of this repository.
-
-```{code-block} shell
-kubectl create ns storage
-helm dependency update storage storage/
-helm -n storage upgrade --install storage storage/
-```
-
-This will install the {term}`StorageClass` objects described in the file
-{file}`templates/service.yaml`, then use them to create
-{term}`PersistentVolume`s as appropriate for the nodes in your cluster
-and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
-
-```{note}
-The default values are those used with the author's personal cluster
-and should be changed in the {file}`storage/values.yaml`
-```
-
-### Testing
-
-You can run the Helm template tests this way.
-
-```{code-block} shell
-helm -n storage test storage
-```
-
-### Uninstall
-
-To remove all resources deployed with this chart run this.
-
-```{code-block} shell
-helm -n storage uninstall storage
+Tolerations
+   A condition that can be apply to a Kubernetes workload that can be used
+   to allow certain workloads to ignore a {term}`Taint` that has been applied
+   to a node. More information is available
+   [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 ```
 
 ## Chart
@@ -128,8 +121,7 @@ helm -n storage uninstall storage
 ### Sub Charts
 
 Local volume dynamic provisioning is handled using the
-[csi-driver-lvm](https://github.com/metal-stack/helm-charts/tree/master/charts/csi-driver-lvm)
-CSI Driver.
+{term}`csi-driver-lvm` CSI Driver.
 
 The complete list of possible settings for {term}`csi-driver-lvm` can be found
 [here](https://github.com/metal-stack/helm-charts/blob/master/charts/csi-driver-lvm/values.yaml).
@@ -145,6 +137,3 @@ This chart depends on the static local provisioner plugin described in detail
 [here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
 The helm chart and templates are located in {file}`local-static-provisioner`.
-
-[^pv]: Information about the `range` function can be found in the
-    [Helm docs](https://helm.sh/docs/chart_template_guide/control_structures/#looping-with-the-range-action).
