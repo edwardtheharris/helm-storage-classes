@@ -67,6 +67,12 @@ NFS
    Network File Storage, described in more detail
    [here](https://wiki.archlinux.org/title/NFS).
 
+RAID
+   Redundant Array of Inexpensive Disks is a method of clustering cheap and
+   easily replaced disks into an array that appears to an operating system
+   as a single disk. More information is available
+   [here](https://en.wikipedia.org/wiki/RAID).
+
 PersistentVolume
    A Kubernetes object that is statically defined by a cluster administrator
    and may be bound to a PersistentVolumeClaim at runtime. More information
@@ -81,11 +87,23 @@ StorageClass
    A Kubernetes object that describes a persistent or ephemeral form of storage
    that may be provisioned by a cluster. Described in more detail
    [here](https://kubernetes.io/docs/concepts/storage/storage-classes/#storageclass-objects).
+
+Taints
+   A condition applied to a Kubernetes node that can be used to prevent
+   certain workloads from being run on it. More information is available
+   [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
+
+Tolerations
+   A condition that can be apply to a Kubernetes workload that can be used
+   to allow certain workloads to ignore a {term}`Taint` that has been applied
+   to a node. More information is available
+   [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 ```
 
 ## Storage Contents
 
 ```{toctree}
+csi-driver-lvm/index
 local-static-provisioner/index
 ```
 
