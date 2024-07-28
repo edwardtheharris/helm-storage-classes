@@ -18,6 +18,7 @@
 *~
 # Various IDEs
 .project
+.debug/
 .idea/
 *.tmproj
 .vscode/

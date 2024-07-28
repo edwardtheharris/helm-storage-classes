@@ -6,3 +6,4 @@ venv/
 _build
 charts/
 __snapshot__
+.debug/
