@@ -5,6 +5,7 @@ metadata:
   name: csi-driver-lvm-test
   annotations:
     helm.sh/hook: test
+    heml.sh/hook-delete-policy: hook-succeeded
 spec:
   accessModes:
   - ReadWriteOnce

@@ -3,6 +3,12 @@
 # ```
 # ---
 # Settings for the CSI Driver for Logical Volume Managers
+#
+# ```{literalinclude} /values.yaml
+# :language: yaml
+# :start-at: "csi-driver-lvm:\n"
+# :end-before: "###\n"
+# ```
 csi-driver-lvm:
   customCSISidecars:
     attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
@@ -16,9 +22,32 @@ csi-driver-lvm:
     resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
   enabled: true
   lvm:
-    devicePattern: /dev/sdc1
+    devicePattern: /dev/sd[a-z]1
     driverName: lvm.csi.metal-stack.io
     vgName: csi
+  rbac:
+    create: true
+    pspEnabled: true
+  storageClasses:
+    linear:
+      enabled: true
+      reclaimPolicy: Delete
+    mirror:
+      enabled: false
+      reclaimPolicy: Delete
+    striped:
+      enabled: false
+      reclaimPolicy: Delete
+    tolerations:
+      plugin:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+      provisioner:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+
 ###
 # ```{rubric} Local Static Provisioner
 # ```

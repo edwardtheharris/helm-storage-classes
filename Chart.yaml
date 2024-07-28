@@ -19,7 +19,7 @@ dependencies:
   - condition: csi-driver-lvm.enabled
     name: csi-driver-lvm
     repository: https://helm.metal-stack.io
-    version: ~0.4
+    version: ~0.5
   - condition: local-static-provisioner.enabled
     name: local-static-provisioner
     repository: file://./local-static-provisioner/
