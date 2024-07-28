@@ -11,7 +11,11 @@
 compat03x: false
 customCSISidecars:
   ###
-  # uncomment and set these if enabled=true
+  # To enable custom CSI Sidecars, you should
+  # uncomment the lines in the code block below and set
+  # `enabled: true`.
+  #
+  # Set to `false` by default.
   #
   # ```{code-block} yaml
   # :caption: CSI Sidecar Images
@@ -21,8 +25,6 @@ customCSISidecars:
   # registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
   # resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
   # ```
-  #
-  # Set to `false` by default.
   enabled: false
 ###
 # Configure a custom {term}`kubelet` write path if necessary.
@@ -34,6 +36,12 @@ kubernetes:
 # ---
 # This is where you will define the {term}`StorageClass` for this driver along
 # with a few other settings.
+#
+# ```{literalinclude} /csi-driver-lvm/values.yaml
+# :language: yaml
+# :start-at: "lvm:\n"
+# :end-at: "  vgName: csi-lvm\n"
+# ```
 lvm:
   ###
   # This one you should change
@@ -41,7 +49,7 @@ lvm:
   driverName: lvm.csi.metal-stack.io
   ###
   # You will want to change this for read-only file systems
-  # For example, in Talos OS, set this to "/var/etc/lvm"
+  # For example, in Talos OS, set this to {file}`/var/etc/lvm`.
   hostWritePath: /etc/lvm
   ###
   # these are primarily for testing purposes
