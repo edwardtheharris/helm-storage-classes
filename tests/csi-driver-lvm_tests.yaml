@@ -1,9 +1,8 @@
 # tests/test_suite.yaml
 suite: "csi-driver-lvm-test suite"
 templates:
-  - "templates/pvc.yaml"
-  - "templates/pod.yaml"
-  - "templates/statefulset.yaml"
+  - "templates/tests/csi-driver-lvm-pod-test.yaml"
+  - "templates/tests/csi-driver-lvm-sts-test.yaml"
 
 tests:
   - it: "should render PersistentVolumeClaim with correct name and storage"
