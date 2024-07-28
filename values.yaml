@@ -6,7 +6,7 @@
 #
 # ```{literalinclude} /values.yaml
 # :language: yaml
-# :start-at: "csi-driver-lvm:\n"
+# :start-at: "lvm:\n"
 # :end-before: "###\n"
 # ```
 csi-driver-lvm:
@@ -24,7 +24,7 @@ csi-driver-lvm:
   lvm:
     devicePattern: /dev/sd[a-z]1
     driverName: lvm.csi.metal-stack.io
-    vgName: csi
+    vgName: vg.local
   rbac:
     create: true
     pspEnabled: true
@@ -40,13 +40,13 @@ csi-driver-lvm:
       reclaimPolicy: Delete
     tolerations:
       plugin:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/control-plane
-          operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
       provisioner:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/control-plane
-          operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
 
 ###
 # ```{rubric} Local Static Provisioner
