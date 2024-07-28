@@ -13,23 +13,31 @@ title: Storage Helm Chart
 
 ## Repository Contents
 
+```{toctree}
+:caption: Storage Drivers
+
+csi-driver-lvm/index
+local-static-provisioner/index
+```
+
 ```{contents}
 ```
 
-### Meta Contents
+````{sidebar} Indices and tables
+```{list-table}
+* - {ref}`genindex`
+* - {ref}`modindex`
+* - {ref}`search`
+````
 
 ```{toctree}
+:caption: Meta Pages
+
 cicd
 license
 readme
 security
 ```
-
-## Indices and tables
-
-* {ref}`genindex`
-* {ref}`modindex`
-* {ref}`search`
 
 ### Glossary
 
@@ -58,6 +66,11 @@ DaemonSet
    cluster by default. Can be configured to ignore control plane nodes.
    More information is available
    [here](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
+
+kubelet
+   An application that must run on every node in a Kubernetes cluster,
+   responsible for interfacing with the container runtime and the other
+   components of Kubernetes.
 
 LVM
    Logical Volume Manager, described in more detail
@@ -98,50 +111,6 @@ Tolerations
    to allow certain workloads to ignore a {term}`Taint` that has been applied
    to a node. More information is available
    [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
-```
-
-## Storage Contents
-
-```{toctree}
-csi-driver-lvm/index
-local-static-provisioner/index
-```
-
-## Installation
-
-To install this chart you can run the following command from the root
-of this repository.
-
-```{code-block} shell
-kubectl create ns storage
-helm dependency update storage storage/
-helm -n storage upgrade --install storage storage/
-```
-
-This will install the {term}`StorageClass` objects described in the file
-{file}`templates/service.yaml`, then use them to create
-{term}`PersistentVolume`s as appropriate for the nodes in your cluster
-and described in the file {file}`storage/templates/persistentVolume.yaml`[^pv].
-
-```{note}
-The default values are those used with the author's personal cluster
-and should be changed in the {file}`storage/values.yaml`
-```
-
-### Testing
-
-You can run the Helm template tests this way.
-
-```{code-block} shell
-helm -n storage test storage
-```
-
-### Uninstall
-
-To remove all resources deployed with this chart run this.
-
-```{code-block} shell
-helm -n storage uninstall storage
 ```
 
 ## Chart

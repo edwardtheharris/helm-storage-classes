@@ -16,7 +16,8 @@ apiVersion: v2
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 dependencies:
-  - name: csi-driver-lvm
+  - condition: csi-driver-lvm.enabled
+    name: csi-driver-lvm
     repository: https://helm.metal-stack.io
     version: ~0.4
   - condition: local-static-provisioner.enabled
