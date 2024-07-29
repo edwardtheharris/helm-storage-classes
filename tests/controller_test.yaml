@@ -1,23 +1,24 @@
-# tests/statefulset_test_suite.yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+# tests/controller_test.yaml
 suite: "CSI Driver LVM StatefulSet Test Suite"
 templates:
   - "charts/csi-driver-lvm/templates/controller.yaml"
 
 tests:
-  - it: "should render StatefulSet with correct metadata"
-    asserts:
+  - asserts:
       - isKind:
           of: StatefulSet
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
+    it: "should render StatefulSet with correct metadata"
 
-  - it: "should render StatefulSet with correct spec configurations"
-    asserts:
+  - asserts:
       - equal:
           path: spec.serviceName
           value: "csi-driver-lvm-controller"
@@ -30,9 +31,9 @@ tests:
       - matchRegex:
           path: spec.template.metadata.labels.app
           pattern: "^csi-driver-lvm-controller$"
+    it: "should render StatefulSet with correct spec configurations"
 
-  - it: "should render StatefulSet with correct affinity configuration"
-    asserts:
+  - asserts:
       - equal:
           path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
           value: "kubernetes.io/hostname"
@@ -42,22 +43,22 @@ tests:
       - equal:
           path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
           value: "In"
-      - hasItems:
+      - equal:
           path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].values
-          items:
+          value:
             - "csi-driver-lvm-plugin"
+    it: "should render StatefulSet with correct affinity configuration"
 
-  - it: "should render StatefulSet with correct serviceAccountName"
-    asserts:
+  - asserts:
       - equal:
           path: spec.template.spec.serviceAccountName
           value: "csi-driver-lvm-controller"
+    it: "should render StatefulSet with correct serviceAccountName"
 
-  - it: "should render StatefulSet with correct containers"
-    asserts:
-      - hasItems:
+  - asserts:
+      - equal:
           path: spec.template.spec.containers
-          items:
+          value:
             - name: "csi-attacher"
               image: "k8s.gcr.io/sig-storage/csi-attacher:v3.5.0"
               imagePullPolicy: "IfNotPresent"
@@ -92,13 +93,14 @@ tests:
               volumeMounts:
                 - mountPath: "/csi"
                   name: "socket-dir"
+    it: "should render StatefulSet with correct containers"
 
-  - it: "should render StatefulSet with correct volumes"
-    asserts:
-      - hasItems:
+  - asserts:
+      - equal:
           path: spec.template.spec.volumes
-          items:
+          value:
             - name: "socket-dir"
               hostPath:
                 path: "/var/lib/kubelet/plugins/csi-driver-lvm"
                 type: "DirectoryOrCreate"
+    it: "should render StatefulSet with correct volumes"
