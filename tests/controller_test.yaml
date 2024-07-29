@@ -1,13 +1,21 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
 # tests/controller_test.yaml
 suite: "CSI Driver LVM StatefulSet Test Suite"
+release:
+  name: lvm
 templates:
   - "charts/csi-driver-lvm/templates/controller.yaml"
+values:
+  - ../values.yaml
 
 tests:
-  - asserts:
+  - it: should include a service account
+    documentIndex: 0
+    asserts:
       - isKind:
-          of: StatefulSet
+          of: ServiceAccount
+  - it: "should render StatefulSet with correct metadata"
+    asserts:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
@@ -16,7 +24,11 @@ tests:
           value:
             heritage: "Helm"
             release: "lvm"
-    it: "should render StatefulSet with correct metadata"
+      - isKind:
+          of: StatefulSet
+    documentSelector:
+      path: kind
+      value: StatefulSet
 
   - asserts:
       - equal:
@@ -32,6 +44,9 @@ tests:
           path: spec.template.metadata.labels.app
           pattern: "^csi-driver-lvm-controller$"
     it: "should render StatefulSet with correct spec configurations"
+    documentSelector:
+      path: kind
+      value: StatefulSet
 
   - asserts:
       - equal:
@@ -48,14 +63,21 @@ tests:
           value:
             - "csi-driver-lvm-plugin"
     it: "should render StatefulSet with correct affinity configuration"
+    documentSelector:
+      path: kind
+      value: StatefulSet
 
   - asserts:
       - equal:
           path: spec.template.spec.serviceAccountName
           value: "csi-driver-lvm-controller"
     it: "should render StatefulSet with correct serviceAccountName"
+    documentSelector:
+      path: kind
+      value: StatefulSet
 
-  - asserts:
+  - it: "should render StatefulSet with correct containers"
+    asserts:
       - equal:
           path: spec.template.spec.containers
           value:
@@ -93,14 +115,24 @@ tests:
               volumeMounts:
                 - mountPath: "/csi"
                   name: "socket-dir"
-    it: "should render StatefulSet with correct containers"
+    documentSelector:
+      path: kind
+      value: StatefulSet
 
-  - asserts:
+  - it: "should render StatefulSet with correct volumes"
+    asserts:
       - equal:
           path: spec.template.spec.volumes
           value:
-            - name: "socket-dir"
-              hostPath:
-                path: "/var/lib/kubelet/plugins/csi-driver-lvm"
-                type: "DirectoryOrCreate"
-    it: "should render StatefulSet with correct volumes"
+            - hostPath:
+                path: /var/lib/kubelet/plugins/csi-driver-lvm
+                type: DirectoryOrCreate
+              name: socket-dir
+    documentSelector:
+      path: kind
+      value: StatefulSet
+    release:
+      name: lvm
+    values:
+      - ../values.yaml
+

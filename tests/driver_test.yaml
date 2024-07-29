@@ -1,10 +1,14 @@
-# tests/csidriver_test_suite.yaml
+# tests/driver_test.yaml
 suite: "CSI Driver LVM CSIDriver Test Suite"
 templates:
   - "charts/csi-driver-lvm/templates/common.yaml"
 
 tests:
   - it: "should render CSIDriver with correct metadata"
+    values:
+      - "../values.yaml"
+    release:
+      name: lvm
     asserts:
       - isKind:
           of: CSIDriver
@@ -15,7 +19,7 @@ tests:
           path: metadata.labels
           value:
             heritage: "Helm"
-            release: "RELEASE-NAME"
+            release: "lvm"
 
   - it: "should render CSIDriver with correct spec configurations"
     asserts:
