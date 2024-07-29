@@ -1,5 +1,9 @@
 # tests/role_test_suite.yaml
 suite: "CSI Driver LVM Role Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "charts/csi-driver-lvm/templates/controller.yaml"
   - "charts/csi-driver-lvm/templates/plugin.yaml"
@@ -12,13 +16,14 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
-      - hasItems:
+      - equal:
           path: rules[0].verbs
-          items:
+          value:
             - "get"
             - "list"
             - "watch"
@@ -26,15 +31,15 @@ tests:
             - "patch"
             - "create"
             - "delete"
-      - hasItems:
+      - equal:
           path: rules[1].verbs
-          items:
+          value:
             - "get"
             - "list"
             - "watch"
-      - hasItems:
+      - equal:
           path: rules[2].verbs
-          items:
+          value:
             - "get"
             - "list"
             - "watch"
@@ -48,13 +53,14 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
-      - hasItems:
+      - equal:
           path: rules[0].verbs
-          items:
+          value:
             - "get"
             - "list"
             - "watch"
@@ -62,15 +68,15 @@ tests:
             - "patch"
             - "create"
             - "delete"
-      - hasItems:
+      - equal:
           path: rules[1].verbs
-          items:
+          value:
             - "get"
             - "list"
             - "watch"
-      - hasItems:
+      - equal:
           path: rules[2].verbs
-          items:
+          value:
             - "update"
             - "patch"
 
@@ -81,8 +87,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - matchRegex:
@@ -99,8 +106,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - matchRegex:
@@ -117,13 +125,14 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
-      - hasItems:
+      - equal:
           path: rules[0].verbs
-          items:
+          value:
             - "use"
 
   - it: "should render Role for plugin with correct rules"
@@ -133,13 +142,14 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
-      - hasItems:
+      - equal:
           path: rules[0].verbs
-          items:
+          value:
             - "use"
 
   - it: "should render RoleBinding for controller with correct configurations"
@@ -149,8 +159,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - matchRegex:
@@ -167,8 +178,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - matchRegex:

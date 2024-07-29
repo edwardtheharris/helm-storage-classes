@@ -1,5 +1,9 @@
 # tests/storageclasses_test_suite.yaml
 suite: "CSI Driver LVM StorageClasses Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "charts/csi-driver-lvm/templates/storageclasses.yaml"
 
@@ -11,8 +15,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-linear$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - equal:
@@ -30,6 +35,7 @@ tests:
       - equal:
           path: parameters.type
           value: "linear"
+    documentIndex: 0
 
   - it: "should render StorageClass csi-driver-lvm-mirror with correct configurations"
     asserts:
@@ -38,8 +44,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-mirror$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - equal:
@@ -57,6 +64,7 @@ tests:
       - equal:
           path: parameters.type
           value: "mirror"
+    documentIndex: 1
 
   - it: "should render StorageClass csi-driver-lvm-striped with correct configurations"
     asserts:
@@ -65,8 +73,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-striped$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - equal:
@@ -84,3 +93,4 @@ tests:
       - equal:
           path: parameters.type
           value: "striped"
+    documentIndex: 2

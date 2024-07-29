@@ -1,5 +1,9 @@
 # tests/test_suite.yaml
 suite: "CSI Driver LVM Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "charts/csi-driver-lvm/templates/controller.yaml"
   - "charts/csi-driver-lvm/templates/plugin.yaml"
@@ -17,15 +21,18 @@ tests:
       - equal:
           path: spec.privileged
           value: true
-      - hasItems:
+      - equal:
           path: spec.allowedHostPaths
-          items:
+          value:
             - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
-      - hasItems:
+      - equal:
           path: spec.volumes
-          items:
+          value:
             - "secret"
             - "hostPath"
+    documentSelector:
+      path: kind
+      value: PodSecurityPolicy
 
   - it: "should render PodSecurityPolicy for plugin with correct configurations"
     template: "charts/csi-driver-lvm/templates/plugin.yaml"
@@ -38,9 +45,9 @@ tests:
       - equal:
           path: spec.privileged
           value: true
-      - hasItems:
+      - equal:
           path: spec.allowedHostPaths
-          items:
+          value:
             - pathPrefix: "/lib/modules"
             - pathPrefix: "/etc/lvm/cache"
             - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
@@ -50,9 +57,9 @@ tests:
             - pathPrefix: "/var/lib/kubelet/plugins_registry"
             - pathPrefix: "/dev"
             - pathPrefix: "/var/lib/kubelet/pods"
-      - hasItems:
+      - equal:
           path: spec.volumes
-          items:
+          value:
             - "secret"
             - "hostPath"
 
@@ -64,8 +71,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-controller$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
 
@@ -77,8 +85,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
 
@@ -102,8 +111,9 @@ tests:
       - equal:
           path: allowVolumeExpansion
           value: true
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
       - equal:
