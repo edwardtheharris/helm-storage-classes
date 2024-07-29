@@ -16,17 +16,17 @@ apiVersion: v2
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 dependencies:
-  - condition: csi-driver-lvm.enabled
-    name: csi-driver-lvm
-    repository: https://helm.metal-stack.io
-    version: ~0.5
-  - condition: local-static-provisioner.enabled
-    name: local-static-provisioner
-    repository: file://./local-static-provisioner/
-    version: ~2
+- condition: csi-driver-lvm.enabled
+  name: csi-driver-lvm
+  repository: https://helm.metal-stack.io
+  version: ~0.6
+- condition: local-static-provisioner.enabled
+  name: local-static-provisioner
+  repository: file://./local-static-provisioner/
+  version: ~2
 description: A Helm chart for Kubernetes
 icon: file://../assets/icon/csi.png
-name: storage
+name: lvm
 ###
 # A chart can be either an 'application' or a 'library' chart.
 #

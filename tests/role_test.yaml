@@ -1,0 +1,226 @@
+# tests/role_test_suite.yaml
+suite: "CSI Driver LVM Role Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
+templates:
+  - "charts/csi-driver-lvm/templates/controller.yaml"
+  - "charts/csi-driver-lvm/templates/plugin.yaml"
+
+tests:
+  - it: "should render ClusterRole for controller with correct rules"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRole
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: rules[0].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+            - "update"
+            - "patch"
+            - "create"
+            - "delete"
+      - equal:
+          path: rules[1].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+      - equal:
+          path: rules[2].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+            - "update"
+            - "patch"
+    documentSelector:
+      path: kind
+      value: ClusterRole
+    documentIndex: 0
+
+  - it: "should render ClusterRole for plugin with correct rules"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRole
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: rules[0].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+            - "update"
+            - "patch"
+            - "create"
+            - "delete"
+      - equal:
+          path: rules[1].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+      - equal:
+          path: rules[2].verbs
+          value:
+            - "update"
+            - "patch"
+    documentSelector:
+      path: kind
+      value: ClusterRole
+    documentIndex: 0
+
+  - it: "should render ClusterRoleBinding for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-controller"
+    documentSelector:
+      path: kind
+      value: ClusterRoleBinding
+
+  - it: "should render ClusterRoleBinding for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-plugin"
+    documentSelector:
+      path: kind
+      value: ClusterRoleBinding
+
+  # - it: "should render Role for controller with correct rules"
+  #   template: "charts/csi-driver-lvm/templates/controller.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: Role
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: metadata.labels
+  #         value:
+  #           heritage: "Helm"
+  #           release: "lvm"
+  #     - equal:
+  #         path: rules[0].verbs
+  #         value:
+  #           - "use"
+  #   documentSelector:
+  #     path: kind
+  #     value: Role
+  #   documentIndex: 0
+
+  # - it: "should render Role for plugin with correct rules"
+  #   template: "charts/csi-driver-lvm/templates/plugin.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: Role
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-plugin$"
+  #     - equal:
+  #         path: metadata.labels
+  #         value:
+  #           heritage: "Helm"
+  #           release: "lvm"
+  #     - equal:
+  #         path: rules[0].verbs
+  #         value:
+  #           - "use"
+  #   documentSelector:
+  #     path: kind
+  #     value: Role
+
+  # - it: "should render RoleBinding for controller with correct configurations"
+  #   asserts:
+  #     - isKind:
+  #         of: RoleBinding
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: metadata.labels
+  #         value:
+  #           heritage: "Helm"
+  #           release: "lvm"
+  #     - matchRegex:
+  #         path: subjects[0].name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: roleRef.name
+  #         value: "csi-driver-lvm-controller"
+  #   documentSelector:
+  #     path: kind
+  #     value: RoleBinding
+  #   documentIndex: 1
+
+  - it: "should render RoleBinding for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: RoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-plugin"
+    documentSelector:
+      path: kind
+      value: RoleBinding

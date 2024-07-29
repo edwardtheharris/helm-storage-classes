@@ -1,0 +1,127 @@
+# tests/test_suite.yaml
+suite: "CSI Driver LVM Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
+templates:
+  - "charts/csi-driver-lvm/templates/controller.yaml"
+  - "charts/csi-driver-lvm/templates/plugin.yaml"
+  - "charts/csi-driver-lvm/templates/storageclasses.yaml"
+
+tests:
+  # - it: "should render PodSecurityPolicy for controller with correct configurations"
+  #   template: "charts/csi-driver-lvm/templates/controller.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: PodSecurityPolicy
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: spec.privileged
+  #         value: true
+  #     - equal:
+  #         path: spec.allowedHostPaths
+  #         value:
+  #           - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
+  #     - equal:
+  #         path: spec.volumes
+  #         value:
+  #           - "secret"
+  #           - "hostPath"
+  #   documentSelector:
+  #     path: kind
+  #     value: PodSecurityPolicy
+
+  # - it: "should render PodSecurityPolicy for plugin with correct configurations"
+  #   template: "charts/csi-driver-lvm/templates/plugin.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: PodSecurityPolicy
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-plugin$"
+  #     - equal:
+  #         path: spec.privileged
+  #         value: true
+  #     - equal:
+  #         path: spec.allowedHostPaths
+  #         value:
+  #           - pathPrefix: "/lib/modules"
+  #           - pathPrefix: "/etc/lvm/cache"
+  #           - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
+  #           - pathPrefix: "/etc/lvm/backup"
+  #           - pathPrefix: "/etc/lvm/lock"
+  #           - pathPrefix: "/var/lib/kubelet/plugins"
+  #           - pathPrefix: "/var/lib/kubelet/plugins_registry"
+  #           - pathPrefix: "/dev"
+  #           - pathPrefix: "/var/lib/kubelet/pods"
+  #     - equal:
+  #         path: spec.volumes
+  #         value:
+  #           - "secret"
+  #           - "hostPath"
+
+  - it: "should render ServiceAccount for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ServiceAccount
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+    documentSelector:
+      path: kind
+      value: ServiceAccount
+
+  - it: "should render ServiceAccount for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ServiceAccount
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+    documentSelector:
+      path: kind
+      value: ServiceAccount
+
+  - it: "should render StorageClass with correct configurations"
+    template: "charts/csi-driver-lvm/templates/storageclasses.yaml"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-(linear|mirror|striped)$"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - matchRegex:
+          path: parameters.type
+          pattern: "(linear|mirror|striped)"

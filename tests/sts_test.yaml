@@ -1,0 +1,321 @@
+suite: "CSI Driver LVM Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
+templates:
+  - "charts/csi-driver-lvm/templates/controller.yaml"
+  - "charts/csi-driver-lvm/templates/plugin.yaml"
+  - "charts/csi-driver-lvm/templates/storageclasses.yaml"
+  - "charts/csi-driver-lvm/templates/common.yaml"
+  - "templates/test-csi-driver-lvm-pod.yaml"
+  - "templates/test-csi-driver-lvm-sts.yaml"
+
+tests:
+  # - it: "should render PodSecurityPolicy for controller with correct configurations"
+  #   template: "charts/csi-driver-lvm/templates/controller.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: PodSecurityPolicy
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: spec.privileged
+  #         value: true
+  #   documentSelector:
+  #     path: kind
+  #     value: PodSecurityPolicy
+
+  # - it: "should render PodSecurityPolicy for plugin with correct configurations"
+  #   template: "charts/csi-driver-lvm/templates/plugin.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: PodSecurityPolicy
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-plugin$"
+  #     - equal:
+  #         path: spec.privileged
+  #         value: true
+  #   documentSelector:
+  #     path: kind
+  #     value: PodSecurityPolicy
+
+  - it: "should render ServiceAccount for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ServiceAccount
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+    documentSelector:
+      path: kind
+      value: ServiceAccount
+
+  - it: "should render ServiceAccount for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ServiceAccount
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+    documentSelector:
+      path: kind
+      value: ServiceAccount
+
+  - it: "should render StorageClass with correct configurations"
+    template: "charts/csi-driver-lvm/templates/storageclasses.yaml"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - equal:
+          path: metadata.name
+          value: csi-driver-lvm-linear
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+    documentIndex: 0
+
+  - it: "should render ClusterRole for controller with correct rules"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRole
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: rules[0].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+            - "update"
+            - "patch"
+            - "create"
+            - "delete"
+    documentSelector:
+      path: kind
+      value: ClusterRole
+
+  - it: "should render ClusterRole for plugin with correct rules"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRole
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: rules[0].verbs
+          value:
+            - "get"
+            - "list"
+            - "watch"
+            - "update"
+            - "patch"
+            - "create"
+            - "delete"
+    documentSelector:
+      path: kind
+      value: ClusterRole
+
+  - it: "should render ClusterRoleBinding for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-controller"
+    documentSelector:
+      path: kind
+      value: ClusterRoleBinding
+
+  - it: "should render ClusterRoleBinding for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: ClusterRoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-plugin"
+    documentSelector:
+      path: kind
+      value: ClusterRoleBinding
+
+  # - it: "should render Role for controller with correct rules"
+  #   template: "charts/csi-driver-lvm/templates/controller.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: Role
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-controller$"
+  #     - equal:
+  #         path: rules[0].verbs
+  #         value:
+  #           - "use"
+  #   documentSelector:
+  #     path: kind
+  #     value: Role
+
+  # - it: "should render Role for plugin with correct rules"
+  #   template: "charts/csi-driver-lvm/templates/plugin.yaml"
+  #   asserts:
+  #     - isKind:
+  #         of: Role
+  #     - matchRegex:
+  #         path: metadata.name
+  #         pattern: "^csi-driver-lvm-plugin$"
+  #     - equal:
+  #         path: rules[0].verbs
+  #         value:
+  #           - "use"
+  #   documentSelector:
+  #     path: Kind
+  #     value: Role
+
+  - it: "should render RoleBinding for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: RoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-controller"
+    documentSelector:
+      path: kind
+      value: RoleBinding
+
+  - it: "should render RoleBinding for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: RoleBinding
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - matchRegex:
+          path: subjects[0].name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: roleRef.name
+          value: "csi-driver-lvm-plugin"
+    documentSelector:
+      path: kind
+      value: RoleBinding
+
+  - it: "should render DaemonSet for plugin with correct configurations"
+    template: "charts/csi-driver-lvm/templates/plugin.yaml"
+    asserts:
+      - isKind:
+          of: DaemonSet
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-plugin$"
+      - equal:
+          path: spec.template.spec.containers[0].args
+          value:
+            - "--v=5"
+            - "--csi-address=/csi/csi.sock"
+            - "--kubelet-registration-path=/var/lib/kubelet/plugins/csi-driver-lvm/csi.sock"
+    documentSelector:
+      path: kind
+      value: DaemonSet
+
+  - it: "should render StatefulSet for controller with correct configurations"
+    template: "charts/csi-driver-lvm/templates/controller.yaml"
+    asserts:
+      - isKind:
+          of: StatefulSet
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-controller$"
+      - equal:
+          path: spec.template.spec.containers[0].args
+          value:
+            - "--v=5"
+            - "--csi-address=/csi/csi.sock"
+      - matchRegex:
+          path: spec.template.spec.serviceAccountName
+          pattern: "^csi-driver-lvm-controller$"
+    documentSelector:
+      path: kind
+      value: StatefulSet
+
+  - it: "should render CSIDriver with correct configurations"
+    template: "charts/csi-driver-lvm/templates/common.yaml"
+    asserts:
+      - isKind:
+          of: CSIDriver
+      - equal:
+          path: metadata.name
+          value: lvm.csi.metal-stack.io
+    documentSelector:
+      path: kind
+      value: CSIDriver
+
+  - it: "should render PersistentVolumeClaim for pod test with correct configurations"
+    template: "templates/test-csi-driver-lvm-pod.yaml"
+    asserts:
+      - isKind:
+          of: PersistentVolumeClaim
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-pod-test$"
+      - equal:
+          path: metadata.annotations
+          value:
+            helm.sh/hook: test
+      - equal:
+          path: spec.storageClassName
+          value: "csi-driver-lvm-linear"
+      - equal:
+          path: spec.resources.requests.storage
+          value: "100Mi"
+    documentSelector:
+      path: kind
+      value: PersistentVolumeClaim
+
+  - it: "should render Pod for pod test with correct configurations"
+    template: "templates/test-csi-driver-lvm-pod.yaml"
+    asserts:
+      - isKind:
+          of: Pod
+      - equal:
+          path: metadata.name
+          value: csi-driver-lvm-pod-test
+      - equal:
+          path: metadata.annotations
+          value:
+            app.kubernetes.io/name: csi-driver-lvm-pod-test
+            helm.sh/hook: test
+            helm.sh/hook-delete-policy: hook-succeeded
+      - equal:
+          path: spec.containers[0].image
+          value: "dandb79/lsblk-testing:v1.2"
+    documentSelector:
+      path: kind
+      value: Pod

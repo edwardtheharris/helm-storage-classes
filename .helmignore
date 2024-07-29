@@ -18,9 +18,11 @@
 *~
 # Various IDEs
 .project
+.debug/
 .idea/
 *.tmproj
 .vscode/
 .venv/
 *.md
 _build/
+tests/

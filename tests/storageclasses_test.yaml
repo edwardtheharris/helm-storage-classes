@@ -1,0 +1,96 @@
+# tests/storageclasses_test_suite.yaml
+suite: "CSI Driver LVM StorageClasses Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
+templates:
+  - "charts/csi-driver-lvm/templates/storageclasses.yaml"
+
+tests:
+  - it: "should render StorageClass csi-driver-lvm-linear with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-linear$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "linear"
+    documentIndex: 0
+
+  - it: "should render StorageClass csi-driver-lvm-mirror with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-mirror$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "mirror"
+    documentIndex: 1
+
+  - it: "should render StorageClass csi-driver-lvm-striped with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-striped$"
+      - equal:
+          path: metadata.labels
+          value:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "striped"
+    documentIndex: 2

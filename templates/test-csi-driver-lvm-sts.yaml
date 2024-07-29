@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: csi-driver-lvm-sts-test
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-delete-policy: hook-succeeded,hook-failed,before-hook-creation
+spec:
+  selector:
+    matchLabels:
+      name: csi-driver-lvm-sts-test
+  serviceName: "csi-driver-lvm-test"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: csi-driver-lvm-sts-test
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: dandb79/lsblk-testing:v1.2
+          command: ["/bin/sh", "-c"]
+          args: [ "lsblk" ]
+          name: csi-driver-lvm-linear-test
+          volumeMounts:
+            - name: lvm
+              mountPath: /data
+      nodeSelector:
+        kubernetes.io/os: linux
+  volumeClaimTemplates:
+    - metadata:
+        name: lvm
+        annotations:
+          helm.sh/hook: test
+          helm.sh/hook-delete-policy: hook-succeeded,hook-failed,before-hook-creation
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 100Mi
+        storageClassName: csi-driver-lvm-linear

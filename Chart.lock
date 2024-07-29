@@ -1,9 +1,9 @@
 dependencies:
 - name: csi-driver-lvm
   repository: https://helm.metal-stack.io
-  version: 0.5.6
+  version: 0.6.0
 - name: local-static-provisioner
   repository: file://./local-static-provisioner/
   version: 2.0.0
-digest: sha256:3f6e7cce217e806670195bc4e91fd76d69b313f14d12ccfcbe6589c0bb39b28f
-generated: "2024-07-28T09:13:33.469979265-07:00"
+digest: sha256:1972b722a2e8459f3de76472621fe23df9b9362cef86da677c3cc8218e406eb2
+generated: "2024-07-28T15:12:33.930971809-07:00"

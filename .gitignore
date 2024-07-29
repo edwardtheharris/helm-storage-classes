@@ -5,3 +5,5 @@ venv/
 .vscode/
 _build
 charts/
+__snapshot__
+.debug/
