@@ -1,5 +1,9 @@
 # tests/daemonset_test_suite.yaml
 suite: "CSI Driver LVM DaemonSet Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "charts/csi-driver-lvm/templates/plugin.yaml"
 
@@ -11,8 +15,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-plugin$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
             release: "lvm"
 
@@ -33,9 +38,9 @@ tests:
 
   - it: "should render DaemonSet with correct containers"
     asserts:
-      - hasItems:
+      - equal:
           path: spec.template.spec.containers
-          items:
+          value:
             - name: "node-driver-registrar"
               image: "k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1"
               imagePullPolicy: "IfNotPresent"
@@ -126,9 +131,9 @@ tests:
 
   - it: "should render DaemonSet with correct volumes"
     asserts:
-      - hasItems:
+      - equal:
           path: spec.template.spec.volumes
-          items:
+          value:
             - name: "socket-dir"
               hostPath:
                 path: "/var/lib/kubelet/plugins/csi-driver-lvm"

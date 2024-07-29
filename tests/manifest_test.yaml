@@ -1,5 +1,9 @@
 # tests/test_suite.yaml
 suite: "CSI Driver LVM Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "templates/test-csi-driver-lvm-pod.yaml"
   - "templates/test-csi-driver-lvm-sts.yaml"
@@ -16,11 +20,13 @@ tests:
       - matchRegex:
           path: metadata.namespace
           pattern: "^csi-driver-lvm$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             app.kubernetes.io/name: "csi-driver-lvm-pod-test"
-      - hasAnnotations:
-          metadata.annotations:
+      - equal:
+          path: metadata.annotations
+          value:
             helm.sh/hook: "test"
       - equal:
           path: spec.accessModes[0]
@@ -43,12 +49,14 @@ tests:
       - matchRegex:
           path: metadata.namespace
           pattern: "^csi-driver-lvm$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             name: "csi-driver-lvm-pod-test"
             app.kubernetes.io/name: "csi-driver-lvm-pod-test"
-      - hasAnnotations:
-          metadata.annotations:
+      - equal:
+          path: metadata.annotations
+          value:
             helm.sh/hook: "test"
             helm.sh/hook-delete-policy: "hook-succeeded"
       - equal:
@@ -87,8 +95,9 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^csi-driver-lvm-sts-test$"
-      - hasAnnotations:
-          metadata.annotations:
+      - equal:
+          path: metadata.annotations
+          value:
             helm.sh/hook: "test"
             helm.sh/hook-delete-policy: "hook-succeeded,hook-failed,before-hook-creation"
       - equal:
@@ -100,8 +109,9 @@ tests:
       - equal:
           path: spec.replicas
           value: 1
-      - hasLabels:
-          spec.template.metadata.labels:
+      - equal:
+          path: spec.template.metadata.labels
+          value:
             name: "csi-driver-lvm-sts-test"
       - equal:
           path: spec.template.spec.restartPolicy
@@ -127,9 +137,9 @@ tests:
       - equal:
           path: spec.template.spec.nodeSelector."kubernetes.io/os"
           value: "linux"
-      - hasItems:
+      - equal:
           path: spec.volumeClaimTemplates
-          items:
+          value:
             - metadata:
                 name: "lvm"
                 annotations:

@@ -1,4 +1,8 @@
 suite: "CSI Driver LVM Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
 templates:
   - "charts/csi-driver-lvm/templates/controller.yaml"
   - "charts/csi-driver-lvm/templates/plugin.yaml"
