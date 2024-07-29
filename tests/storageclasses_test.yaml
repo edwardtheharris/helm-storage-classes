@@ -1,0 +1,86 @@
+# tests/storageclasses_test_suite.yaml
+suite: "CSI Driver LVM StorageClasses Test Suite"
+templates:
+  - "charts/csi-driver-lvm/templates/storageclasses.yaml"
+
+tests:
+  - it: "should render StorageClass csi-driver-lvm-linear with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-linear$"
+      - hasLabels:
+          metadata.labels:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "linear"
+
+  - it: "should render StorageClass csi-driver-lvm-mirror with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-mirror$"
+      - hasLabels:
+          metadata.labels:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "mirror"
+
+  - it: "should render StorageClass csi-driver-lvm-striped with correct configurations"
+    asserts:
+      - isKind:
+          of: StorageClass
+      - matchRegex:
+          path: metadata.name
+          pattern: "^csi-driver-lvm-striped$"
+      - hasLabels:
+          metadata.labels:
+            heritage: "Helm"
+            release: "lvm"
+      - equal:
+          path: provisioner
+          value: "lvm.csi.metal-stack.io"
+      - equal:
+          path: reclaimPolicy
+          value: "Delete"
+      - equal:
+          path: volumeBindingMode
+          value: "WaitForFirstConsumer"
+      - equal:
+          path: allowVolumeExpansion
+          value: true
+      - equal:
+          path: parameters.type
+          value: "striped"

@@ -1,0 +1,31 @@
+# tests/csidriver_test_suite.yaml
+suite: "CSI Driver LVM CSIDriver Test Suite"
+templates:
+  - "charts/csi-driver-lvm/templates/common.yaml"
+
+tests:
+  - it: "should render CSIDriver with correct metadata"
+    asserts:
+      - isKind:
+          of: CSIDriver
+      - matchRegex:
+          path: metadata.name
+          pattern: "^lvm.csi.metal-stack.io$"
+      - hasLabels:
+          metadata.labels:
+            heritage: "Helm"
+            release: "lvm"
+
+  - it: "should render CSIDriver with correct spec configurations"
+    asserts:
+      - hasItems:
+          path: spec.volumeLifecycleModes
+          items:
+            - "Persistent"
+            - "Ephemeral"
+      - equal:
+          path: spec.podInfoOnMount
+          value: true
+      - equal:
+          path: spec.attachRequired
+          value: false

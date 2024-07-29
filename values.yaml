@@ -33,10 +33,10 @@ csi-driver-lvm:
       enabled: true
       reclaimPolicy: Delete
     mirror:
-      enabled: false
+      enabled: true
       reclaimPolicy: Delete
     striped:
-      enabled: false
+      enabled: true
       reclaimPolicy: Delete
     tolerations:
       plugin:
