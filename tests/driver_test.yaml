@@ -11,16 +11,17 @@ tests:
       - matchRegex:
           path: metadata.name
           pattern: "^lvm.csi.metal-stack.io$"
-      - hasLabels:
-          metadata.labels:
+      - equal:
+          path: metadata.labels
+          value:
             heritage: "Helm"
-            release: "lvm"
+            release: "RELEASE-NAME"
 
   - it: "should render CSIDriver with correct spec configurations"
     asserts:
-      - hasItems:
+      - equal:
           path: spec.volumeLifecycleModes
-          items:
+          value:
             - "Persistent"
             - "Ephemeral"
       - equal:
