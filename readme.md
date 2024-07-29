@@ -12,44 +12,113 @@ title: Readme
 
 [![GitHub Actions OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat&logo=githubactions&logoColor=%232088FF&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
 [![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/pages.yml?branch=main&style=flat&logo=githubpages&logoColor=%23222222&label=GitHub%20Pages)](https://edwardtheharris.github.io/helm-storage-classes/)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat&logo=helm&logoColor=%230F1689&label=Helm&color=%230F1689)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
+[![Helm Test and Unittest](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat&logo=helm&logoColor=%230F1689&label=Helm&color=%230F1689)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
 
 ## Helm Charts for Static and Dynamic Storage Classes
 
 Presently this includes a provisioner for local static storage as well as
 a CSI driver for dynamically provisioning Linux LVM storage.
 
+For more information, see the full documentation
+[here](https://edwardtheharris.github.io/helm-storage-classes/).
+
 ### Install
 
 To install this application, you can follow these steps.
 
-1. Install the `storage` app into the `kube-system` namespace.
+1. Have a Kubernetes cluster that needs StorageClass objects.
+2. On at least one node in your cluster provision a Volume Group that matches
+   the name you've provided in the `csi-driver-lvm.lvm.vgName` setting in
+   `values.yaml`. For best results, provision this volume group on all of the
+   nodes in your cluster on which you intend to run this application.
+3. Create a namespace in that cluster called `csi-driver-lvm`
 
    ```shell
-   helm -n kube-system upgrade --install storage storage/
+   kubectl create ns csi-driver-lvm
    ```
 
-2. Run the provided test suites.
+4. You will likely need to update the values contained in the file
+   {file}`values.yaml` file to suit your local cluster. Prior to installing
+   the application would be a good time for that.
+5. Install the `lvm` app into the `csi-driver-lvm` namespace.
 
    ```shell
-   helm -n kube-system test storage
+   helm -n csi-driver-lvm upgrade --install lvm .
    ```
 
-You will likely need to update the values contained in the file
-{file}`values.yaml` file to suit your local cluster.
+6. Run the provided test suites.
+   1. Start with the basic Helm tests.
+
+      ```shell
+      helm -n csi-driver-lvm test lvm
+      ```
+
+      If things went well, you should see output similar to this.
+
+      ```shell
+      NAME: lvm
+      LAST DEPLOYED: Sun Jul 28 15:43:34 2024
+      NAMESPACE: csi-driver-lvm
+      STATUS: deployed
+      REVISION: 9
+      TEST SUITE:     csi-driver-lvm-pod-test
+      Last Started:   Mon Jul 29 07:31:39 2024
+      Last Completed: Mon Jul 29 07:31:39 2024
+      Phase:          Succeeded
+      TEST SUITE:     csi-driver-lvm-pod-test
+      Last Started:   Mon Jul 29 07:31:39 2024
+      Last Completed: Mon Jul 29 07:31:49 2024
+      Phase:          Succeeded
+      TEST SUITE:     csi-driver-lvm-sts-test
+      Last Started:   Mon Jul 29 07:31:49 2024
+      Last Completed: Mon Jul 29 07:31:49 2024
+      Phase:          Succeeded
+      ```
+
+   2. Install the
+      [Helm unittest](https://github.com/helm-unittest/helm-unittest) plugin.
+
+      ```shell
+      helm plugin install https://github.com/helm-unittest/helm-unittest
+      ```
+
+   3. Run the included unit tests.
+
+      ```shell
+      helm unittest -f 'tests/*.yaml' .
+      ```
+
+      If things went well, you should see output similar to this.
+
+      ```shell
+      ### Chart [ lvm ] .
+
+      PASS  CSI Driver LVM StatefulSet Test Suite    tests/controller_test.yaml
+      PASS  CSI Driver LVM CSIDriver Test Suite      tests/driver_test.yaml
+      PASS  CSI Driver LVM Test Suite        tests/manifest_test.yaml
+      PASS  CSI Driver LVM DaemonSet Test Suite      tests/plugin_test.yaml
+      PASS  CSI Driver LVM Role Test Suite   tests/role_test.yaml
+      PASS  CSI Driver LVM Test Suite        tests/storageClass_test.yaml
+      PASS  CSI Driver LVM StorageClasses Test Suite tests/storageclasses_test.yaml
+      PASS  CSI Driver LVM Test Suite        tests/sts_test.yaml
+
+      Charts:      1 passed, 1 total
+      Test Suites: 8 passed, 8 total
+      Tests:       41 passed, 41 total
+      Snapshot:    0 passed, 0 total
+      Time:        261.729855ms
+      ```
+
+Now, you can dynamically provision PersistentVolumeClaims for any node in your
+cluster that has a Volume Group with the same name as the value of
+`csi-driver-lvm.lvm.vgName` in your `values.yaml` file.
+
+See the test files in the `templates/` directory for examples.
 
 ### Uninstall
 
 Uninstall the application.
 
 ```shell
-helm -n kube-system uninstall storage
-```
-
-### Test
-
-Test the application.
-
-```shell
-helm -n kube-system test storage
+helm -n csi-driver-lvm uninstall storage
 ```
