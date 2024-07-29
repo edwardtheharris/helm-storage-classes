@@ -37,6 +37,9 @@ tests:
       - equal:
           path: spec.storageClassName
           value: "csi-driver-lvm-linear"
+    documentSelector:
+        path: kind
+        value: PersistentVolumeClaim
 
   - it: "should render Pod with correct metadata and spec"
     template: "templates/test-csi-driver-lvm-pod.yaml"
@@ -57,6 +60,7 @@ tests:
       - equal:
           path: metadata.annotations
           value:
+            app.kubernetes.io/name: csi-driver-lvm-pod-test
             helm.sh/hook: "test"
             helm.sh/hook-delete-policy: "hook-succeeded"
       - equal:
@@ -78,14 +82,18 @@ tests:
           path: spec.containers[0].volumeMounts[0].mountPath
           value: "/data"
       - equal:
-          path: spec.nodeSelector."kubernetes.io/os"
-          value: "linux"
+          path: spec.nodeSelector
+          value:
+            kubernetes.io/os: linux
       - equal:
           path: spec.volumes[0].name
           value: "lvm"
       - equal:
           path: spec.volumes[0].persistentVolumeClaim.claimName
           value: "csi-driver-lvm-pod-test"
+    documentSelector:
+        path: kind
+        value: Pod
 
   - it: "should render StatefulSet with correct metadata and spec"
     template: "templates/test-csi-driver-lvm-sts.yaml"
@@ -135,8 +143,9 @@ tests:
           path: spec.template.spec.containers[0].volumeMounts[0].mountPath
           value: "/data"
       - equal:
-          path: spec.template.spec.nodeSelector."kubernetes.io/os"
-          value: "linux"
+          path: spec.template.spec.nodeSelector
+          value:
+            kubernetes.io/os: linux
       - equal:
           path: spec.volumeClaimTemplates
           value:

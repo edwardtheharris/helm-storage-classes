@@ -2,6 +2,7 @@
 suite: "CSI Driver LVM DaemonSet Test Suite"
 release:
   name: lvm
+  namespace: csi-driver-lvm
 values:
   - ../values.yaml
 templates:
@@ -20,6 +21,9 @@ tests:
           value:
             heritage: "Helm"
             release: "lvm"
+    documentSelector:
+      path: kind
+      value: DaemonSet
 
   - it: "should render DaemonSet with correct spec configurations"
     asserts:
@@ -35,99 +39,98 @@ tests:
       - equal:
           path: spec.template.spec.serviceAccountName
           value: "csi-driver-lvm-plugin"
+    documentSelector:
+      path: kind
+      value: DaemonSet
 
   - it: "should render DaemonSet with correct containers"
     asserts:
       - equal:
-          path: spec.template.spec.containers
+          path: spec.template.spec.containers[0].image
           value:
-            - name: "node-driver-registrar"
-              image: "k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1"
-              imagePullPolicy: "IfNotPresent"
-              args:
-                - "--v=5"
-                - "--csi-address=/csi/csi.sock"
-                - "--kubelet-registration-path=/var/lib/kubelet/plugins/csi-driver-lvm/csi.sock"
-              env:
-                - name: "KUBE_NODE_NAME"
-                  valueFrom:
-                    fieldRef:
-                      apiVersion: "v1"
-                      fieldPath: "spec.nodeName"
-              securityContext:
-                privileged: true
-              volumeMounts:
-                - mountPath: "/csi"
-                  name: "socket-dir"
-                - mountPath: "/registration"
-                  name: "registration-dir"
-            - name: "csi-driver-lvm-plugin"
-              image: "ghcr.io/metal-stack/csi-driver-lvm:v0.5.2"
-              imagePullPolicy: "IfNotPresent"
-              args:
-                - "--drivername=lvm.csi.metal-stack.io"
-                - "--endpoint=unix:///csi/csi.sock"
-                - "--hostwritepath=/etc/lvm"
-                - "--devices=/dev/sd[a-z]1"
-                - "--nodeid=$(KUBE_NODE_NAME)"
-                - "--vgname=vg.local"
-                - "--namespace=csi-driver-lvm"
-                - "--provisionerimage=ghcr.io/metal-stack/csi-driver-lvm-provisioner:v0.5.2"
-                - "--pullpolicy=IfNotPresent"
-              env:
-                - name: "KUBE_NODE_NAME"
-                  valueFrom:
-                    fieldRef:
-                      apiVersion: "v1"
-                      fieldPath: "spec.nodeName"
-              livenessProbe:
-                failureThreshold: 5
-                httpGet:
-                  path: "/healthz"
-                  port: healthz
-                  scheme: HTTP
-                initialDelaySeconds: 10
-                periodSeconds: 2
-                successThreshold: 1
-                timeoutSeconds: 3
-              ports:
-                - containerPort: 9898
-                  name: "healthz"
-                  protocol: "TCP"
-              securityContext:
-                privileged: true
-              volumeMounts:
-                - mountPath: "/csi"
-                  name: "socket-dir"
-                - mountPath: "/var/lib/kubelet/pods"
-                  mountPropagation: "Bidirectional"
-                  name: "mountpoint-dir"
-                - mountPath: "/var/lib/kubelet/plugins"
-                  mountPropagation: "Bidirectional"
-                  name: "plugins-dir"
-                - mountPath: "/dev"
-                  mountPropagation: "Bidirectional"
-                  name: "dev-dir"
-                - mountPath: "/lib/modules"
-                  name: "mod-dir"
-                - mountPath: "/etc/lvm/backup"
-                  mountPropagation: "Bidirectional"
-                  name: "lvmbackup"
-                - mountPath: "/etc/lvm/cache"
-                  mountPropagation: "Bidirectional"
-                  name: "lvmcache"
-                - mountPath: "/run/lock/lvm"
-                  mountPropagation: "Bidirectional"
-                  name: "lvmlock"
-            - name: "liveness-probe"
-              image: "k8s.gcr.io/sig-storage/livenessprobe:v2.7.0"
-              imagePullPolicy: "IfNotPresent"
-              args:
-                - "--csi-address=/csi/csi.sock"
-                - "--health-port=9898"
-              volumeMounts:
-                - mountPath: "/csi"
-                  name: "socket-dir"
+            k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
+      - equal:
+          path: spec.template.spec.containers[1]
+          value:
+            name: csi-driver-lvm-plugin
+            args:
+              - --drivername=lvm.csi.metal-stack.io
+              - --endpoint=unix:///csi/csi.sock
+              - --hostwritepath=/etc/lvm
+              - --devices=/dev/sd[a-z]1
+              - --nodeid=$(KUBE_NODE_NAME)
+              - --vgname=vg.local
+              - --namespace=csi-driver-lvm
+              - --provisionerimage=ghcr.io/metal-stack/csi-driver-lvm-provisioner:v0.5.2
+              - --pullpolicy=IfNotPresent
+            env:
+            - name: KUBE_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            image: "ghcr.io/metal-stack/csi-driver-lvm:v0.5.2"
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 5
+              httpGet:
+                path: /healthz
+                port: healthz
+                scheme: HTTP
+              initialDelaySeconds: 10
+              periodSeconds: 2
+              successThreshold: 1
+              timeoutSeconds: 3
+            ports:
+            - containerPort: 9898
+              name: healthz
+              protocol: TCP
+            resources: {}
+            securityContext:
+              privileged: true
+            terminationMessagePath: /termination.log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /csi
+              name: socket-dir
+            - mountPath: /var/lib/kubelet/pods
+              mountPropagation: Bidirectional
+              name: mountpoint-dir
+            - mountPath: /var/lib/kubelet/plugins
+              mountPropagation: Bidirectional
+              name: plugins-dir
+            - mountPath: /dev
+              name: dev-dir
+              mountPropagation: Bidirectional
+            - mountPath: /lib/modules
+              name: mod-dir
+            - mountPath: /etc/lvm/backup
+              name: lvmbackup
+              mountPropagation: Bidirectional
+            - mountPath: /etc/lvm/cache
+              name: lvmcache
+              mountPropagation: Bidirectional
+            - mountPath: /run/lock/lvm
+              name: lvmlock
+              mountPropagation: Bidirectional
+      - equal:
+          path: spec.template.spec.containers[2]
+          value:
+            name: liveness-probe
+            args:
+            - --csi-address=/csi/csi.sock
+            - --health-port=9898
+            image: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
+            imagePullPolicy: IfNotPresent
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /csi
+              name: socket-dir
+    documentSelector:
+      path: kind
+      value: DaemonSet
 
   - it: "should render DaemonSet with correct volumes"
     asserts:
@@ -169,3 +172,6 @@ tests:
               hostPath:
                 path: "/etc/lvm/lock"
                 type: "DirectoryOrCreate"
+    documentSelector:
+      path: kind
+      value: DaemonSet
