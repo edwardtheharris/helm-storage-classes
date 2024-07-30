@@ -25,6 +25,8 @@ jobs:
       - name: Build dependencies
         run: helm dependency build
       - name: Install chart
-        run: helm -n csi-driver-lvm upgrade --install lvm -f values.yaml .
+        run: |
+          helm -n csi-driver-lvm upgrade --install lvm -f values.yaml .
+          helm -n csi-driver-lvm list
       - name: Test chart
         run: helm -n csi-driver-lvm test lvm
