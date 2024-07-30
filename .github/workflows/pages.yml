@@ -69,6 +69,7 @@ jobs:
         if: always()
         with:
           check_name: markdownlint
+          comment_title: "Markdown Lint"
           files: markdownlint-cli2-junit.xml
   ###
   # ```{rubric} Build GitHub Pages Site

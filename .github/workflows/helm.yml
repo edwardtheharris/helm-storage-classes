@@ -103,4 +103,5 @@ jobs:
         if: always()
         with:
           check_name: hemltest
+          comment_title: "Helm Test"
           files: results.xml
