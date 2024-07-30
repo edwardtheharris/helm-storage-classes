@@ -92,8 +92,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@main
         with:
-          python-version: 3.12
-          cache: pipenv
+          python-version: 3.11
       - name: Setup pages
         uses: actions/configure-pages@main
       - name: Install pipenv
