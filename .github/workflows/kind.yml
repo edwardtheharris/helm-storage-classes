@@ -25,6 +25,6 @@ jobs:
       - name: Build dependencies
         run: helm dependency build
       - name: Install chart
-        run: helm upgrade --install lvm .
+        run: helm -n csi-driver-lvm upgrade --install lvm .
       - name: Test chart
         run: helm test lvm
