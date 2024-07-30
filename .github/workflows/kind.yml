@@ -16,6 +16,10 @@ jobs:
         uses: helm/kind-action@v1
       - name: Add namespace
         run: kubectl create ns csi-driver-lvm
+      - name: Update dependencies
+        run: helm dependency update
+      - name: Build dependencies
+        run: helm dependency build
       - name: Install chart
         run: helm upgrade --install lvm .
       - name: Test chart
