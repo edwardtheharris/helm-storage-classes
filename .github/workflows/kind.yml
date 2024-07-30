@@ -16,6 +16,8 @@ jobs:
         uses: helm/kind-action@v1
       - name: Add namespace
         run: kubectl create ns csi-driver-lvm
+      - name: Add metal stack repo
+        run: helm repo add lvm https://helm.metal-stack.io
       - name: Update dependencies
         run: helm dependency update
       - name: Build dependencies
