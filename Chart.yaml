@@ -24,9 +24,9 @@ dependencies:
     name: local-static-provisioner
     repository: file://./local-static-provisioner/
     version: ~2
-description: A Helm chart for Kubernetes
+description: A Helm chart for dynamically provisioned storage on bare-metal k8s.
 icon: file://../assets/icon/csi.png
-name: storage
+name: lvm
 ###
 # A chart can be either an 'application' or a 'library' chart.
 #
