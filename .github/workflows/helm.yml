@@ -102,6 +102,6 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          check_name: hemltest
+          check_name: helmtest
           comment_title: "Helm Test"
           files: results.xml
