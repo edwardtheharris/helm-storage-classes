@@ -1,0 +1,22 @@
+name: Create Cluster
+
+on: pull_request
+
+jobs:
+  create-cluster:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+            fetch-depth: 0
+      - name: Set Up Helm
+        uses: azure/setup-helm@v4.2.0
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
+      - name: Add namespace
+        run: kubectl create ns csi-driver-lvm
+      - name: Install chart
+        run: helm upgrade --install lvm .
+      - name: Test chart
+        run: helm test lvm
