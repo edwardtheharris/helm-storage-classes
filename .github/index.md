@@ -27,6 +27,8 @@ This runs `helm lint` and `helm unittest`.
 
 ### Kind Workflow
 
+[![Kind](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/kind.yml?branch=main&style=flat-square&logo=kubernetes&logoColor=%23326CE5&logoSize=auto&label=Kind)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/kind.yml)
+
 This workflow starts a Kind cluster and deploys the package to it.
 
 ```{autoyaml} .github/workflows/kind.yml
