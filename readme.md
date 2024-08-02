@@ -10,9 +10,12 @@ date: 2024-07-18
 title: Readme
 ---
 
-[![GitHub Actions OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat&logo=githubactions&logoColor=%232088FF&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/codeql.yml?branch=main&style=flat-square&logoSize=auto&logo=githubactions)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/codeql.yml)
+[![Helm](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat-square&logo=helm&logoColor=%230F1689&logoSize=auto&label=helm)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
+[![Kind](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/kind.yml?branch=main&style=flat-square&logo=kubernetes&logoColor=%23326CE5&logoSize=auto&label=Kind)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/kind.yml)
+[![OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubactions&logoColor=%230F1689&logoSize=auto&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
 [![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/pages.yml?branch=main&style=flat&logo=githubpages&logoColor=%23222222&label=GitHub%20Pages)](https://edwardtheharris.github.io/helm-storage-classes/)
-[![Helm Test and Unittest](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat&logo=helm&logoColor=%230F1689&label=Helm&color=%230F1689)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
+[![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubpages&logoColor=%23222222&logoSize=auto&label=GitHub%20Pages)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/pages.yml)
 
 ## Helm Charts for Static and Dynamic Storage Classes
 
