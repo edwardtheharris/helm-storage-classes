@@ -8,7 +8,7 @@
 # :language: yaml
 # :caption: .github/workflows/kind.yml
 # ```
-name: Kind Cluster Test
+name: Kind Cluster
 on: pull_request
 jobs:
   create-cluster:

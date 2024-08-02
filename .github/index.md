@@ -25,6 +25,13 @@ This runs `helm lint` and `helm unittest`.
 ```{autoyaml} .github/workflows/helm.yml
 ```
 
+### Kind Workflow
+
+This workflow starts a Kind cluster and deploys the package to it.
+
+```{autoyaml} .github/workflows/kind.yml
+```
+
 ### OSSAR Workflow
 
 [![OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubactions&logoColor=%230F1689&logoSize=auto&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
