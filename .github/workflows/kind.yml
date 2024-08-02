@@ -1,7 +1,15 @@
-name: Create Cluster
-
+###
+# ```{rubric} Deploy a release to a Kind cluster
+# ```
+# ---
+# Create a temporary cluster and deploy the release to it.
+#
+# ```{literalinclude} /.github/workflows/kind.yml
+# :language: yaml
+# :caption: .github/workflows/kind.yml
+# ```
+name: Kind Cluster
 on: pull_request
-
 jobs:
   create-cluster:
     runs-on: ubuntu-latest

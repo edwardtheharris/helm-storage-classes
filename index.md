@@ -33,7 +33,7 @@ local-static-provisioner/index
 ```{toctree}
 :caption: Meta Pages
 
-cicd
+.github/index
 license
 readme
 security
@@ -79,6 +79,11 @@ LVM
 NFS
    Network File Storage, described in more detail
    [here](https://wiki.archlinux.org/title/NFS).
+
+OSSAR
+   Open Source Static Analysis Runner, runs GitHub Actions Open Source Static
+   Analysis tools on your repository. More information
+   [here](https://github.com/github/ossar-action)
 
 RAID
    Redundant Array of Inexpensive Disks is a method of clustering cheap and
