@@ -27,12 +27,14 @@ This runs `helm lint` and `helm unittest`.
 
 ### OSSAR Workflow
 
-
+[![OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubactions&logoColor=%230F1689&logoSize=auto&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
 
 ```{autoyaml} .github/workflows/ossar.yml
 ```
 
 ### Pages Workflow
+
+[![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubpages&logoColor=%23222222&logoSize=auto&label=GitHub%20Pages)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/pages.yml)
 
 This generates and deploys the documentation for the Helm Charts in this repo.
 
