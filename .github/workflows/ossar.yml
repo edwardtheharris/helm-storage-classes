@@ -11,7 +11,7 @@
 # with GitHub code scanning. For documentation, or to provide feedback, visit
 # https://github.com/github/ossar-action
 #
-# ```{literalinclude} .github/workflows/ossar.yml
+# ```{literalinclude} /.github/workflows/ossar.yml
 # :language: yaml
 # :start-at: "name: OSSAR\n"
 # :end-before: "###\n"
@@ -28,13 +28,14 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '43 10 * * 4'
+
 ###
 # ```{rubric} OSSAR Jobs
 # ```
 # ---
 # Define the jobs necessary for a useful ossar run.
 #
-# ```{literalinclude} .github/workflows/ossar.yml
+# ```{literalinclude} /.github/workflows/ossar.yml
 # :language: yaml
 # :start-at: "jobs:\n"
 # ```
@@ -54,10 +55,6 @@ jobs:
       # only required for a private repository by
       # github/codeql-action/upload-sarif to get the Action run status
       actions: read
-    runs-on: windows-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@main
     ###
     # Ensure a compatible version of dotnet is installed.
     # The [Microsoft Security Code Analysis CLI](https://aka.ms/mscadocs)
@@ -68,6 +65,7 @@ jobs:
     # installed and this step may be skipped.
     # For self-hosted runners, ensure dotnet version 3.1.201 or later is
     # installed by including this action:
+    #
     # ```{code-block} yaml
     # - name: Install .NET
     #   uses: actions/setup-dotnet@v2
@@ -76,6 +74,10 @@ jobs:
     # ```
     #
     # Run open source static analysis tools
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@main
     - name: Run OSSAR
       uses: github/ossar-action@main
       id: ossar

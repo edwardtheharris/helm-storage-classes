@@ -33,7 +33,7 @@ local-static-provisioner/index
 ```{toctree}
 :caption: Meta Pages
 
-cicd
+.github/index
 license
 readme
 security

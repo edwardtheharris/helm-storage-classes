@@ -9,7 +9,16 @@ title: Continuous Integration and Delivery
 
 The following GHA workflows are used in this repository for CI/CD purposes.
 
+### CodeQL
+
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/codeql.yml?branch=main&style=flat-square&logoSize=auto&logo=githubactions)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/codeql.yml)
+
+```{autoyaml} .github/workflows/codeql.yml
+```
+
 ### Helm Workflow
+
+[![Helm](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat-square&logo=helm&logoColor=%230F1689&logoSize=auto&label=helm)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
 
 This runs `helm lint` and `helm unittest`.
 
@@ -17,6 +26,8 @@ This runs `helm lint` and `helm unittest`.
 ```
 
 ### OSSAR Workflow
+
+
 
 ```{autoyaml} .github/workflows/ossar.yml
 ```
