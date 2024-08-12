@@ -16,6 +16,7 @@ title: Readme
 [![OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubactions&logoColor=%230F1689&logoSize=auto&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
 [![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/pages.yml?branch=main&style=flat&logo=githubpages&logoColor=%23222222&label=GitHub%20Pages)](https://edwardtheharris.github.io/helm-storage-classes/)
 [![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubpages&logoColor=%23222222&logoSize=auto&label=GitHub%20Pages)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/pages.yml)
+[![wakatime](https://wakatime.com/badge/github/edwardtheharris/helm-storage-classes.svg)](https://wakatime.com/badge/github/edwardtheharris/helm-storage-classes)
 
 ## Helm Charts for Static and Dynamic Storage Classes
 
@@ -27,7 +28,9 @@ For more information, see the full documentation
 
 ### Install
 
-To install this application, you can follow these steps.
+To install this application, you can follow these steps. The CSI LVM driver
+supports 3 volume modes (linear, striped, mirror). All three are enabled by
+default. The local static provisioner is disabled by default.
 
 1. Have a Kubernetes cluster that needs StorageClass objects.
 2. On at least one node in your cluster provision a Volume Group that matches

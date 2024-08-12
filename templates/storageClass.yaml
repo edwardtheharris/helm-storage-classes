@@ -1,0 +1,56 @@
+{{ if ".Values.csi-driver-lvm.storageClasses.linear.enabled" }}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-lvm-linear-btrfs
+  labels:
+    app.kubernetes.io/name: csi-lvm-linear-btrfs
+    app.kubernetes.io/instance: {{ .Release.Name }}
+provisioner: lvm.csi.metal-stack.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  type: "linear"
+  fsType: btrfs
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-lvm-linear
+provisioner: lvm.csi.metal-stack.io
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  type: linear
+{{ end }}
+{{ if ".Values.csi-driver-lvm.storageClasses.mirror.enabled" }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-lvm-mirror
+  labels:
+    app.kubernetes.io/name: csi-lvm-linear-btrfs
+    app.kubernetes.io/instance: {{ .Release.Name }}
+provisioner: lvm.csi.metal-stack.io
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  type: mirror
+{{ end }}
+{{ if ".Values.csi-driver-lvm.storageClasses.striped.enabled" }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-lvm-sc-striped
+provisioner: lvm.csi.metal-stack.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  type: "striped"
+{{ end }}

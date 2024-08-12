@@ -40,11 +40,11 @@ csi-driver-lvm:
       reclaimPolicy: Delete
     tolerations:
       plugin:
-      - effect: NoSchedule
+      - effect: Schedule
         key: node-role.kubernetes.io/control-plane
         operator: Exists
       provisioner:
-      - effect: NoSchedule
+      - effect: Schedule
         key: node-role.kubernetes.io/control-plane
         operator: Exists
 
