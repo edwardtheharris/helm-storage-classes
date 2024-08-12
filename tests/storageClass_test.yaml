@@ -1,127 +1,147 @@
-# tests/test_suite.yaml
-suite: "CSI Driver LVM Test Suite"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+suite: 'StorageClass Test Suite'
 release:
-  name: lvm
+  name: sc
 values:
-  - ../values.yaml
+- '../values.yaml'
 templates:
-  - "charts/csi-driver-lvm/templates/controller.yaml"
-  - "charts/csi-driver-lvm/templates/plugin.yaml"
-  - "charts/csi-driver-lvm/templates/storageclasses.yaml"
-
+- templates/storageClass.yaml
 tests:
-  # - it: "should render PodSecurityPolicy for controller with correct configurations"
-  #   template: "charts/csi-driver-lvm/templates/controller.yaml"
-  #   asserts:
-  #     - isKind:
-  #         of: PodSecurityPolicy
-  #     - matchRegex:
-  #         path: metadata.name
-  #         pattern: "^csi-driver-lvm-controller$"
-  #     - equal:
-  #         path: spec.privileged
-  #         value: true
-  #     - equal:
-  #         path: spec.allowedHostPaths
-  #         value:
-  #           - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
-  #     - equal:
-  #         path: spec.volumes
-  #         value:
-  #           - "secret"
-  #           - "hostPath"
-  #   documentSelector:
-  #     path: kind
-  #     value: PodSecurityPolicy
+- it: "should create csi-lvm-linear-btrfs StorageClass"
+  asserts:
+  - isKind:
+      of: "StorageClass"
+  - equal:
+      path: apiVersion
+      value: "storage.k8s.io/v1"
+  - equal:
+      path: metadata
+      value:
+        name: "csi-lvm-linear-btrfs"
+        labels:
+          app.kubernetes.io/name: "csi-lvm"
+          app.kubernetes.io/instance: "sc"
+        annotations:
+          storageclass.kubernetes.io/is-default-class: "false"
+  - equal:
+      path: provisioner
+      value: "lvm.csi.metal-stack.io"
+  - equal:
+      path: reclaimPolicy
+      value: "Delete"
+  - equal:
+      path: volumeBindingMode
+      value: "WaitForFirstConsumer"
+  - equal:
+      path: allowVolumeExpansion
+      value: true
+  - equal:
+      path: parameters
+      value:
+        type: "linear"
+        fsType: "btrfs"
+  documentIndex: 0
 
-  # - it: "should render PodSecurityPolicy for plugin with correct configurations"
-  #   template: "charts/csi-driver-lvm/templates/plugin.yaml"
-  #   asserts:
-  #     - isKind:
-  #         of: PodSecurityPolicy
-  #     - matchRegex:
-  #         path: metadata.name
-  #         pattern: "^csi-driver-lvm-plugin$"
-  #     - equal:
-  #         path: spec.privileged
-  #         value: true
-  #     - equal:
-  #         path: spec.allowedHostPaths
-  #         value:
-  #           - pathPrefix: "/lib/modules"
-  #           - pathPrefix: "/etc/lvm/cache"
-  #           - pathPrefix: "/var/lib/kubelet/plugins/csi-driver-lvm"
-  #           - pathPrefix: "/etc/lvm/backup"
-  #           - pathPrefix: "/etc/lvm/lock"
-  #           - pathPrefix: "/var/lib/kubelet/plugins"
-  #           - pathPrefix: "/var/lib/kubelet/plugins_registry"
-  #           - pathPrefix: "/dev"
-  #           - pathPrefix: "/var/lib/kubelet/pods"
-  #     - equal:
-  #         path: spec.volumes
-  #         value:
-  #           - "secret"
-  #           - "hostPath"
+- it: "should create csi-lvm-linear StorageClass"
+  asserts:
+  - isKind:
+      of: "StorageClass"
+  - equal:
+      path: apiVersion
+      value: "storage.k8s.io/v1"
+  - equal:
+      path: metadata
+      value:
+        name: "csi-lvm-linear"
+        labels:
+          app.kubernetes.io/name: "csi-lvm"
+          app.kubernetes.io/instance: "sc"
+        annotations:
+          storageclass.kubernetes.io/is-default-class: "true"
+  - equal:
+      path: provisioner
+      value: "lvm.csi.metal-stack.io"
+  - equal:
+      path: reclaimPolicy
+      value: "Retain"
+  - equal:
+      path: volumeBindingMode
+      value: "WaitForFirstConsumer"
+  - equal:
+      path: allowVolumeExpansion
+      value: true
+  - equal:
+      path: parameters
+      value:
+        type: "linear"
+  documentIndex: 1
 
-  - it: "should render ServiceAccount for controller with correct configurations"
-    template: "charts/csi-driver-lvm/templates/controller.yaml"
-    asserts:
-      - isKind:
-          of: ServiceAccount
-      - matchRegex:
-          path: metadata.name
-          pattern: "^csi-driver-lvm-controller$"
-      - equal:
-          path: metadata.labels
-          value:
-            heritage: "Helm"
-            release: "lvm"
-    documentSelector:
-      path: kind
-      value: ServiceAccount
+- it: "should create csi-lvm-mirror StorageClass"
+  asserts:
+  - isKind:
+      of: "StorageClass"
+  - equal:
+      path: apiVersion
+      value: "storage.k8s.io/v1"
+  - equal:
+      path: metadata
+      value:
+        name: "csi-lvm-mirror"
+        labels:
+          app.kubernetes.io/name: "csi-lvm"
+          app.kubernetes.io/instance: "sc"
+        annotations:
+          storageclass.kubernetes.io/is-default-class: "false"
+          storageclass.kubernetes.io/raid: "1"
+  - equal:
+      path: provisioner
+      value: "lvm.csi.metal-stack.io"
+  - equal:
+      path: reclaimPolicy
+      value: "Retain"
+  - equal:
+      path: volumeBindingMode
+      value: "WaitForFirstConsumer"
+  - equal:
+      path: allowVolumeExpansion
+      value: true
+  - equal:
+      path: parameters
+      value:
+        type: "mirror"
+  documentIndex: 2
 
-  - it: "should render ServiceAccount for plugin with correct configurations"
-    template: "charts/csi-driver-lvm/templates/plugin.yaml"
-    asserts:
-      - isKind:
-          of: ServiceAccount
-      - matchRegex:
-          path: metadata.name
-          pattern: "^csi-driver-lvm-plugin$"
-      - equal:
-          path: metadata.labels
-          value:
-            heritage: "Helm"
-            release: "lvm"
-    documentSelector:
-      path: kind
-      value: ServiceAccount
-
-  - it: "should render StorageClass with correct configurations"
-    template: "charts/csi-driver-lvm/templates/storageclasses.yaml"
-    asserts:
-      - isKind:
-          of: StorageClass
-      - matchRegex:
-          path: metadata.name
-          pattern: "^csi-driver-lvm-(linear|mirror|striped)$"
-      - equal:
-          path: provisioner
-          value: "lvm.csi.metal-stack.io"
-      - equal:
-          path: reclaimPolicy
-          value: "Delete"
-      - equal:
-          path: volumeBindingMode
-          value: "WaitForFirstConsumer"
-      - equal:
-          path: allowVolumeExpansion
-          value: true
-      - equal:
-          path: metadata.labels
-          value:
-            heritage: "Helm"
-            release: "lvm"
-      - matchRegex:
-          path: parameters.type
-          pattern: "(linear|mirror|striped)"
+- it: "should create csi-lvm-striped StorageClass"
+  asserts:
+  - isKind:
+      of: "StorageClass"
+  - equal:
+      path: apiVersion
+      value: "storage.k8s.io/v1"
+  - equal:
+      path: metadata
+      value:
+        name: "csi-lvm-striped"
+        labels:
+          app.kubernetes.io/name: "csi-lvm"
+          app.kubernetes.io/instance: "sc"
+        annotations:
+          storageclass.kubernetes.io/is-default-class: "false"
+          storageclass.kubernetes.io/raid: "0"
+  - equal:
+      path: provisioner
+      value: "lvm.csi.metal-stack.io"
+  - equal:
+      path: reclaimPolicy
+      value: "Delete"
+  - equal:
+      path: volumeBindingMode
+      value: "WaitForFirstConsumer"
+  - equal:
+      path: allowVolumeExpansion
+      value: true
+  - equal:
+      path: parameters
+      value:
+        type: "striped"
+  documentIndex: 3
