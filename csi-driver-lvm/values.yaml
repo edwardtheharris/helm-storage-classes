@@ -44,7 +44,7 @@ kubernetes:
 lvm:
   ###
   # This one you should change
-  devicePattern: /dev/nvme[0-9]n[0-9]
+  devicePattern: /dev/(nvme[0-9]n[0-9]|sd[a-z][0-9])
   driverName: lvm.csi.metal-stack.io
   ###
   # You will want to change this for read-only file systems
@@ -194,9 +194,9 @@ tolerations:
   #   operator: Exists
   #   effect: NoSchedule
   provisioner:
-  # - key: node-role.kubernetes.io/master
-  #   operator: Exists
-  #   effect: NoSchedule
-  # - key: node-role.kubernetes.io/control-plane
-  #   operator: Exists
-  #   effect: NoSchedule
+# - key: node-role.kubernetes.io/master
+#   operator: Exists
+#   effect: NoSchedule
+# - key: node-role.kubernetes.io/control-plane
+#   operator: Exists
+#   effect: NoSchedule
