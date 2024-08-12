@@ -3,8 +3,10 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: csi-lvm-linear-btrfs
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
   labels:
-    app.kubernetes.io/name: csi-lvm-linear-btrfs
+    app.kubernetes.io/name: csi-lvm
     app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
 reclaimPolicy: Delete
@@ -18,6 +20,11 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: csi-lvm-linear
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  labels:
+    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
@@ -31,8 +38,11 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: csi-lvm-mirror
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+    storageclass.kubernetes.io/raid: "1"
   labels:
-    app.kubernetes.io/name: csi-lvm-linear-btrfs
+    app.kubernetes.io/name: csi-lvm
     app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
 reclaimPolicy: Retain
@@ -46,7 +56,13 @@ parameters:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: csi-lvm-sc-striped
+  name: csi-lvm-striped
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+    storageclass.kubernetes.io/raid: "0"
+  labels:
+    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
