@@ -71,10 +71,10 @@ description: A Helm chart to deploy local StorageClasses
 #
 # ```{literalinclude} /Chart.yaml
 # :language: yaml
-# :start-at: "icon: file://../assets/icon/csi.png\n"
+# :start-at: "icon: https://edwardtheharris.github.io/helm-storage-classes/_static/StorageClasses.png\n"
 # :end-before: "###\n"
 # ```
-icon: file://../assets/icon/csi.png
+icon: https://edwardtheharris.github.io/helm-storage-classes/_static/StorageClasses.png
 
 ###
 # ```{rubric} Name
