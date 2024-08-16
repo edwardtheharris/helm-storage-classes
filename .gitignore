@@ -7,3 +7,4 @@ _build
 charts/
 __snapshot__
 .debug/
+reflog

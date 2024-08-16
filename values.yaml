@@ -9,7 +9,7 @@
 # :start-at: "lvm:\n"
 # :end-before: "###\n"
 # ```
-csi-driver-lvm:
+lvm:
   customCSISidecars:
     attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
     enabled: true
@@ -29,14 +29,21 @@ csi-driver-lvm:
     create: true
     pspEnabled: true
   storageClasses:
+    btrfs:
+      enabled: true
+      name: csi-lvm-linear-btrfs
+      reclaimPolicy: Delete
     linear:
       enabled: true
-      reclaimPolicy: Delete
+      name: csi-lvm-linear
+      reclaimPolicy: Retain
     mirror:
       enabled: true
-      reclaimPolicy: Delete
+      name: csi-lvm-mirror
+      reclaimPolicy: Retain
     striped:
       enabled: true
+      name: csi-lvm-striped
       reclaimPolicy: Delete
     tolerations:
       plugin:
