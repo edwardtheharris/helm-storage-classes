@@ -121,6 +121,6 @@ type: application
 #
 # ```{literalinclude} /Chart.yaml
 # :language: yaml
-# :start-at: "version: 0.0.4\n"
+# :start-at: "version: 0.0.3\n"
 # ```
-version: 0.0.4
+version: 0.0.3
