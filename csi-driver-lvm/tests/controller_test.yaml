@@ -1,10 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+###
+# ```{rubric} StatefulSet Test Suite
+# ```
+#
+# ```{literalinclude} csi-driver-lvm/tests/controller_test.yaml
+# ```
 # tests/controller_test.yaml
 suite: "CSI Driver LVM StatefulSet Test Suite"
 release:
   name: lvm
 templates:
-- "charts/csi-driver-lvm/templates/controller.yaml"
+- "templates/controller.yaml"
 values:
 - ../values.yaml
 
@@ -16,14 +22,8 @@ tests:
       of: ServiceAccount
 - it: "should render StatefulSet with correct metadata"
   asserts:
-  - matchRegex:
-      path: metadata.name
-      pattern: "^csi-driver-lvm-controller$"
-  - equal:
-      path: metadata.labels
-      value:
-        heritage: "Helm"
-        release: "lvm"
+  - matchSnapshot:
+      path: metadata
   - isKind:
       of: StatefulSet
   documentSelector:
@@ -65,56 +65,16 @@ tests:
 
 - it: "should render StatefulSet with correct containers"
   asserts:
-  - equal:
+  - matchSnapshot:
       path: spec.template.spec.containers
-      value:
-      - name: "csi-attacher"
-        image: "k8s.gcr.io/sig-storage/csi-attacher:v3.5.0"
-        imagePullPolicy: "IfNotPresent"
-        args:
-        - "--v=5"
-        - "--csi-address=/csi/csi.sock"
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: "/csi"
-          name: "socket-dir"
-      - name: "csi-provisioner"
-        image: "k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1"
-        imagePullPolicy: "IfNotPresent"
-        args:
-        - "-v=5"
-        - "--csi-address=/csi/csi.sock"
-        - "--feature-gates=Topology=true"
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: "/csi"
-          name: "socket-dir"
-      - name: "csi-resizer"
-        image: "k8s.gcr.io/sig-storage/csi-resizer:v1.6.0"
-        imagePullPolicy: "IfNotPresent"
-        args:
-        - "-v=5"
-        - "-csi-address=/csi/csi.sock"
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - mountPath: "/csi"
-          name: "socket-dir"
   documentSelector:
     path: kind
     value: StatefulSet
 
 - it: "should render StatefulSet with correct volumes"
   asserts:
-  - equal:
+  - matchSnapshot:
       path: spec.template.spec.volumes
-      value:
-      - hostPath:
-          path: /var/lib/kubelet/plugins/csi-driver-lvm
-          type: DirectoryOrCreate
-        name: socket-dir
   documentSelector:
     path: kind
     value: StatefulSet

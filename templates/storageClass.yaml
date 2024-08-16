@@ -1,38 +1,53 @@
-{{ if ".Values.csi-driver-lvm.storageClasses.linear.enabled" }}
+<<<<<<< Updated upstream
+{{ if .Values.lvm.storageClasses.btrfs.enabled }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: csi-lvm-linear-btrfs
+  name: {{ .Values.lvm.storageClasses.btrfs.name }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
   labels:
-    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/name: {{ .Chart.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
-reclaimPolicy: Delete
+reclaimPolicy: {{ .Values.lvm.storageClasses.linear.reclaimPolicy }}
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
   type: "linear"
   fsType: btrfs
+{{ end }}
+{{ if .Values.lvm.storageClasses.linear.enabled }}
 ---
+=======
+{{ if ".Values.csi-lvm.storageClasses.linear.enabled" }}
+>>>>>>> Stashed changes
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: csi-lvm-linear
+  name: {{ .Values.lvm.storageClasses.linear.name }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
   labels:
-    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/name: {{ .Chart.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
-reclaimPolicy: Retain
+<<<<<<< Updated upstream
+reclaimPolicy: {{ .Values.lvm.storageClasses.linear.reclaimPolicy }}
+=======
+reclaimPolicy: Delete
+>>>>>>> Stashed changes
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  type: linear
+  type: "linear"
+  fsType: btrfs
 {{ end }}
-{{ if ".Values.csi-driver-lvm.storageClasses.mirror.enabled" }}
+<<<<<<< Updated upstream
+{{ if .Values.lvm.storageClasses.mirror.enabled }}
+=======
+{{ if ".Values.csi-lvm.storageClasses.mirror.enabled" }}
+>>>>>>> Stashed changes
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -42,16 +57,20 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "false"
     storageclass.kubernetes.io/raid: "1"
   labels:
-    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/name: {{ .Chart.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-provisioner: lvm.csi.metal-stack.io
-reclaimPolicy: Retain
-volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
+provisioner: lvm.csi.metal-stack.io
+reclaimPolicy: {{ .Values.lvm.storageClasses.mirror.reclaimPolicy }}
+volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: mirror
 {{ end }}
-{{ if ".Values.csi-driver-lvm.storageClasses.striped.enabled" }}
+<<<<<<< Updated upstream
+{{ if .Values.lvm.storageClasses.striped.enabled }}
+=======
+{{ if ".Values.csi-lvm.storageClasses.striped.enabled" }}
+>>>>>>> Stashed changes
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -61,10 +80,10 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "false"
     storageclass.kubernetes.io/raid: "0"
   labels:
-    app.kubernetes.io/name: csi-lvm
+    app.kubernetes.io/name: {{ .Chart.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 provisioner: lvm.csi.metal-stack.io
-reclaimPolicy: Delete
+reclaimPolicy: {{ .Values.lvm.storageClasses.striped.reclaimPolicy }}
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:

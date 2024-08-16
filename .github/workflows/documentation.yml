@@ -4,10 +4,10 @@
 # ---
 # This is a basic workflow to help you get started with Actions.
 #
-# ```{literalinclude} /.github/workflows/pages.yml
+# ```{literalinclude} /.github/workflows/documentation.yml
 # :language: yaml
 # :start-at: "name: Test, Build, Deploy to GitHub Pages\n"
-# :end-before: "###\n"
+# :end-before: "####\n"
 # ```
 #
 # Set a name for the workflow.
@@ -18,22 +18,24 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch: {}
+####
 
 ###
 # ```{rubric} Permissions Updates
 # ```
 # Enable read for contents and issues, and write for checks and PRs.
 #
-# ```{literalinclude} /.github/workflows/pages.yml
+# ```{literalinclude} /.github/workflows/documentation.yml
 # :language: yaml
 # :start-at: "permissions:\n"
-# :end-before: "###\n"
+# :end-before: "####\n"
 # ```
 permissions:
   contents: read
   issues: read
   checks: write
   pull-requests: write
+####
 
 ###
 # ```{rubric} Workflow Jobs
@@ -42,6 +44,10 @@ permissions:
 # A workflow run is made up of one or more
 # jobs that can run sequentially or in parallel
 #
+# ```{literalinclude} /.github/workflows/documentation.yml
+# :language: yaml
+# :start-at: "jobs:\n"
+# ```
 jobs:
   ###
   # ```{rubric} markdownlint
@@ -49,10 +55,10 @@ jobs:
   # ---
   # Check that the markdown in this repo is up to our (arbitrary) standards.
   #
-  # ```{literalinclude} /.github/workflows/pages.yml
+  # ```{literalinclude} /.github/workflows/documentation.yml
   # :language: yaml
   # :start-at: "markdownlint:\n"
-  # :end-before: "###\n"
+  # :end-before: "####\n"
   # ```
   markdownlint:
     runs-on: ubuntu-latest
@@ -71,16 +77,18 @@ jobs:
           check_name: markdownlint
           comment_title: "Markdown Lint"
           files: markdownlint-cli2-junit.xml
+  ####
+
   ###
   # ```{rubric} Build GitHub Pages Site
   # ```
   # ---
   # Build the pages site using Sphinx and upload the resulting artifact.
   #
-  # ```{literalinclude} /.github/workflows/pages.yml
+  # ```{literalinclude} /.github/workflows/documentation.yml
   # :language: yaml
   # :start-at: "  build:\n"
-  # :end-before: "###\n"
+  # :end-before: "####\n"
   # ```
   build:
     needs: markdownlint
@@ -99,21 +107,23 @@ jobs:
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - name: Install Python dependencies
         run: |
+          pipenv lock
           pipenv install --dev
-          pipenv install -e .
       - name: Build the static site
         run: pipenv run sphinx-build -a -E . deploy
       - name: Upload artifact
         uses: actions/upload-pages-artifact@main
         with:
           path: './deploy'
+  ####
+
   ###
   # ```{rubric} Deploy the Pages site
   # ```
   # ---
   # Download the artifact and deploy to pages.
   #
-  # ```{literalinclude} /.github/workflows/pages.yml
+  # ```{literalinclude} /.github/workflows/documentation.yml
   # :language: yaml
   # :start-at: "  pages:\n"
   # ```

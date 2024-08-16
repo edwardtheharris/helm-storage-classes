@@ -9,3 +9,4 @@ __snapshot__
 reflog
 test.yaml
 charts/*.tgz
+tests.yaml

@@ -10,13 +10,15 @@ metadata:
     {{- $storageClass.additionalAnnotations | toYaml | nindent 4 -}}
 {{ end }}
   labels:
-    {{- include "csi-driver-lvm.labels" . | nindent 4 }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 provisioner: {{ .Values.lvm.driverName }}
 reclaimPolicy: {{ $storageClass.reclaimPolicy }}
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
   type: "linear"
+  fsType: "btrfs"
 {{ end }}
 ---
 {{- $storageClass := .Values.storageClasses.mirror -}}
@@ -30,7 +32,8 @@ metadata:
     {{- $storageClass.additionalAnnotations | toYaml | nindent 4 -}}
 {{ end }}
   labels:
-    {{- include "csi-driver-lvm.labels" . | nindent 4 }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 provisioner: {{ .Values.lvm.driverName }}
 reclaimPolicy: {{ $storageClass.reclaimPolicy }}
 volumeBindingMode: WaitForFirstConsumer
@@ -50,7 +53,8 @@ metadata:
     {{- $storageClass.additionalAnnotations | toYaml | nindent 4 -}}
 {{ end }}
   labels:
-    {{- include "csi-driver-lvm.labels" . | nindent 4 }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 provisioner: {{ .Values.lvm.driverName }}
 reclaimPolicy: {{ $storageClass.reclaimPolicy }}
 volumeBindingMode: WaitForFirstConsumer

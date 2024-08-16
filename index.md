@@ -14,10 +14,11 @@ title: Storage Helm Chart
 ## Repository Contents
 
 ```{toctree}
-:caption: Storage Drivers
+:caption: Helm Charts
 
-charts/csi-driver-lvm/index
-charts/local-static-provisioner/index
+csi-driver-lvm/index
+local-static-provisioner/index
+metal-control-plane/index
 ```
 
 ```{contents}
@@ -118,25 +119,12 @@ Tolerations
    [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 ```
 
-## Chart
-
-```{autoyaml} Chart.yaml
-```
-
-### Sub Charts
-
-Local volume dynamic provisioning is handled using the
-{term}`csi-driver-lvm` CSI Driver.
-
-The complete list of possible settings for {term}`csi-driver-lvm` can be found
-[here](https://github.com/metal-stack/helm-charts/blob/master/charts/csi-driver-lvm/values.yaml).
-
-#### Local Chart Values
+## Local Chart Values
 
 ```{autoyaml} values.yaml
 ```
 
-#### Local Provisioner Plugin
+### Local Provisioner Plugin
 
 This chart depends on the static local provisioner plugin described in detail
 [here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).

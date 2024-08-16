@@ -4,23 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-loguru = "*"
 gitpython = "*"
+loguru = "*"
 pipenv = "*"
+python-redis = "*"
+redis = "*"
 version-query = "*"
 
 [dev-packages]
-"sphinxcontrib.autoyaml" = "*"
 myst-parser = {extras = ["linkify"], version = "*"}
 sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-book-theme = "*"
+sphinx-copybutton = "*"
 sphinx-design = "*"
-version-query = "*"
-
-[ansible]
-ansible = "*"
-ansible-lint = "*"
-ansible-navigator = "*"
-python-redis = "*"
-redis = "*"
+sphinx-last-updated-by-git = "*"
+sphinxcontrib-autoyaml = "*"

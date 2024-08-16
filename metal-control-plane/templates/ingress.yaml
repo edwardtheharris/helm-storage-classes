@@ -1,0 +1,40 @@
+{{- if .Values.deploy_ingress }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: control-plane-ingress
+  annotations:
+{{- if .Values.metal_api.s3.enabled }}
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+{{ end }}
+{{- if .Values.ingress.tls.enabled }}
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+{{ else }}
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+{{- end }}
+  {{- with .Values.ingress.annotations }}
+{{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: nginx
+{{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+      - {{ .Values.ingress_public_dns }}
+      secretName: control-plane-ingress-tls
+{{- end }}
+  rules:
+  - host: {{ .Values.ingress_public_dns }}
+    http:
+      paths:
+      - path: {{ .Values.metal_api.base_path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: "metal-api"
+            port:
+              number: {{ .Values.ports.metal_api }}
+{{- end }}

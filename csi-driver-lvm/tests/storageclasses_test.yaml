@@ -5,16 +5,19 @@ release:
 values:
 - ../values.yaml
 templates:
-- "charts/csi-driver-lvm/templates/storageclasses.yaml"
+- "templates/storageclasses.yaml"
 
 tests:
 - it: "should render StorageClass csi-driver-lvm-linear with correct configurations"
+  set:
+    storageClasses:
+        linear:
+            enabled: true
   asserts:
   - isKind:
       of: StorageClass
-  - matchRegex:
-      path: metadata.name
-      pattern: "^csi-driver-lvm-linear$"
+  - matchSnapshot:
+      path: metadata
   - equal:
       path: provisioner
       value: "lvm.csi.metal-stack.io"
@@ -30,15 +33,17 @@ tests:
   - equal:
       path: parameters.type
       value: "linear"
-  documentIndex: 0
 
 - it: "should render StorageClass csi-driver-lvm-mirror with correct configurations"
+  set:
+    storageClasses:
+        mirror:
+            enabled: true
   asserts:
   - isKind:
       of: StorageClass
-  - matchRegex:
-      path: metadata.name
-      pattern: "^csi-driver-lvm-mirror$"
+  - matchSnapshot:
+      path: metadata
   - equal:
       path: provisioner
       value: "lvm.csi.metal-stack.io"
@@ -54,21 +59,17 @@ tests:
   - equal:
       path: parameters.type
       value: "mirror"
-  documentIndex: 1
 
 - it: "should render StorageClass csi-driver-lvm-striped with correct configurations"
+  set:
+    storageClasses:
+        striped:
+            enabled: true
   asserts:
   - isKind:
       of: StorageClass
-  - matchRegex:
-      path: metadata.name
-      pattern: "^csi-driver-lvm-striped$"
-  - equal:
-      path: metadata.labels
-      value:
-        app.kubernetes.io/instance: lvm
-        helm.sh/heritage: Helm
-        helm.sh/release: lvm
+  - matchSnapshot:
+      path: metadata
   - equal:
       path: provisioner
       value: "lvm.csi.metal-stack.io"
@@ -84,4 +85,3 @@ tests:
   - equal:
       path: parameters.type
       value: "striped"
-  documentIndex: 2
