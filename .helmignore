@@ -1,28 +1,28 @@
-# Patterns to ignore when building packages.
-# This supports shell glob matching, relative path matching, and
-# negation (prefixed with !). Only one pattern per line.
-.DS_Store
-# Common VCS dirs
-.git/
-.gitignore
+_build/
 .bzr/
 .bzrignore
+.debug/
+.DS_Store
+.git/
+.gitignore
+.gnupg
 .hg/
 .hgignore
-.svn/
-# Common backup files
-*.swp
-*.bak
-*.tmp
-*.orig
-*~
-# Various IDEs
-.project
-.debug/
 .idea/
-*.tmproj
-.vscode/
+.project
+.svn/
 .venv/
+.vscode/
+*.bak
 *.md
-_build/
-tests/
+*.orig
+*.swp
+*.tmp
+*.tmproj
+*~
+# Common backup files
+# Common VCS dirs
+# negation (prefixed with !). Only one pattern per line.
+# Patterns to ignore when building packages.
+# This supports shell glob matching, relative path matching, and
+# Various IDEs
