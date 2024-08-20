@@ -1,6 +1,8 @@
 ---
 abstract: Local Static Provisioner, values and templates.
-authors: Xander Harris
+authors:
+  - name: Xander Harris
+    email: xandertheharris@gmail.com
 date: 2024-04-28
 title: Local Static Provisioner and Templates
 ---
@@ -13,7 +15,7 @@ provide a slightly more dynamic usage.
 This chart deploys a `DaemonSet` that handles provisioning of local storage
 resources.
 
-```{autoyaml} local-static-provisioner/Chart.yaml
+```{autoyaml} charts/local-static-provisioner/Chart.yaml
 ```
 
 ## Local Static Provisioner Values
@@ -21,7 +23,7 @@ resources.
 You can adjust the deployment of the local static provisioner with the contents
 of the file {file}`local-static-provisioner/values.yaml`.
 
-```{autoyaml} local-static-provisioner/values.yaml
+```{autoyaml} charts/local-static-provisioner/values.yaml
 ```
 
 ```{sectionauthor} Xander Harris <xandertheharris@gmail.com>

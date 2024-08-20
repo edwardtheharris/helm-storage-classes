@@ -19,8 +19,9 @@ tests:
   - equal:
       path: metadata.labels
       value:
-        heritage: "Helm"
-        release: "lvm"
+        app.kubernetes.io/instance: lvm
+        helm.sh/heritage: Helm
+        helm.sh/release: lvm
 
 - it: "should render CSIDriver with correct spec configurations"
   asserts:

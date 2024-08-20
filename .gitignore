@@ -4,7 +4,8 @@ venv/
 .values.yaml
 .vscode/
 _build
-charts/
 __snapshot__
 .debug/
 reflog
+test.yaml
+charts/*.tgz

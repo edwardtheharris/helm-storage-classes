@@ -7,6 +7,12 @@ date: 2024-07-21
 title: CSI Driver LVM values
 ---
 
+```{toctree}
+:caption: contents
+
+README
+```
+
 ## {term}`csi-driver-lvm`
 
 ```{sidebar} default values
@@ -23,5 +29,5 @@ To update configuration for this driver, change any of the corresponding
 values in the main values file at the root of this repository.
 ```
 
-```{autoyaml} csi-driver-lvm/values.yaml
+```{autoyaml} charts/csi-driver-lvm/values.yaml
 ```

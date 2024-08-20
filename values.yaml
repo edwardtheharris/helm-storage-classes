@@ -6,7 +6,7 @@
 #
 # ```{literalinclude} /values.yaml
 # :language: yaml
-# :start-at: "lvm:\n"
+# :start-at: "csi-driver-lvm:\n"
 # :end-before: "###\n"
 # ```
 csi-driver-lvm:
@@ -14,17 +14,19 @@ csi-driver-lvm:
     attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
     enabled: true
     livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
-    nodeSelector:
-      provisioner:
-        node-role.kubernetes.io/control-plane: true
     provisioner: k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1
     registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
     resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
   enabled: true
   lvm:
-    devicePattern: /dev/sd[a-z]1
+    devicePattern: /dev/(sd[a-z]|nvme[0-9]n[0-9]p)[0-1]
     driverName: lvm.csi.metal-stack.io
     vgName: vg.local
+  nodeSelector:
+    plugin:
+      kubernetes.io/os: linux
+    provisioner:
+      kubernetes.io/os: linux
   rbac:
     create: true
     pspEnabled: true
@@ -32,21 +34,22 @@ csi-driver-lvm:
     linear:
       enabled: true
       reclaimPolicy: Delete
+      storageclass.kubernetes.io/is-default-class: "true"
     mirror:
       enabled: true
       reclaimPolicy: Delete
     striped:
       enabled: true
       reclaimPolicy: Delete
-    tolerations:
-      plugin:
-      - effect: Schedule
-        key: node-role.kubernetes.io/control-plane
-        operator: Exists
-      provisioner:
-      - effect: Schedule
-        key: node-role.kubernetes.io/control-plane
-        operator: Exists
+  tolerations:
+    plugin:
+    - key: 'node-role.kubernetes.io/control-plane'
+      operator: Exists
+      effect: NoSchedule
+    provisioner:
+    - key: 'node-role.kubernetes.io/control-plane'
+      operator: Exists
+      effect: NoSchedule
 
 ###
 # ```{rubric} Local Static Provisioner
