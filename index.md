@@ -16,8 +16,8 @@ title: Storage Helm Chart
 ```{toctree}
 :caption: Storage Drivers
 
-csi-driver-lvm/index
-local-static-provisioner/index
+charts/csi-driver-lvm/index
+charts/local-static-provisioner/index
 ```
 
 ```{contents}
@@ -141,4 +141,5 @@ The complete list of possible settings for {term}`csi-driver-lvm` can be found
 This chart depends on the static local provisioner plugin described in detail
 [here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
-The helm chart and templates are located in {file}`local-static-provisioner`.
+The helm chart and templates are located in
+{file}`charts/local-static-provisioner`.

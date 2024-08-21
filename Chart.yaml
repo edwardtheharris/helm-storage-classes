@@ -43,11 +43,12 @@ appVersion: "0.5.2"
 dependencies:
 - condition: csi-driver-lvm.enabled
   name: csi-driver-lvm
-  repository: https://helm.metal-stack.io
+  # Originally sourced from [metal-stack](https://helm.metal-stack.io).
+  repository: file://./charts/csi-driver-lvm/
   version: ~0.6
 - condition: local-static-provisioner.enabled
   name: local-static-provisioner
-  repository: file://./local-static-provisioner/
+  repository: file://./charts/local-static-provisioner/
   version: ~2
 
 ###
