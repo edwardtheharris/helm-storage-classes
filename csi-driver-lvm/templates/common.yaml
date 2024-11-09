@@ -4,7 +4,8 @@ kind: CSIDriver
 metadata:
   name: {{ .Values.lvm.driverName }}
   labels:
-    {{- include "csi-driver-lvm.labels" . | nindent 4 }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 spec:
   volumeLifecycleModes:
   - Persistent

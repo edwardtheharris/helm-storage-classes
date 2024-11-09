@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+# tests/driver_test.yaml
+suite: "CSI Driver LVM CSIDriver Test Suite"
+templates:
+- "templates/common.yaml"
+
+tests:
+- it: "should render CSIDriver with correct metadata"
+  values:
+  - "../values.yaml"
+  release:
+    name: lvm
+  asserts:
+  - isKind:
+      of: CSIDriver
+  - matchSnapshot:
+      path: metadata
+
+- it: "should render CSIDriver with correct spec configurations"
+  asserts:
+  - matchSnapshot:
+      path: spec

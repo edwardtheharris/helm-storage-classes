@@ -1,0 +1,25 @@
+###
+# ```{rubric} LVM Helm Chart
+# ```
+# ---
+# This file contains the settings required to set up a {term}`StorageClass` that
+# supports dynamic provisioning of Logical Volume Manager volumes.
+#
+# Enable, if you want to install storage classes with v0.3.x
+# backward-compatible `csi-lvm-sc-*` names
+#
+# ```{literalinclude} /csi-driver-lvm/Chart.yaml
+# :language: yaml
+# ```
+apiVersion: v1
+appVersion: v0.6.0
+description: local persisted storage for lvm
+home: https://metal-stack.io
+keywords:
+- storage
+- block-storage
+- volume
+name: csi-driver-lvm
+sources:
+- https://github.com/metal-stack
+version: 0.7.0

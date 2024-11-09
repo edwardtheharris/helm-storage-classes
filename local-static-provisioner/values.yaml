@@ -1,4 +1,13 @@
 ###
+# ```{rubric} Local Static Provisioner values
+# ```
+# ---
+# Values for the local static provisioner
+#
+# ```{literalinclude} /local-static-provisioner/values.yaml
+# :language: yaml
+# ```
+#
 # Override the default chart name or release name
 nameOverride: ""
 fullnameOverride: ""

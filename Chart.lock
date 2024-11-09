@@ -1,9 +1,0 @@
-dependencies:
-- name: csi-driver-lvm
-  repository: file://./charts/csi-driver-lvm/
-  version: 0.6.0
-- name: local-static-provisioner
-  repository: file://./charts/local-static-provisioner/
-  version: 2.0.0
-digest: sha256:078d8690048f214ddcd60da4dc98bdc4c485c74a31d6d62eda6079fa48bc8dba
-generated: "2024-08-20T21:24:20.427831434-07:00"

@@ -7,6 +7,12 @@
 #
 # Enable, if you want to install storage classes with v0.3.x
 # backward-compatible `csi-lvm-sc-*` names
+#
+# ```{literalinclude} /csi-driver-lvm/values.yaml
+# :language: yaml
+# :start-at: "compat03x: false\n"
+# :end-before: "####"
+# ```
 compat03x: false
 customCSISidecars:
   ###
@@ -29,6 +35,8 @@ customCSISidecars:
 # Configure a custom {term}`kubelet` write path if necessary.
 kubernetes:
   kubeletPath: /var/lib/kubelet
+####
+
 ###
 # ```{rubric} Logical Volume Manager
 # ```
@@ -39,7 +47,7 @@ kubernetes:
 # ```{literalinclude} /csi-driver-lvm/values.yaml
 # :language: yaml
 # :start-at: "lvm:\n"
-# :end-at: "  vgName: csi-lvm\n"
+# :end-before: "####"
 # ```
 lvm:
   ###
@@ -52,8 +60,10 @@ lvm:
   hostWritePath: /etc/lvm
   ###
   # these are primarily for testing purposes
-  storageClassStub: csi-driver-lvm
+  storageClassStub: csi-lvm
   vgName: csi-lvm
+####
+
 ###
 # ```{rubric} Node Selection
 # ```
@@ -64,13 +74,15 @@ lvm:
 # ```{literalinclude} /csi-driver-lvm/values.yaml
 # :language: yaml
 # :start-at: "nodeSelector:\n"
-# :end-at: "    node-role.kubernetes.io/control-plane: 'true'\n"
+# :end-before: "####"
 # ```
 nodeSelector:
   plugin:
-    kubernetes.io/os: 'linux'
+    kubernetes.io/os: linux
   provisioner:
-    node-role.kubernetes.io/control-plane: 'true'
+    node-role.kubernetes.io/control-plane: true
+####
+
 ###
 # ```{rubric} Plugin Image
 # ```
@@ -110,11 +122,19 @@ provisionerImage:
 # ```{literalinclude} /csi-driver-lvm/values.yaml
 # :language: yaml
 # :start-at: "rbac:\n"
-# :end-at: "  pspEnabled: true\n"
+# :end-before: "####"
 # ```
 rbac:
   create: true
   pspEnabled: true
+sidecarImages:
+  attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
+  livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
+  provisioner: k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1
+  registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
+  resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
+####
+
 ###
 # ```{rubric} StorageClass configuration
 # ```
@@ -131,6 +151,11 @@ rbac:
 # or similar arrangements as of the time of this writing.
 # ```
 #
+# ```{literalinclude} /csi-driver-lvm/values.yaml
+# :language: yaml
+# :start-at: "storageClasses:\n"
+# :end-before: "#####"
+# ```
 storageClasses:
   ###
   # This will configure plain block storage.
@@ -138,12 +163,14 @@ storageClasses:
   # ```{literalinclude} /csi-driver-lvm/values.yaml
   # :language: yaml
   # :start-at: "  linear:\n"
-  # :end-at: "    reclaimPolicy: Delete\n"
+  # :end-before: "####"
   # ```
   linear:
     additionalAnnotations: []
-    enabled: true
+    enabled: false
     reclaimPolicy: Delete
+  ####
+
   ###
   # This will configure something like RAID 1 storage.
   #
@@ -172,8 +199,10 @@ storageClasses:
   # ```
   striped:
     additionalAnnotations: []
-    enabled: true
+    enabled: false
     reclaimPolicy: Delete
+#####
+
 ###
 # ```{rubric} Driver workload tolerations
 # ```

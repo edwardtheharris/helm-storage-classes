@@ -135,21 +135,21 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/service: csi-driver-lvm-controller
+      app: csi-driver-lvm-controller
   template:
     metadata:
       labels:
-        app.kubernetes.io/service: csi-driver-lvm-controller
+        app: csi-driver-lvm-controller
     spec:
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: app.kubernetes.io/service
+              - key: app
                 operator: In
                 values:
-                - csi-driver-lvm-controller
+                - csi-driver-lvm-plugin
             topologyKey: kubernetes.io/hostname
 {{- if .Values.nodeSelector.provisioner }}
       nodeSelector:
@@ -162,35 +162,38 @@ spec:
       serviceAccountName: csi-driver-lvm-controller
       containers:
         - name: csi-attacher
-          image: {{ template "externalImages.csiAttacher" . }}
+          image: {{ .Values.sidecarImages.attacher }}
           imagePullPolicy: IfNotPresent
           args:
             - --v=5
             - --csi-address=/csi/csi.sock
           securityContext:
+            readOnlyRootFilesystem: true
             privileged: true
           volumeMounts:
           - mountPath: /csi
             name: socket-dir
         - name: csi-provisioner
-          image: {{ template "externalImages.csiProvisioner" . }}
+          image: {{ .Values.sidecarImages.provisioner }}
           imagePullPolicy: IfNotPresent
           args:
             - -v=5
             - --csi-address=/csi/csi.sock
             - --feature-gates=Topology=true
           securityContext:
+            readOnlyRootFilesystem: true
             privileged: true
           volumeMounts:
             - mountPath: /csi
               name: socket-dir
         - name: csi-resizer
-          image: {{ template "externalImages.csiResizer" . }}
+          image: {{ .Values.sidecarImages.resizer }}
           imagePullPolicy: IfNotPresent
           args:
             - -v=5
             - -csi-address=/csi/csi.sock
           securityContext:
+            readOnlyRootFilesystem: true
             privileged: true
           volumeMounts:
             - mountPath: /csi
