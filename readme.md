@@ -24,7 +24,7 @@ Presently this includes a provisioner for local static storage as well as
 a CSI driver for dynamically provisioning Linux LVM storage.
 
 For more information, see the full documentation
-[here](https://edwardtheharris.github.io/helm-storage-classes/).
+[on GitHub Pages](https://edwardtheharris.github.io/helm-storage-classes/).
 
 ### Install
 
