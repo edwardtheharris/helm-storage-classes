@@ -85,7 +85,7 @@ nodeSelector:
   plugin:
     kubernetes.io/os: linux
   provisioner:
-    node-role.kubernetes.io/control-plane: "true"
+    kubernetes.io/os: linux
 ####
 
 ###
@@ -194,7 +194,7 @@ sidecarImages:
   lvm:
     devicePattern: /dev/(sd[a-z]|nvme[0-9]n[0-9]p)[0-1]
     driverName: lvm.csi.metal-stack.io
-    vgName: vg.local
+    vgName: csi-lvm
   nodeSelector:
     plugin:
       kubernetes.io/os: linux

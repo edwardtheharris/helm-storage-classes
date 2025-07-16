@@ -80,7 +80,7 @@ nodeSelector:
   plugin:
     kubernetes.io/os: linux
   provisioner:
-    node-role.kubernetes.io/control-plane: true
+    kubernetes.io/os: linux
 ####
 
 ###
