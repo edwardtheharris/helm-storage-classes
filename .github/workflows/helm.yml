@@ -3,6 +3,12 @@
 # ```
 # ---
 # GHA jobs for testing and validating helm charts.
+#
+# ```{literalinclude} /.github/workflows/helm.yml
+# :language: yaml
+# :start-at: "name: Test Helm Chart\n"
+# :end-before: "####\n"
+# ```
 name: Test Helm Chart
 on:
   pull_request:
@@ -12,6 +18,8 @@ on:
     branches:
       - main
   workflow_dispatch: {}
+####
+
 ###
 # ```{rubric} Permissions Updates
 # ```
