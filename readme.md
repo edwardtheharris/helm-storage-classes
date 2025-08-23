@@ -10,10 +10,9 @@ date: 2024-07-18
 title: Readme
 ---
 
-[![Helm](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/helm.yml?branch=main&style=flat-square&logo=helm&logoColor=%230F1689&logoSize=auto&label=helm)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
-[![Kind](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/kind.yml?branch=main&style=flat-square&logo=kubernetes&logoColor=%23326CE5&logoSize=auto&label=Kind)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/kind.yml)
+[![Documentation](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/documentation.yml/badge.svg)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/documentation.yml)
+[![Test Helm Chart](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml/badge.svg)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/helm.yml)
 [![OSSAR](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubactions&logoColor=%230F1689&logoSize=auto&label=OSSAR)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/ossar.yml)
-[![GitHub Pages](https://img.shields.io/github/actions/workflow/status/edwardtheharris/helm-storage-classes/ossar.yml?branch=main&style=flat-square&logo=githubpages&logoColor=%23222222&logoSize=auto&label=GitHub%20Pages)](https://github.com/edwardtheharris/helm-storage-classes/actions/workflows/pages.yml)
 [![wakatime](https://wakatime.com/badge/github/edwardtheharris/helm-storage-classes.svg)](https://wakatime.com/badge/github/edwardtheharris/helm-storage-classes)
 
 ## Helm Charts for Static and Dynamic Storage Classes
