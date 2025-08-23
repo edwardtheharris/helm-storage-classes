@@ -33,6 +33,7 @@ tests:
   - equal:
       path: parameters.type
       value: "linear"
+  documentIndex: 0
 
 - it: "should render StorageClass csi-driver-lvm-mirror with correct configurations"
   set:
@@ -59,6 +60,7 @@ tests:
   - equal:
       path: parameters.type
       value: "mirror"
+  documentIndex: 1
 
 - it: "should render StorageClass csi-driver-lvm-striped with correct configurations"
   set:
@@ -85,3 +87,4 @@ tests:
   - equal:
       path: parameters.type
       value: "striped"
+  documentIndex: 1

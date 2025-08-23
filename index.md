@@ -17,8 +17,6 @@ title: Storage Helm Chart
 :caption: Helm Charts
 
 csi-driver-lvm/index
-local-static-provisioner/index
-metal-control-plane/index
 ```
 
 ```{contents}
