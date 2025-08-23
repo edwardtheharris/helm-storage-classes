@@ -27,3 +27,9 @@ of the file {file}`csi-driver-lvm/values.yaml`.
 
 ```{sectionauthor} Xander Harris <xandertheharris@gmail.com>
 ```
+
+```{toctree}
+:caption: readme
+
+readme
+```
