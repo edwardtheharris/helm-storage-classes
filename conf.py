@@ -12,6 +12,8 @@
 author = 'Xander Harris'
 autoyaml_root = '.'
 autoyaml_doc_delimiter = "###"
+autoyaml_comment = "#"
+aotoyaml_safe_loader = False
 copyright = '2024, Xander Harris'
 
 # -- General configuration ---------------------------------------------------
