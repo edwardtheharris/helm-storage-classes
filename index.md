@@ -45,7 +45,7 @@ security
 ```{glossary}
 CSI
    Container Storage Interface, described in more detail
-   [here](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/).
+   [in the CSI documentation](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/).
 
 CSIDriver
    A driver that enables a Kubernetes cluster to interact with storage devices
@@ -127,7 +127,7 @@ Tolerations
 ### Local Provisioner Plugin
 
 This chart depends on the static local provisioner plugin described in detail
-[here](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
+[n the related documentation](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/blob/master/helm/README.md).
 
 The helm chart and templates are located in
 {file}`charts/local-static-provisioner`.
