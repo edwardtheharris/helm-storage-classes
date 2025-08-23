@@ -89,10 +89,6 @@ jobs:
       - uses: actions/checkout@main
       - name: lint csi-driver-lvm
         run: helm lint csi-driver-lvm
-      - name: lint local-static-provisioner
-        run: helm lint local-static-provisioner
-      - name: lint metal-control-plane
-        run: helm lint metal-control-plane
   ####
 
   ###
@@ -116,13 +112,9 @@ jobs:
       - name: build deps
         run: |
           helm dependency build csi-driver-lvm
-          helm dependency build local-static-provisioner
-          helm dependency build metal-control-plane
       - name: update deps
         run: |
           helm dependency update csi-driver-lvm
-          helm dependency update local-static-provisioner
-          helm dependency update metal-control-plane
       - name: Run unit tests
         run: |
           cd csi-driver-lvm
