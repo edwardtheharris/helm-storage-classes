@@ -71,7 +71,7 @@ default. The local static provisioner is disabled by default.
    helm upgrade --install csi-lvm .
    ```
 
-6. Run the provided test suites.
+7. Run the provided test suites.
    1. Start with the basic Helm tests.
 
       ```shell
