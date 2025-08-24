@@ -76,10 +76,13 @@ kubelet
    components of Kubernetes.
 
 Kubernetes
-  [Kubernetes](https://kubernetes.io), also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.
+  [Kubernetes](https://kubernetes.io), also known as K8s, is an open source
+  system for automating deployment, scaling, and management of containerized
+  applications.
 
 kubie
-  [kubie](https://github.com/sbstp/kubie) is an alternative to kubectx, kubens and the k on prompt modification script.
+  [kubie](https://github.com/sbstp/kubie) is an alternative to kubectx,
+  kubens and the k on prompt modification script.
 
 LVM
    Logical Volume Manager, described in more detail
