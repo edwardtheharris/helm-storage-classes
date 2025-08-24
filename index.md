@@ -41,6 +41,10 @@ security
 ### Glossary
 
 ```{glossary}
+archlinux
+  [ArchLinux](https://archlinux.orgi) a lightweight and flexible Linux®
+  distribution that tries to Keep It Simple.
+
 CSI
    Container Storage Interface, described in more detail
    [in the CSI documentation](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/).
@@ -70,6 +74,9 @@ kubelet
    An application that must run on every node in a Kubernetes cluster,
    responsible for interfacing with the container runtime and the other
    components of Kubernetes.
+
+kubie
+  [kubie](https://github.com/sbstp/kubie) is an alternative to kubectx, kubens and the k on prompt modification script.
 
 LVM
    Logical Volume Manager, described in more detail
