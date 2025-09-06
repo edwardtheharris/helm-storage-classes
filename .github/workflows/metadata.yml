@@ -60,7 +60,11 @@ jobs:
         with:
           # You can target a project in a different organization
           # to the issue
+<<<<<<< Updated upstream
           project-url: https://github.com/users/edwardtheharris/projects/5
+=======
+          project-url: https://github.com/users/edwardtheharris/projects/6
+>>>>>>> Stashed changes
           github-token: ${{ secrets.PROJECT_PAT }}
   add-to-milestone:
     runs-on: ubuntu-latest

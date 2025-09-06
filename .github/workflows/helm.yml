@@ -1,14 +1,3 @@
-###
-# ```{rubric} Helm Chart GitHub Actions
-# ```
-# ---
-# GHA jobs for testing and validating helm charts.
-#
-# ```{literalinclude} /.github/workflows/helm.yml
-# :language: yaml
-# :start-at: "name: Test Helm Chart\n"
-# :end-before: "####\n"
-# ```
 name: Test Helm Chart
 on:
   pull_request:
@@ -18,7 +7,7 @@ on:
     branches:
       - main
   workflow_dispatch: {}
-####
+
 
 ###
 # ```{rubric} Permissions Updates
@@ -28,14 +17,13 @@ on:
 # ```{literalinclude} /.github/workflows/helm.yml
 # :language: yaml
 # :start-at: "permissions:\n"
-# :end-before: "####\n"
+# :end-before: "###\n"
 # ```
 permissions:
   contents: read
   issues: read
   checks: write
   pull-requests: write
-####
 
 ###
 # ```{rubric} Workflow Jobs
@@ -54,7 +42,7 @@ jobs:
   # ```{literalinclude} /.github/workflows/helm.yml
   # :language: yaml
   # :start-at: "  helmsetup:\n"
-  # :end-before: "####"
+  # :end-before: "###\n"
   # ```
   helmsetup:
     name: helmsetup
@@ -67,8 +55,6 @@ jobs:
           echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
           sudo apt-get update
           sudo apt-get install -y helm
-  ####
-
 
   ###
   # ```{rubric} Helm Lint
@@ -79,7 +65,7 @@ jobs:
   # ```{literalinclude} /.github/workflows/helm.yml
   # :language: yaml
   # :start-at: "  helmlint:\n"
-  # :end-before: "####"
+  # :end-before: "###\n"
   # ```
   helmlint:
     name: helmlint
@@ -87,9 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - name: lint csi-driver-lvm
-        run: helm lint csi-driver-lvm
-  ####
+      - run: helm lint .
 
   ###
   # ```{rubric} Helm Test
@@ -109,20 +93,10 @@ jobs:
       - uses: actions/checkout@main
       - run: helm plugin install https://github.com/helm-unittest/helm-unittest
       - run: helm repo add lvm https://helm.metal-stack.io
-      - name: build deps
-        run: |
-          helm dependency build csi-driver-lvm
-      - name: update deps
-        run: |
-          helm dependency update csi-driver-lvm
-      - name: Run unit tests
-        run: |
-          cd csi-driver-lvm
-          helm unittest -d -f 'tests/*.yaml' .
-      - name: Save unit test results
-        run: |
-          cd csi-driver-lvm
-          helm unittest -f 'tests/*.yaml' -t JUnit -o results.xml .
+      - run: helm dependency update
+      - run: helm dependency build
+      - run: helm unittest -d -f 'tests/*.yaml' .
+      - run: helm unittest -f 'tests/*.yaml' -t JUnit -o results.xml .
         if: success() || failure() # always run even if the previous step fails
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
@@ -130,4 +104,4 @@ jobs:
         with:
           check_name: helmtest
           comment_title: "Helm Test"
-          files: csi-driver-lvm/results.xml
+          files: results.xml
