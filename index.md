@@ -33,6 +33,7 @@ csi-driver-lvm/index
 :caption: Meta Pages
 
 .github/index
+changelog
 license
 readme
 security

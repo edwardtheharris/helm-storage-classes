@@ -1,0 +1,613 @@
+---
+abstract: This is the changelog for the helm-storage-classes repository.
+title: Changelog for Helm Storage Classes
+---
+
+## [0.0.4] - 2025-10-10
+
+### 💼 Other
+
+- Add selector for daemonset
+- Closes #54
+- Merge pull request #55 from edwardtheharris/54-update-selector
+- Add selector for daemonset
+- Closes #54
+- Bump sphinx-autobuild from 2024.4.16 to 2024.9.3
+- Bumps [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild) from 2024.4.16 to 2024.9.3.
+- - [Release notes](https://github.com/sphinx-doc/sphinx-autobuild/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx-autobuild/blob/main/NEWS.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx-autobuild/compare/2024.04.16...2024.09.03)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx-autobuild
+-   dependency-type: direct:development
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #56 from edwardtheharris/dependabot/pip/sphinx-autobuild-2024.9.3
+- Bump sphinx-autobuild from 2024.4.16 to 2024.9.3
+- Bump sphinx-autobuild from 2024.9.3 to 2024.9.19
+- Bumps [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild) from 2024.9.3 to 2024.9.19.
+- - [Release notes](https://github.com/sphinx-doc/sphinx-autobuild/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx-autobuild/blob/main/NEWS.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx-autobuild/compare/2024.09.03...2024.09.19)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx-autobuild
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #59 from edwardtheharris/dependabot/pip/sphinx-autobuild-2024.9.19
+- Bump sphinx-autobuild from 2024.9.3 to 2024.9.19
+- Bump pipenv from 2024.0.1 to 2024.0.3
+- Bumps [pipenv](https://github.com/pypa/pipenv) from 2024.0.1 to 2024.0.3.
+- - [Release notes](https://github.com/pypa/pipenv/releases)
+- - [Changelog](https://github.com/pypa/pipenv/blob/main/CHANGELOG.md)
+- - [Commits](https://github.com/pypa/pipenv/compare/v2024.0.1...v2024.0.3)
+- ---
+- Updated-dependencies:
+- - dependency-name: pipenv
+-   dependency-type: direct:production
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #58 from edwardtheharris/dependabot/pip/pipenv-2024.0.3
+- Bump pipenv from 2024.0.1 to 2024.0.3
+- Bump starlette from 0.39.0 to 0.40.0 in the pip group
+- Bumps the pip group with 1 update: [starlette](https://github.com/encode/starlette).
+- Updates `starlette` from 0.39.0 to 0.40.0
+- - [Release notes](https://github.com/encode/starlette/releases)
+- - [Changelog](https://github.com/encode/starlette/blob/master/docs/release-notes.md)
+- - [Commits](https://github.com/encode/starlette/compare/0.39.0...0.40.0)
+- ---
+- Updated-dependencies:
+- - dependency-name: starlette
+-   dependency-type: indirect
+-   dependency-group: pip
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #63 from edwardtheharris/dependabot/pip/pip-f0796b5709
+- Bump starlette from 0.39.0 to 0.40.0 in the pip group
+- Bump sphinx from 8.0.2 to 8.1.3
+- Bumps [sphinx](https://github.com/sphinx-doc/sphinx) from 8.0.2 to 8.1.3.
+- - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx/compare/v8.0.2...v8.1.3)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx
+-   dependency-type: direct:development
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #62 from edwardtheharris/dependabot/pip/sphinx-8.1.3
+- Bump sphinx from 8.0.2 to 8.1.3
+- Bump sphinx-autobuild from 2024.9.19 to 2024.10.3
+- Bumps [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild) from 2024.9.19 to 2024.10.3.
+- - [Release notes](https://github.com/sphinx-doc/sphinx-autobuild/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx-autobuild/blob/main/NEWS.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx-autobuild/compare/2024.09.19...2024.10.03)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx-autobuild
+-   dependency-type: direct:development
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #61 from edwardtheharris/dependabot/pip/sphinx-autobuild-2024.10.3
+- Bump sphinx-autobuild from 2024.9.19 to 2024.10.3
+- Bump pipenv from 2024.0.3 to 2024.1.0
+- Bumps [pipenv](https://github.com/pypa/pipenv) from 2024.0.3 to 2024.1.0.
+- - [Release notes](https://github.com/pypa/pipenv/releases)
+- - [Changelog](https://github.com/pypa/pipenv/blob/main/CHANGELOG.md)
+- - [Commits](https://github.com/pypa/pipenv/compare/v2024.0.3...v2024.1.0)
+- ---
+- Updated-dependencies:
+- - dependency-name: pipenv
+-   dependency-type: direct:production
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #60 from edwardtheharris/dependabot/pip/pipenv-2024.1.0
+- Bump pipenv from 2024.0.3 to 2024.1.0
+- Add BTRFS support
+- Closes #47
+- Merge pull request #51 from edwardtheharris/47-enable-btrfs-support
+- Add BTRFS support
+- Closes #47
+- Update lvm driver values
+- Closes #71
+- Drop ossar
+- Closes #71
+- Update pre-commit
+- Closes #71
+- Add pre-commit hook
+- Closes #71
+- Update values file
+- Closes #71
+- Bump jinja2 from 3.1.4 to 3.1.5 in the pip group
+- Bumps the pip group with 1 update: [jinja2](https://github.com/pallets/jinja).
+- Updates `jinja2` from 3.1.4 to 3.1.5
+- - [Release notes](https://github.com/pallets/jinja/releases)
+- - [Changelog](https://github.com/pallets/jinja/blob/main/CHANGES.rst)
+- - [Commits](https://github.com/pallets/jinja/compare/3.1.4...3.1.5)
+- ---
+- Updated-dependencies:
+- - dependency-name: jinja2
+-   dependency-type: indirect
+-   dependency-group: pip
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #70 from edwardtheharris/dependabot/pip/pip-e49d2f513e
+- Bump jinja2 from 3.1.4 to 3.1.5 in the pip group
+- Closes #74
+- Merge pull request #75 from edwardtheharris/74-bump-jinja2-from-314-to-315-in-the-pip-group
+- 74 bump jinja2 from 314 to 315 in the pip group
+- Closes #74
+- Bump gitpython from 3.1.43 to 3.1.44
+- Bumps [gitpython](https://github.com/gitpython-developers/GitPython) from 3.1.43 to 3.1.44.
+- - [Release notes](https://github.com/gitpython-developers/GitPython/releases)
+- - [Changelog](https://github.com/gitpython-developers/GitPython/blob/main/CHANGES)
+- - [Commits](https://github.com/gitpython-developers/GitPython/compare/3.1.43...3.1.44)
+- ---
+- Updated-dependencies:
+- - dependency-name: gitpython
+-   dependency-type: direct:production
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Update environment, add metadata workflow
+- Closes #76
+- Add documentation workflow
+- Closes #76
+- Fix link text
+- Closes #76
+- Update link text
+- Closes #76
+- Update config, templates
+- Closes #76
+- Merge pull request #77 from edwardtheharris/76-bump-gitpython-from-3143-to-3144
+- 76 bump gitpython from 3143 to 3144
+- Closes #76
+- Drop broken badges
+- Closes #80
+- Bump sphinxcontrib-autoyaml from 1.1.1 to 1.1.3
+- Bumps sphinxcontrib-autoyaml from 1.1.1 to 1.1.3.
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinxcontrib-autoyaml
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge branch 'main' into dependabot/pip/sphinxcontrib-autoyaml-1.1.3
+- Bump loguru from 0.7.2 to 0.7.3
+- Bumps [loguru](https://github.com/Delgan/loguru) from 0.7.2 to 0.7.3.
+- - [Release notes](https://github.com/Delgan/loguru/releases)
+- - [Changelog](https://github.com/Delgan/loguru/blob/master/CHANGELOG.rst)
+- - [Commits](https://github.com/Delgan/loguru/compare/0.7.2...0.7.3)
+- ---
+- Updated-dependencies:
+- - dependency-name: loguru
+-   dependency-type: direct:production
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge branch '78-bump-loguru-from-072-to-073' into dependabot/pip/loguru-0.7.3
+- Merge pull request #68 from edwardtheharris/dependabot/pip/loguru-0.7.3
+- Bump loguru from 0.7.2 to 0.7.3
+- Closes #78
+- Merge branch 'main' into 78-bump-loguru-from-072-to-073
+- Merge pull request #79 from edwardtheharris/78-bump-loguru-from-072-to-073
+- 78 bump loguru from 072 to 073
+- Closes #78
+- Drop local static provisioner
+- Closes #82
+- Bump redis from 5.2.0 to 5.2.1
+- Bumps [redis](https://github.com/redis/redis-py) from 5.2.0 to 5.2.1.
+- - [Release notes](https://github.com/redis/redis-py/releases)
+- - [Changelog](https://github.com/redis/redis-py/blob/master/CHANGES)
+- - [Commits](https://github.com/redis/redis-py/compare/v5.2.0...v5.2.1)
+- ---
+- Updated-dependencies:
+- - dependency-name: redis
+-   dependency-type: direct:production
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge branch 'main' into dependabot/pip/redis-5.2.1
+- Merge branch 'dependabot/pip/redis-5.2.1' of
+- Edwardtheharris/helm-storage-classes
+- Into 82-bump-redis-from-520-to-521
+- Fix broken tests
+- Closes #82
+- Merge pull request #83 from edwardtheharris/82-bump-redis-from-520-to-521
+- 82 bump redis from 520 to 521
+- Closes #82
+- Merge branch '84-bump-sphinxcontrib-autoyaml-from-111-to-113' into dependabot/pip/sphinxcontrib-autoyaml-1.1.3
+- Merge pull request #66 from edwardtheharris/dependabot/pip/sphinxcontrib-autoyaml-1.1.3
+- Bump sphinxcontrib-autoyaml from 1.1.1 to 1.1.3
+- Closes #84
+- Merge pull request #85 from edwardtheharris/84-bump-sphinxcontrib-autoyaml-from-111-to-113
+- 84 bump sphinxcontrib autoyaml from 111 to 113
+- Closes #84
+- Merge branch 'main' into 80-bump-loguru-from-072-to-073
+- Merge pull request #86 from edwardtheharris/80-bump-loguru-from-072-to-073
+- Drop broken badges
+- Closes #80
+- Add working badges
+- Closes #81
+- Merge pull request #87 from edwardtheharris/81-fix-badges-in-readme
+- Add working badges
+- Closes #81
+- Merge branch 'main' of
+- Edwardtheharris/helm-storage-classes into 71-adjust-lvm-values
+- Closes #71
+- Drop metal control plane
+- Closes #71
+- Fix broken tests
+- Closes #71
+- Fix readme issues
+- Closes #71
+- Merge pull request #72 from edwardtheharris/71-adjust-lvm-values
+- Update lvm driver values
+- Closes #71
+- Fill in usage information
+- Closes #73
+- Update usage info
+- Closes #73
+- Fix lint error
+- Closes #73
+- Fix glossary
+- Closes #73
+- Fix more lints
+- Closes #73
+- Merge pull request #88 from edwardtheharris/73-add-some-proper-usage-info
+- Fill in usage information
+- Closes #73
+- Merge branch 'main' into 73-add-some-proper-usage-info
+- Merge branch '73-add-some-proper-usage-info' of
+- Edwardtheharris/helm-storage-classes
+- Into 73-add-some-proper-usage-info
+- Closes #73
+- Merge pull request #89 from edwardtheharris/73-add-some-proper-usage-info
+- Fix glossary
+- Closes #73
+- Adjust workflows
+- Closes #90
+- Update workflow commentary
+- Closes #90
+- Use setup helm
+- Closes #90
+- Fix metadata workflow
+- Closes #90
+- Update lint stage
+- Closes #90
+- Skip cubefs for now
+- Closes #90
+- Fix target for lint
+- Closes #90
+- Fix driver name
+- Closes #90
+- Update workflow for testing
+- Closes #90
+- Adjust working dirs
+- Closes #90
+- Add cliff.toml
+- Closes #90
+## [0.0.3] - 2024-08-16
+
+### 💼 Other
+
+- Initial commit
+- Bump sphinx-nefertiti from 0.3.2 to 0.3.4
+- Bumps [sphinx-nefertiti](https://github.com/danirus/sphinx-nefertiti) from 0.3.2 to 0.3.4.
+- - [Release notes](https://github.com/danirus/sphinx-nefertiti/releases)
+- - [Changelog](https://github.com/danirus/sphinx-nefertiti/blob/main/ChangeLog.md)
+- - [Commits](https://github.com/danirus/sphinx-nefertiti/compare/0.3.2...0.3.4)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx-nefertiti
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #1 from edwardtheharris/dependabot/pip/sphinx-nefertiti-0.3.4
+- Add test stub
+- Closes #3
+- Add manifests for basic storage classes
+- Closes #3
+- Update paths
+- Closes #3
+- Add magnetic storage option
+- Closes #3
+- Add storageClass template
+- Closes #3
+- Move testing files
+- Closes #3
+- Update templates
+- Closes #3
+- Add template
+- Closes #3
+- Add storage classes
+- Closes #3
+- Drop tests
+- Closes #3
+- Adjust values file
+- Closes #3
+- Add missing quotes
+- Closes #3
+- Fix paths
+- Closes #3
+- Merge pull request #4 from edwardtheharris/3-add-file-for-storage-classes
+- 3 add file for storage classes
+- Closes #3
+- Update storage class docs
+- Closes #5
+- Add persistent volume
+- Closes #5
+- Not great, but it will do
+- Closes #5
+- Update docs with note
+- Closes #5
+- Fix line length
+- Closes #5
+- Merge pull request #6 from edwardtheharris/5-add-persistent-volumes
+- 5 add persistent volumes
+- Closes #5
+- Add local volumes
+- Closes #8
+- Add as much storage info as exists
+- Closes #8
+- Merge pull request #9 from edwardtheharris/8-add-local-storage-class-for-node-types
+- Add local volumes
+- Closes #8
+- Add remaining nodes
+- Closes #10
+- Merge pull request #11 from edwardtheharris/10-complete-volume-creation
+- Add remaining nodes
+- Closes #10
+- Bump sphinx from 7.3.7 to 7.4.0
+- Bumps [sphinx](https://github.com/sphinx-doc/sphinx) from 7.3.7 to 7.4.0.
+- - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx/compare/v7.3.7...v7.4.0)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx
+-   dependency-type: direct:development
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #12 from edwardtheharris/dependabot/pip/sphinx-7.4.0
+- Enable dynamic provisioning
+- Closes #13
+- Add local static provisioner
+- Closes #13
+- Update index
+- Closes #13
+- Drop charts
+- Closes #13
+- Add local static provisioner
+- Closes #13
+- Enable LVM storage
+- Closes #13
+- Add dynamic provisioning
+- Closes #13
+- Merge pull request #14 from edwardtheharris/13-enable-dynamic-provisioning
+- Enable dynamic provisioning
+- Closes #13
+- Adjust documentation theme
+- Closes #16
+- Merge pull request #17 from edwardtheharris/16-update-documentation-theme
+- Adjust documentation theme
+- Closes #16
+- Fill in some of the missing docs
+- Closes #18
+- Add logo
+- Closes #18
+- Update docs
+- Closes #18
+- Update icons
+- Closes #18
+- Merge pull request #19 from edwardtheharris/18-fill-in-docs-as-required
+- 18 fill in docs as required
+- Closes #18
+- Move files
+- Closes #22
+- Drop storage dir
+- Closes #22
+- Update path
+- Closes #22
+- Update file paths
+- Closes #22
+- Drop manifests
+- Closes #22
+- Fix path
+- Closes #22
+- Update paths
+- Closes #22
+- Merge pull request #23 from edwardtheharris/22-move-chart-files
+- 22 move chart files
+- Closes #22
+- Bump sphinx from 7.4.6 to 7.4.7
+- Bumps [sphinx](https://github.com/sphinx-doc/sphinx) from 7.4.6 to 7.4.7.
+- - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx/compare/v7.4.6...v7.4.7)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #21 from edwardtheharris/dependabot/pip/sphinx-7.4.7
+- Add codeql
+- Closes #25
+- Update charts
+- Closes #25
+- Merge pull request #26 from edwardtheharris/25-enable-dependabot
+- Add codeql
+- Closes #25
+- Update LVM values
+- Closes #24
+- Update deps
+- Closes #24
+- Udpate notes
+- Closes #24
+- Complete notes
+- Closes #24
+- Update charts
+- Closes #24
+- Update paths
+- Closes #24
+- Update tests
+- Closes #24
+- Update hooks for driver test
+- Closes #24
+- Update hooks
+- Closes #24
+- Merge pull request #27 from edwardtheharris/24-enable-lvm-storage-class
+- Update LVM values
+- Closes #24
+- Drop duplicate files
+- Closes #15
+- Merge pull request #20 from edwardtheharris/15-enable-nfs-storage-class
+- Add NFS Storage driver
+- Closes #15
+- Add tests to repo
+- Closes #7
+- Update template files
+- Closes #7
+- Update test command
+- Closes #7
+- Fix pod and sts tests
+- Closes #7
+- Fix sts test, update unit test
+- Closes #7
+- Update ignore
+- Closes #7
+- Update gha tests
+- Closes #7
+- Update tests
+- Closes #7
+- Update commands
+- Closes #7
+- Update repo
+- CLoses #7
+- Update tests
+- Closes #7
+- Update filename
+- Closes #7
+- Add test suites
+- Closes #7
+- Update test suites
+- Closes #7
+- Update test cases
+- Closes #7
+- Pass driver test
+- Closes #7
+- Pass two test suites
+- Closes #7
+- Adjust test execution
+- Closes #7
+- Update assertions
+- Closes #7
+- Update unit tests
+- Closes #7
+- Pass more test suites
+- Closes #7
+- Pass all tests
+- Closes #7
+- Fix syntax
+- Closes #7
+- Merge pull request #28 from edwardtheharris/7-write-unit-tests-for-the-chart
+- 7 write unit tests for the chart
+- Closes #7
+- Update version
+- Closes #29
+- Merge pull request #30 from edwardtheharris/29-fix-chart-version-1
+- Update version
+- Closes #29
+- Merge pull request #31 from edwardtheharris/29-fix-chart-version
+- 29 fix chart version
+- Closes #29
+- Update dependabot
+- Closes #32
+- Complete usage guide in Readme
+- Closes #32
+- Merge pull request #33 from edwardtheharris/32-add-link-to-pages
+- 32 add link to pages
+- Closes #32
+- Update actions
+- Closes #34
+- Update dependencies
+- Closes #34
+- Add missing configuration
+- Closes #34
+- Update comment titles
+- Closes #34
+- Update version
+- Closes #34
+- Fix check name
+- Closes #34
+- Fix missing repo
+- Closes #34
+- Update version
+- Closes #34
+- Update tests
+- Closes #34
+- Update install values
+- Closes #34
+- Update test
+- Closes #34
+- Skip tests
+- Closes #34
+- Merge pull request #35 from edwardtheharris/34-fix-test-results-publish
+- Update actions
+- Closes #34
+- Update codeql
+- Closes #36
+- Update docs
+- Closes #36
+- Update kind docs
+- Closes #36
+- Update Kind
+- Closes #36
+- Merge pull request #37 from edwardtheharris/36-add-codeql-to-pipeline-docs
+- 36 add codeql to pipeline docs
+- Closes #36
+- Update buttons
+- Closes #39
+- Merge pull request #40 from edwardtheharris/39-add-badges-to-readme
+- Update buttons
+- Closes #39
+- Update requirements, settings
+- Closes #43
+- Add storageClass template
+- Closes #43
+- Merge pull request #44 from edwardtheharris/43-deploy-all-three-supported-classes-by-default
+- 43 deploy all three supported classes by default
+- Closes #43
+- Add labels, template
+- Closes #45
+- Merge pull request #46 from edwardtheharris/45-add-storageclass-template
+- Add labels, template
+- Closes #45
+- Fix chart commenary
+- Closes #48
+- Merge pull request #49 from edwardtheharris/48-update-chart-comments
+- Fix chart commenary
+- Closes #48
+- Switch to tag version
+- Closes #48
+- Merge pull request #50 from edwardtheharris/48-update-chart-comments
+- Switch to tag version
+- Closes #48
+- Update https icon
+- Closes #52
+- Merge pull request #53 from edwardtheharris/52-use-https-for-icon
+- Update https icon
+- Closes #52

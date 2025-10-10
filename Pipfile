@@ -9,8 +9,8 @@ loguru = "*"
 python-redis = "*"
 redis = "*"
 version-query = "*"
-pipenv = "*"
 pre-commit = "*"
+pipenv = "*"
 
 [dev-packages]
 myst-parser = {extras = ["linkify"], version = "*"}
