@@ -1,0 +1,182 @@
+---
+abstract: This is the changelog for the helm-storage-classes repository.
+title: Changelog for Helm Storage Classes
+---
+<!--markdownlint-disable-->
+## [0.0.2] - 2024-07-30
+
+### 💼 Other
+
+- Initial commit
+- Bump sphinx-nefertiti from 0.3.2 to 0.3.4
+- Bumps [sphinx-nefertiti](https://github.com/danirus/sphinx-nefertiti) from 0.3.2 to 0.3.4.
+- - [Release notes](https://github.com/danirus/sphinx-nefertiti/releases)
+- - [Changelog](https://github.com/danirus/sphinx-nefertiti/blob/main/ChangeLog.md)
+- - [Commits](https://github.com/danirus/sphinx-nefertiti/compare/0.3.2...0.3.4)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx-nefertiti
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #1 from edwardtheharris/dependabot/pip/sphinx-nefertiti-0.3.4
+- Add test stub
+- Closes #3
+- Add manifests for basic storage classes
+- Closes #3
+- Update paths
+- Closes #3
+- Add magnetic storage option
+- Closes #3
+- Add storageClass template
+- Closes #3
+- Move testing files
+- Closes #3
+- Update templates
+- Closes #3
+- Add template
+- Closes #3
+- Add storage classes
+- Closes #3
+- Drop tests
+- Closes #3
+- Adjust values file
+- Closes #3
+- Add missing quotes
+- Closes #3
+- Fix paths
+- Closes #3
+- Merge pull request #4 from edwardtheharris/3-add-file-for-storage-classes
+- 3 add file for storage classes
+- Closes #3
+- Update storage class docs
+- Closes #5
+- Add persistent volume
+- Closes #5
+- Not great, but it will do
+- Closes #5
+- Update docs with note
+- Closes #5
+- Fix line length
+- Closes #5
+- Merge pull request #6 from edwardtheharris/5-add-persistent-volumes
+- 5 add persistent volumes
+- Closes #5
+- Add local volumes
+- Closes #8
+- Add as much storage info as exists
+- Closes #8
+- Merge pull request #9 from edwardtheharris/8-add-local-storage-class-for-node-types
+- Add local volumes
+- Closes #8
+- Add remaining nodes
+- Closes #10
+- Merge pull request #11 from edwardtheharris/10-complete-volume-creation
+- Add remaining nodes
+- Closes #10
+- Bump sphinx from 7.3.7 to 7.4.0
+- Bumps [sphinx](https://github.com/sphinx-doc/sphinx) from 7.3.7 to 7.4.0.
+- - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx/compare/v7.3.7...v7.4.0)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx
+-   dependency-type: direct:development
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #12 from edwardtheharris/dependabot/pip/sphinx-7.4.0
+- Enable dynamic provisioning
+- Closes #13
+- Add local static provisioner
+- Closes #13
+- Update index
+- Closes #13
+- Drop charts
+- Closes #13
+- Add local static provisioner
+- Closes #13
+- Enable LVM storage
+- Closes #13
+- Add dynamic provisioning
+- Closes #13
+- Merge pull request #14 from edwardtheharris/13-enable-dynamic-provisioning
+- Enable dynamic provisioning
+- Closes #13
+- Adjust documentation theme
+- Closes #16
+- Merge pull request #17 from edwardtheharris/16-update-documentation-theme
+- Adjust documentation theme
+- Closes #16
+- Fill in some of the missing docs
+- Closes #18
+- Add logo
+- Closes #18
+- Update docs
+- Closes #18
+- Update icons
+- Closes #18
+- Merge pull request #19 from edwardtheharris/18-fill-in-docs-as-required
+- 18 fill in docs as required
+- Closes #18
+- Move files
+- Closes #22
+- Drop storage dir
+- Closes #22
+- Update path
+- Closes #22
+- Update file paths
+- Closes #22
+- Drop manifests
+- Closes #22
+- Fix path
+- Closes #22
+- Update paths
+- Closes #22
+- Merge pull request #23 from edwardtheharris/22-move-chart-files
+- 22 move chart files
+- Closes #22
+- Bump sphinx from 7.4.6 to 7.4.7
+- Bumps [sphinx](https://github.com/sphinx-doc/sphinx) from 7.4.6 to 7.4.7.
+- - [Release notes](https://github.com/sphinx-doc/sphinx/releases)
+- - [Changelog](https://github.com/sphinx-doc/sphinx/blob/master/CHANGES.rst)
+- - [Commits](https://github.com/sphinx-doc/sphinx/compare/v7.4.6...v7.4.7)
+- ---
+- Updated-dependencies:
+- - dependency-name: sphinx
+-   dependency-type: direct:development
+-   update-type: version-update:semver-patch
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge pull request #21 from edwardtheharris/dependabot/pip/sphinx-7.4.7
+- Add codeql
+- Closes #25
+- Update charts
+- Closes #25
+- Merge pull request #26 from edwardtheharris/25-enable-dependabot
+- Add codeql
+- Closes #25
+- Update LVM values
+- Closes #24
+- Update deps
+- Closes #24
+- Udpate notes
+- Closes #24
+- Complete notes
+- Closes #24
+- Update charts
+- Closes #24
+- Update paths
+- Closes #24
+- Update tests
+- Closes #24
+- Update hooks for driver test
+- Closes #24
+- Update hooks
+- Closes #24
+- Merge pull request #27 from edwardtheharris/24-enable-lvm-storage-class
+- Update LVM values
+- Closes #24
+- Revise 0.0.2
