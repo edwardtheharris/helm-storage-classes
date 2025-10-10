@@ -89,7 +89,7 @@ jobs:
       - uses: actions/checkout@main
       - run: |
           for i in csi-lvm-driver; do
-            helm lint .
+            helm lint $i
           done
   ####
 
