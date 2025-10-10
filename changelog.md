@@ -2,7 +2,45 @@
 abstract: This is the changelog for the helm-storage-classes repository.
 title: Changelog for Helm Storage Classes
 ---
+<!--markdownlint-disable-->
+## [unreleased]
 
+### 💼 Other
+
+- Update changelog
+- Closes #90
+- Update pipfile, lock
+- Closes #90
+- Update index
+- Closes #90
+- Bump version-query from 1.6.3 to 1.7.0
+- Bumps [version-query](https://github.com/mbdevpl/version-query) from 1.6.3 to 1.7.0.
+- - [Release notes](https://github.com/mbdevpl/version-query/releases)
+- - [Commits](https://github.com/mbdevpl/version-query/compare/v1.6.3...v1.7.0)
+- ---
+- Updated-dependencies:
+- - dependency-name: version-query
+-   dependency-version: 1.7.0
+-   dependency-type: direct:production
+-   update-type: version-update:semver-minor
+- ...
+- Dependabot[bot] <support@github.com>
+- Merge branch '90-sort-out-driver-issues' of
+- Edwardtheharris/helm-storage-classes into dependabot/pip/version-query-1.7.0
+- Closes #90
+- Merge pull request #91 from edwardtheharris/90-sort-out-driver-issues
+- Adjust workflows
+- Closes #90
+- Merge branch '94-bump-version-query-from-163-to-170-92' into dependabot/pip/version-query-1.7.0
+- Merge pull request #92 from edwardtheharris/dependabot/pip/version-query-1.7.0
+- Bump version-query from 1.6.3 to 1.7.0
+- Closes #92
+- Merge branch '94-bump-version-query-from-163-to-170-92' into 90-sort-out-driver-issues
+- Merge pull request #96 from edwardtheharris/90-sort-out-driver-issues
+- Update index
+- Closes #90
+- Disable lint
+- Closes #94
 ## [0.0.4] - 2025-10-10
 
 ### 💼 Other
