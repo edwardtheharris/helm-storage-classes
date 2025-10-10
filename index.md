@@ -22,12 +22,11 @@ csi-driver-lvm/index
 ```{contents}
 ```
 
-````{sidebar} Indices and tables
-```{list-table}
-* - {ref}`genindex`
-* - {ref}`modindex`
-* - {ref}`search`
-````
+```{sidebar} Indices and tables
+- {ref}`genindex`
+- {ref}`modindex`
+- {ref}`search`
+```
 
 ```{toctree}
 :caption: Meta Pages
@@ -40,6 +39,8 @@ security
 ```
 
 ### Glossary
+
+Following is a glossary of technical terms related to this repo.
 
 ```{glossary}
 archlinux
