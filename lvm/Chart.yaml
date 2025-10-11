@@ -8,7 +8,7 @@
 # Enable, if you want to install storage classes with v0.3.x
 # backward-compatible `csi-lvm-sc-*` names
 #
-# ```{literalinclude} /csi-driver-lvm/Chart.yaml
+# ```{literalinclude} /lvm/Chart.yaml
 # :language: yaml
 # ```
 apiVersion: v1

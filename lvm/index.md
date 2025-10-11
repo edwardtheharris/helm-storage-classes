@@ -14,16 +14,16 @@ This driver requires that LVM be deployed on the nodes it runs on.
 This chart deploys a `DaemonSet` that handles provisioning of local storage
 resources.
 
-```{autoyaml} csi-driver-lvm/Chart.yaml
-```
+:::{autoyaml} lvm/Chart.yaml
+:::
 
 ## CSI driver LVM Values
 
 You can adjust the deployment of the CSI driver LVM with the contents
-of the file {file}`csi-driver-lvm/values.yaml`.
+of the file {file}`lvm/values.yaml`.
 
-```{autoyaml} csi-driver-lvm/values.yaml
-```
+:::{autoyaml} lvm/values.yaml
+:::
 
 ```{sectionauthor} Xander Harris <xandertheharris@gmail.com>
 ```
