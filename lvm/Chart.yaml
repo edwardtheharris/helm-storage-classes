@@ -16,10 +16,10 @@ appVersion: v0.6.0
 description: local persisted storage for lvm
 home: https://metal-stack.io
 keywords:
-- storage
-- block-storage
-- volume
-name: csi-driver-lvm
+  - storage
+  - block-storage
+  - volume
+name: lvm
 sources:
-- https://github.com/metal-stack
+  - https://github.com/metal-stack
 version: 0.7.0

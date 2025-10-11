@@ -1,0 +1,9 @@
+dependencies:
+- name: lvm
+  repository: file://./lvm/
+  version: 0.7.0
+- name: cubefs
+  repository: file://./cubefs/
+  version: 3.2.0
+digest: sha256:baa32bcf4d358119056f7b1e8bbc7d3e51fb7ae45f1e825b1b17eb30ce34fe56
+generated: "2025-10-11T15:25:27.865811891-07:00"
