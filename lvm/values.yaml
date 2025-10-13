@@ -58,6 +58,9 @@ lvm:
   # You will want to change this for read-only file systems
   # For example, in Talos OS, set this to {file}`/var/etc/lvm`.
   hostWritePath: /etc/lvm
+  storageClasses:
+    linear:
+      enabled: true
   ###
   # these are primarily for testing purposes
   storageClassStub: csi-lvm
@@ -216,16 +219,16 @@ storageClasses:
 # ```
 tolerations:
   plugin:
-  # - key: node-role.kubernetes.io/master
-  #   operator: Exists
-  #   effect: NoSchedule
-  - key: node-role.kubernetes.io/control-plane
-    operator: Exists
-    effect: NoSchedule
+    # - key: node-role.kubernetes.io/master
+    #   operator: Exists
+    #   effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
   provisioner:
-# - key: node-role.kubernetes.io/master
-#   operator: Exists
-#   effect: NoSchedule
-  - key: node-role.kubernetes.io/control-plane
-    operator: Exists
-    effect: NoSchedule
+    # - key: node-role.kubernetes.io/master
+    #   operator: Exists
+    #   effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule

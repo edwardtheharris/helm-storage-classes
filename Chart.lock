@@ -5,5 +5,8 @@ dependencies:
 - name: cubefs
   repository: file://./cubefs/
   version: 3.2.0
-digest: sha256:baa32bcf4d358119056f7b1e8bbc7d3e51fb7ae45f1e825b1b17eb30ce34fe56
-generated: "2025-10-11T15:25:27.865811891-07:00"
+- name: cephfs
+  repository: file://./cephfs/
+  version: 3.15.0
+digest: sha256:87ed7b67ee3aaf1654c3e6931d8702a17300edeb977c4650e6a943abe7b9f1ac
+generated: "2025-10-12T19:25:15.808215529-07:00"

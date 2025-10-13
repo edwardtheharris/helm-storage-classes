@@ -22,6 +22,10 @@ dependencies:
     name: cubefs
     repository: file://./cubefs/
     version: v3.2.0
+  - condition: cephs.enabled
+    name: cephfs
+    repository: file://./cephfs/
+    version: v3.15.0
 description: Storage classes for bare metal clusters
 home: https://metal-stack.io
 keywords:
