@@ -2,7 +2,7 @@ cephfs:
   enabled: true
 
 cubefs:
-  enabled: true
+  enabled: false
   # Select which component to install
   component:
     master: true

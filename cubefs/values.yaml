@@ -55,7 +55,7 @@ master:
   # NodeSelector
   nodeSelector:
     "component.cubefs.io/master": "enabled"
-  tolerations: [ ]
+  tolerations: []
   host: master.cubefs.com
   log_level: error
   retain_logs: 2000
@@ -80,7 +80,7 @@ metanode:
   # NodeSelector for metanode daemonset
   nodeSelector:
     "component.cubefs.io/metanode": "enabled"
-  tolerations: [ ]
+  tolerations: []
   log_level: error
   # Total memory metanode can use, recommended to be configured
   # as 80% of physical machine memory
@@ -108,7 +108,7 @@ datanode:
   # NodeSelector for datanode daemonset
   nodeSelector:
     "component.cubefs.io/datanode": "enabled"
-  tolerations: [ ]
+  tolerations: []
   log_level: error
   port: 17310
   prof: 17320
@@ -160,7 +160,7 @@ objectnode:
   exporter_port: 9500
   nodeSelector:
     "component.cubefs.io/objectnode": "enabled"
-  tolerations: [ ]
+  tolerations: []
   region: "spark"
   # Domains listed here will be used in resolution of pan-domain names to parse bucket name
   domains: "objectcfs.cubefs.io,objectnode.cubefs.io"
@@ -197,11 +197,11 @@ csi:
   # value needs to be modified accordingly
   kubeletPath: /var/lib/kubelet
   controller:
-    tolerations: [ ]
+    tolerations: []
     nodeSelector:
       "component.cubefs.io/csi": "enabled"
   node:
-    tolerations: [ ]
+    tolerations: []
     nodeSelector:
       "component.cubefs.io/csi": "enabled"
     resources:
@@ -214,7 +214,7 @@ csi:
         cpu: "2000m"
   storageClass:
     # Whether automatically set this StorageClass to default volume provisioner
-    setToDefault: true
+    setToDefault: false
     # StorageClass reclaim policy, 'Delete' or 'Retain' is supported
     reclaimPolicy: "Delete"
     # Override the master address parameter to connect to external cluster
@@ -222,7 +222,7 @@ csi:
     otherParameters:
     # Other parameters that will pass through to StorageClass, and then
     # will pass through to the generated cfs-client configuration file.
-    # crossZone: "false"
+    crossZone: "false"
     # enableToken: "false"
     # zoneName: ""
     # icacheTimeout: ""
@@ -248,48 +248,48 @@ csi:
     # fsyncOnClose: "true"
     # maxcpus: ""
     # enableXattr: "false"
-    # alignSize: "4096"
+    alignSize: "512"
     # maxExtentNumPerAlignArea: "12"
     # forceAlignMerge: "true"
 
-consul:
-  port: 8500
-  replicas: 1
-  external_address: ""
-
-grafana:
-  port: 3000
-  replicas: 1
-  # Ingress host name
-  host: monitor.cubefs.com
-  admin_password: !!string 123456
-  resources:
-    enabled: false
-    requests:
-      memory: "512Mi"
-      cpu: "500m"
-    limits:
-      memory: "1024Mi"
-      cpu: "1000m"
-
-prometheus:
-  port: 9090
-  replicas: 1
-  resources:
-    enabled: false
-    requests:
-      memory: "512Mi"
-      cpu: "500m"
-    limits:
-      memory: "1024Mi"
-      cpu: "1000m"
+# consul:
+#   port: 8500
+#   replicas: 1
+#   external_address: consul.breeze-blocks.net
+#
+# grafana:
+#   port: 3000
+#   replicas: 1
+#   # Ingress host name
+#   host: monitor.cubefs.com
+#   admin_password: !!string 123456
+#   resources:
+#     enabled: false
+#     requests:
+#       memory: "512Mi"
+#       cpu: "500m"
+#     limits:
+#       memory: "1024Mi"
+#       cpu: "1000m"
+#
+# prometheus:
+#   port: 9090
+#   replicas: 1
+#   resources:
+#     enabled: false
+#     requests:
+#       memory: "512Mi"
+#       cpu: "500m"
+#     limits:
+#       memory: "1024Mi"
+#       cpu: "1000m"
 
 blobstore_clustermgr:
   replicas: 3
   port: 9998
   nodeSelector:
     "component.cubefs.io/clustermgr": "enabled"
-  tolerations: [ ]
+  tolerations: []
   bind_addr: ":9998"
   cluster_id: "1"
   idc: '["z0"]'
@@ -317,7 +317,7 @@ blobstore_blobnode:
   bind_addr: ":8899"
   nodeSelector:
     "component.cubefs.io/blobnode": "enabled"
-  tolerations: [ ]
+  tolerations: []
   cluster_id: "1"
   idc: "z0"
   rack: "testrack"
@@ -333,7 +333,7 @@ blobstore_proxy:
   bind_addr: ":9600"
   nodeSelector:
     "component.cubefs.io/proxy": "enabled"
-  tolerations: [ ]
+  tolerations: []
   cluster_id: "1"
   idc: "z0"
   log_level: "info"
@@ -349,7 +349,7 @@ blobstore_scheduler:
   bind_addr: ":9800"
   nodeSelector:
     "component.cubefs.io/scheduler": "enabled"
-  tolerations: [ ]
+  tolerations: []
   cluster_id: "1"
   idc: "z0"
   log_level: "info"
@@ -361,7 +361,7 @@ blobstore_access:
   bind_addr: ":9500"
   nodeSelector:
     "component.cubefs.io/access": "enabled"
-  tolerations: [ ]
+  tolerations: []
   cluster_id: "1"
   idc: "z0"
   region: "test-region"
