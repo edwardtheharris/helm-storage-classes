@@ -1,46 +1,6 @@
 cephfs:
   enabled: true
 
-cubefs:
-  enabled: false
-  # Select which component to install
-  component:
-    master: true
-    datanode: true
-    metanode: true
-    objectnode: true
-    client: false
-    provisioner: false
-    monitor: false
-    ingress: true
-
-  # store data,log and other data, these directory will be
-  #  mounted from host to container using hostPath
-  path:
-    data: /var/lib/cubefs
-    log: /var/log/cubefs
-
-  datanode:
-    # Disks will be used by datanode to storage data
-    # Format: disk_mount_point:reserved_space
-    # disk_mount_point: the mount point of disk in machine
-    # reserved_space: similar to metanode reserved space, if disk available
-    # space less than this number, then the disk will be unwritable
-    disks:
-      - /data0:21474836480
-      - /data1:21474836480
-
-  metanode:
-    # Total memory metanode can use, recommended to be configured
-    # as 80% of physical machine memory
-    total_mem: "26843545600"
-
-  provisioner:
-    kubelet_path: /var/lib/kubelet
-
-  master:
-    legacy_data_media_type: 1
-
 lvm:
   ###
   # ```{rubric} CSI Driver LVM configuration
