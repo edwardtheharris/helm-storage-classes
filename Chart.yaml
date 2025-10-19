@@ -23,6 +23,11 @@ dependencies:
     name: rook-ceph
     repository: file://./rook-ceph/
     version: v1.18.4
+  - alias: rook-cluster
+    condition: rook-cluster.enabled
+    name: rook-ceph
+    repository: file://./rook-ceph-cluster/
+    version: v1.18.4
 description: Storage classes for bare metal clusters
 home: https://metal-stack.io
 keywords:
