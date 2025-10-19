@@ -2,11 +2,8 @@ dependencies:
 - name: lvm
   repository: file://./lvm/
   version: 0.7.0
-- name: cubefs
-  repository: file://./cubefs/
-  version: 3.2.0
-- name: cephfs
-  repository: file://./cephfs/
-  version: 3.15.0
-digest: sha256:87ed7b67ee3aaf1654c3e6931d8702a17300edeb977c4650e6a943abe7b9f1ac
-generated: "2025-10-12T19:25:15.808215529-07:00"
+- name: rook-ceph
+  repository: file://./rook-ceph/
+  version: v1.18.4
+digest: sha256:2a0d1d683c7c7cad1d28a208577b4deb6f6a8c5bbbdbbdec0c24fe22b4c949cf
+generated: "2025-10-19T09:30:00.576861807-07:00"

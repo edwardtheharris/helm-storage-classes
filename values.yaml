@@ -1,4 +1,4 @@
-cephfs:
+rook:
   enabled: true
 
 lvm:

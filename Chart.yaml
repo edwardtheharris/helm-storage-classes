@@ -18,10 +18,11 @@ dependencies:
     name: lvm
     repository: file://./lvm/
     version: v0.7.0
-  - condition: cephs.enabled
-    name: cephfs
-    repository: file://./cephfs/
-    version: v3.15.0
+  - alias: rook
+    condition: rook.enabled
+    name: rook-ceph
+    repository: file://./rook-ceph/
+    version: v1.18.4
 description: Storage classes for bare metal clusters
 home: https://metal-stack.io
 keywords:
