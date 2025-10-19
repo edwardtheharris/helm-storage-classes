@@ -1,8 +1,5 @@
 rook:
   enabled: true
-  namespace: storage
-  nodeSelector:
-    kubernetes.io/os: linux
   csi:
     clusterName: comms
     crossNamespaceVolumeDataSource:
@@ -11,6 +8,9 @@ rook:
   enableDiscoveryDaemon: true
   monitoring:
     enabled: true
+  nodeSelector:
+    kubernetes.io/os: linux
+  operatorNamespace: storage
 
 rook-cluster:
   enabled: true
