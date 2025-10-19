@@ -1,5 +1,19 @@
 rook:
   enabled: true
+  namespace: storage
+  nodeSelector:
+    kubernetes.io/os: linux
+  csi:
+    clusterName: comms
+    crossNamespaceVolumeDataSource:
+      enabled: true
+    csiDriverNamePrefix: storage
+  enableDiscoveryDaemon: true
+  monitoring:
+    enabled: true
+
+rook-cluster:
+  enabled: true
 
 lvm:
   ###
