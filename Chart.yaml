@@ -25,7 +25,7 @@ dependencies:
     version: v1.18.4
   - alias: rook-cluster
     condition: rook-cluster.enabled
-    name: rook-ceph
+    name: rook-ceph-cluster
     repository: file://./rook-ceph-cluster/
     version: v1.18.4
 description: Storage classes for bare metal clusters

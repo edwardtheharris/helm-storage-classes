@@ -5,8 +5,8 @@ dependencies:
 - name: rook-ceph
   repository: file://./rook-ceph/
   version: v1.18.4
-- name: rook-ceph
+- name: rook-ceph-cluster
   repository: file://./rook-ceph-cluster/
   version: v1.18.4
-digest: sha256:df7273ba861cda54f4a5a163c7cd44c1ec8deabd07f198f8df32f04448a90ad4
-generated: "2025-10-19T09:44:57.304159466-07:00"
+digest: sha256:8ecc2e3d3ce69fdc6151e2af2f3cd087dac97905590bb8d572f22051ec1166c2
+generated: "2025-10-19T10:08:48.094624541-07:00"
