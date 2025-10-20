@@ -6,6 +6,21 @@ rook:
       enabled: true
     csiDriverNamePrefix: storage
   enableDiscoveryDaemon: true
+  ingress:
+    dashboard:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: comms-svc-ca
+      enabled: true
+      hosts:
+        - host: ceph-dash.breeze-blocks.net
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: ceph-dash-tls
+          hosts:
+            - ceph-dash.breeze-blocks.net
   monitoring:
     enabled: true
   nodeSelector:
