@@ -29,7 +29,8 @@ resources:
     memory: 128Mi
 
 # -- Kubernetes [`nodeSelector`](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector) to add to the Deployment.
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: linux
 # Constraint rook-ceph-operator Deployment to nodes with label `disktype: ssd`.
 # For more info, see https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
 #  disktype: ssd
@@ -52,7 +53,7 @@ annotations: {}
 
 # -- Global log level for the operator.
 # Options: `ERROR`, `WARNING`, `INFO`, `DEBUG`
-logLevel: INFO
+logLevel: DEBUG
 
 # -- If true, create & use RBAC resources
 rbacEnable: true
@@ -141,19 +142,19 @@ csi:
 
   # -- Set CephFS Kernel mount options to use https://docs.ceph.com/en/latest/man/8/mount.ceph/#options.
   # Set to "ms_mode=secure" when connections.encrypted is enabled in CephCluster CR
-  cephFSKernelMountOptions:
+  cephFSKernelMountOptions: ""
 
   # -- Enable adding volume metadata on the CephFS subvolumes and RBD images.
   # Not all users might be interested in getting volume/snapshot details as metadata on CephFS subvolume and RBD images.
   # Hence enable metadata is false by default
-  enableMetadata: false
+  enableMetadata: true
 
   # -- Set replicas for csi provisioner deployment
   provisionerReplicas: 2
 
   # -- Cluster name identifier to set as metadata on the CephFS subvolume and RBD images. This will be useful
   # in cases like for example, when two container orchestrator clusters (Kubernetes/OCP) are using a single ceph cluster
-  clusterName:
+  clusterName: comms
 
   # -- Set logging level for cephCSI containers maintained by the cephCSI.
   # Supported values from 0 to 5. 0 for general useful logs, 5 for trace level verbosity.

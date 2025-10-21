@@ -30,7 +30,12 @@ customCSISidecars:
   # registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
   # resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
   # ```
-  enabled: false
+  enabled: true
+  attacher: k8s.gcr.io/sig-storage/csi-attacher:v3.5.0
+  livenessprobe: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
+  provisioner: k8s.gcr.io/sig-storage/csi-provisioner:v3.2.1
+  registrar: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.1
+  resizer: k8s.gcr.io/sig-storage/csi-resizer:v1.6.0
 ###
 # Configure a custom {term}`kubelet` write path if necessary.
 kubernetes:
@@ -95,12 +100,12 @@ nodeSelector:
 # ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "pluginImage:\n"
-# :end-at: "  tag: v0.5.2\n"
+# :end-at: "  tag: latest\n"
 # ```
 pluginImage:
   pullPolicy: IfNotPresent
-  repository: ghcr.io/metal-stack/lvm
-  tag: v0.5.2
+  repository: ghcr.io/metal-stack/csi-driver-lvm
+  tag: latest
 ###
 # ```{rubric} Provisioner Image
 # ```
@@ -110,12 +115,12 @@ pluginImage:
 # ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "provisionerImage:\n"
-# :end-at: "  tag: v0.5.2\n"
+# :end-at: "  tag: latest\n"
 # ```
 provisionerImage:
   pullPolicy: IfNotPresent
-  repository: ghcr.io/metal-stack/lvm-provisioner
-  tag: v0.5.2
+  repository: ghcr.io/metal-stack/csi-driver-lvm-provisioner
+  tag: latest
 ###
 # ```{rubric} Role Based Access Control
 # ```
@@ -171,39 +176,20 @@ storageClasses:
   linear:
     additionalAnnotations: []
     enabled: true
+    name: csi-lvm-linear
+    reclaimPolicy: Delete
+  mirror:
+    additionalAnnotations: []
+    enabled: true
+    name: csi-lvm-mirror
+    reclaimPolicy: Retain
+  striped:
+    additionalAnnotations: []
+    enabled: true
+    name: csi-lvm-striped
     reclaimPolicy: Delete
   ####
 
-  ###
-  # This will configure something like RAID 1 storage.
-  #
-  # ```{literalinclude} /lvm/values.yaml
-  # :language: yaml
-  # :start-at: "  mirror:\n"
-  # :end-at: "    reclaimPolicy: Delete\n"
-  # ```
-  mirror:
-    ###
-    # This might be used to mark one of the {term}`StorageClass`es as default:
-    #
-    # ```{code-block} yaml
-    # storageclass.kubernetes.io/is-default-class: "true"
-    # ```
-    additionalAnnotations: []
-    enabled: false
-    reclaimPolicy: Delete
-  ###
-  # This will configure something like RAID 0 storage.
-  #
-  # ```{literalinclude} /lvm/values.yaml
-  # :language: yaml
-  # :start-at: "  striped:\n"
-  # :end-at: "    reclaimPolicy: Delete\n"
-  # ```
-  striped:
-    additionalAnnotations: []
-    enabled: false
-    reclaimPolicy: Delete
 #####
 
 ###

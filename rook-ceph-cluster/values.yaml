@@ -3,11 +3,11 @@
 # Declare variables to be passed into your templates.
 
 # -- Namespace of the main rook operator
-operatorNamespace: rook-ceph
+operatorNamespace: storage
 
 # -- The metadata.name of the CephCluster CR
 # @default -- The same as the namespace
-clusterName:
+clusterName: comms
 
 # -- Optional override of the target kubernetes version
 kubeVersion:
@@ -23,7 +23,7 @@ configOverride:
 # Installs a debugging toolbox deployment
 toolbox:
   # -- Enable Ceph debugging pod deployment. See [toolbox](../Troubleshooting/ceph-toolbox.md)
-  enabled: false
+  enabled: true
   # -- Toolbox image, defaults to the image used by the Ceph cluster
   image: #quay.io/ceph/ceph:v19.2.3
   # -- Toolbox tolerations
@@ -52,7 +52,7 @@ toolbox:
 monitoring:
   # -- Enable Prometheus integration, will also create necessary RBAC rules to allow Operator to create ServiceMonitors.
   # Monitoring requires Prometheus to be pre-installed
-  enabled: false
+  enabled: true
   # -- Whether to disable the metrics reported by Ceph. If false, the prometheus mgr module and Ceph exporter are enabled
   metricsDisabled: false
   # -- Whether to create the Prometheus rules for Ceph alerts
@@ -167,7 +167,7 @@ cephClusterSpec:
     # port: 8443
     # Serve the dashboard using SSL (if using ingress to expose the dashboard and `ssl: true` you need to set
     # the corresponding "backend protocol" annotation(s) for your ingress controller of choice)
-    ssl: true
+    ssl: false
 
   # Network configuration, see: https://github.com/rook/rook/blob/master/Documentation/CRDs/Cluster/ceph-cluster-crd.md#network-configuration-settings
   network:
@@ -425,7 +425,19 @@ cephClusterSpec:
 
 ingress:
   # -- Enable an ingress for the ceph-dashboard
-  dashboard: {}
+  dashboard:
+    annotations:
+      cert-manage.io/cluster-issuer: comms-svc-int
+    ingressClassName: nginx
+    host:
+      name: ceph-dash.breeze-blocks.net
+      path: /
+      pathType: Prefix
+    tls:
+      - hosts:
+          - ceph-dash.breeze-blocks.net
+        secretName: ceph-dash-tls
+
     # labels:
     #   external-dns/private: "true"
     # annotations:
