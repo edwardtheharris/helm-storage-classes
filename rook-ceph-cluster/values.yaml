@@ -667,32 +667,32 @@ cephObjectStores:
       # see https://github.com/rook/rook/blob/master/Documentation/Storage-Configuration/Object-Storage-RGW/ceph-object-bucket-claim.md#storageclass for available configuration
       parameters:
         # note: objectStoreNamespace and objectStoreName are configured by the chart
-        region: us-east-1
+        region: us-west-1
     ingress:
       # Enable an ingress for the ceph-objectstore
-      enabled: false
+      enabled: true
       # The ingress port by default will be the object store's "securePort" (if set), or the gateway "port".
       # To override those defaults, set this ingress port to the desired port.
-      # port: 80
-      # annotations: {}
-      # host:
-      #   name: objectstore.example.com
-      #   path: /
-      #   pathType: Prefix
-      # tls:
-      # - hosts:
-      #     - objectstore.example.com
-      #   secretName: ceph-objectstore-tls
-      # ingressClassName: nginx
-    route:
+      port: 80
+      annotations: {}
+      host:
+        name: s3.breeze-blocks.net
+        path: /
+        pathType: Prefix
+      tls:
+        - hosts:
+            - s3.breeze-blocks.net
+          secretName: s3-tls
+      ingressClassName: nginx
+    route: {}
       # Enable an ingress for the ceph-objectstore
-      enabled: false
-      # The ingress port by default will be the object store's "securePort" (if set), or the gateway "port".
-      # To override those defaults, set this ingress port to the desired port.
+      # enabled: true
+      # # The ingress port by default will be the object store's "securePort" (if set), or the gateway "port".
+      # # To override those defaults, set this ingress port to the desired port.
       # port: 80
       # annotations: {}
       # host:
-      #   name: objectstore.example.com
+      #   name: s3.breeze-blocks.net
       #   path: /
       #   pathType: PathPrefix
       # parentRefs:
