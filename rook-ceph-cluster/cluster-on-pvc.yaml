@@ -32,7 +32,7 @@ spec:
           requests:
             storage: 10Gi
   cephVersion:
-    image: quay.io/ceph/ceph:v17.2.6
+    image: quay.io/ceph/ceph:19.2.3
     allowUnsupported: false
   skipUpgradeChecks: false
   continueUpgradeAfterChecksEvenIfNotHealthy: false
@@ -43,7 +43,7 @@ spec:
         enabled: true
   dashboard:
     enabled: true
-    ssl: false
+    ssl: true
   crashCollector:
     disable: false
   logCollector:
@@ -130,36 +130,36 @@ spec:
                 requests:
                   storage: 100Gi
               # IMPORTANT: Change the storage class depending on your environment
-              storageClassName: csi-lvm-linear
+              storageClassName: csi-lvm-mirror
               volumeMode: Block
               accessModes:
                 - ReadWriteOnce
-        # dedicated block device to store bluestore database (block.db)
-        # - metadata:
-        #     name: metadata
-        #   spec:
-        #     resources:
-        #       requests:
-        #         # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
-        #         storage: 5Gi
-        #     # IMPORTANT: Change the storage class depending on your environment
-        #     storageClassName: io1
-        #     volumeMode: Block
-        #     accessModes:
-        #       - ReadWriteOnce
-        # dedicated block device to store bluestore wal (block.wal)
-        # - metadata:
-        #     name: wal
-        #   spec:
-        #     resources:
-        #       requests:
-        #         # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
-        #         storage: 5Gi
-        #     # IMPORTANT: Change the storage class depending on your environment
-        #     storageClassName: io1
-        #     volumeMode: Block
-        #     accessModes:
-        #       - ReadWriteOnce
+          # dedicated block device to store bluestore database (block.db)
+          - metadata:
+              name: metadata
+            spec:
+              resources:
+                requests:
+                  # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
+                  storage: 5Gi
+              # IMPORTANT: Change the storage class depending on your environment
+              storageClassName: io1
+              volumeMode: Block
+              accessModes:
+                - ReadWriteOnce
+          # dedicated block device to store bluestore wal (block.wal)
+          - metadata:
+              name: wal
+            spec:
+              resources:
+                requests:
+                  # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
+                  storage: 5Gi
+              # IMPORTANT: Change the storage class depending on your environment
+              storageClassName: io1
+              volumeMode: Block
+              accessModes:
+                - ReadWriteOnce
         # Scheduler name for OSD pod placement
         # schedulerName: osd-scheduler
     # when onlyApplyOSDPlacement is false, will merge both placement.All() and storageClassDeviceSets.Placement.
