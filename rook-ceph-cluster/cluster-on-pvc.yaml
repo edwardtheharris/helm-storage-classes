@@ -9,7 +9,7 @@
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
-  name: ceph
+  name: ceph-networking
 spec:
   dataDirHostPath: /var/lib/rook
   mon:
@@ -27,7 +27,7 @@ spec:
     # size appropriate for monitor data will be used.
     volumeClaimTemplate:
       spec:
-        storageClassName: csi-lvm-mirror
+        storageClassName: csi-lvm-linear
         resources:
           requests:
             storage: 10Gi
@@ -103,7 +103,7 @@ spec:
           topologySpreadConstraints:
             - maxSkew: 1
               # IMPORTANT: If you don't have zone labels, change this to another key such as kubernetes.io/hostname
-              topologyKey: topology.kubernetes.io/zone
+              topologyKey: kubernetes.io/hostname
               whenUnsatisfiable: DoNotSchedule
               labelSelector:
                 matchExpressions:
@@ -130,7 +130,7 @@ spec:
                 requests:
                   storage: 100Gi
               # IMPORTANT: Change the storage class depending on your environment
-              storageClassName: csi-lvm-mirror
+              storageClassName: csi-lvm-linear
               volumeMode: Block
               accessModes:
                 - ReadWriteOnce
@@ -143,7 +143,7 @@ spec:
                   # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
                   storage: 5Gi
               # IMPORTANT: Change the storage class depending on your environment
-              storageClassName: io1
+              storageClassName: csi-lvm-striped
               volumeMode: Block
               accessModes:
                 - ReadWriteOnce
@@ -156,7 +156,7 @@ spec:
                   # Find the right size https://docs.ceph.com/docs/master/rados/configuration/bluestore-config-ref/#sizing
                   storage: 5Gi
               # IMPORTANT: Change the storage class depending on your environment
-              storageClassName: io1
+              storageClassName: csi-lvm-striped
               volumeMode: Block
               accessModes:
                 - ReadWriteOnce

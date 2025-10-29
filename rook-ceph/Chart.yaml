@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v1.18.4
 dependencies:
   - name: library
-    repository: file://../library
+    repository: file://../rook-ceph-cluster/library
     version: 0.0.1
   - alias: ceph-csi-operator
     condition: csi.rookUseCsiOperator
