@@ -9,7 +9,7 @@
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
-  name: ceph-networking
+  name: comms
 spec:
   dataDirHostPath: /var/lib/rook
   mon:
@@ -18,7 +18,7 @@ spec:
     count: 3
     # The mons should be on unique nodes. For production, at least 3 nodes are recommended for this reason.
     # Mons should only be allowed on the same node for test environments where data loss is acceptable.
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
     # A volume claim template can be specified in which case new monitors (and
     # monitors created during fail over) will construct a PVC based on the
     # template for the monitor's primary storage. Changes to the template do not

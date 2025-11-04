@@ -7,7 +7,7 @@ operatorNamespace: storage
 
 # -- The metadata.name of the CephCluster CR
 # @default -- The same as the namespace
-clusterName: comms-ceph
+clusterName: comms
 
 # -- Optional override of the target kubernetes version
 # kubeVersion:
@@ -359,8 +359,7 @@ cephClusterSpec:
         memory: "50Mi"
 
   # The option to automatically remove OSDs that are out and are safe to destroy.
-  removeOSDsIfOutAndSafeToRemove: false
-
+  removeOSDsIfOutAndSafeToRemove: true
   # priority classes to apply to ceph resources
   priorityClassNames:
     mon: system-node-critical
@@ -427,10 +426,7 @@ ingress:
   # -- Enable an ingress for the ceph-dashboard
   dashboard:
     annotations:
-      cert-manage.io/cluster-issuer: comms-svc-int
-      external-dns.alpha.kubernetes.io/hostname: ceph-dash.breeze-blocks.net
-    labels:
-      external-dns/private: "true"
+      cert-manager.io/cluster-issuer: comms-svc-int
     ingressClassName: nginx
     host:
       name: ceph-dash.breeze-blocks.net
@@ -497,7 +493,7 @@ cephBlockPools:
       annotations:
         storageclass.kubernetes.io/is-default-class: "false"
       labels: {}
-      isDefault: true
+      isDefault: false
       reclaimPolicy: Delete
       allowVolumeExpansion: true
       volumeBindingMode: "Immediate"
@@ -606,7 +602,7 @@ cephFileSystems:
 cephFileSystemVolumeSnapshotClass:
   enabled: false
   name: ceph-filesystem
-  isDefault: true
+  isDefault: false
   deletionPolicy: Delete
   annotations: {}
   labels: {}
@@ -651,8 +647,8 @@ cephObjectStores:
           requests:
             cpu: "1000m"
             memory: "1Gi"
-        # securePort: 443
-        # sslCertificateRef:
+        securePort: 443
+        sslCertificateRef: s3-tls
         instances: 1
         priorityClassName: system-cluster-critical
         # opsLogSidecar:
@@ -673,8 +669,8 @@ cephObjectStores:
       # see https://github.com/rook/rook/blob/master/Documentation/Storage-Configuration/Object-Storage-RGW/ceph-object-bucket-claim.md#storageclass for available configuration
       parameters:
         # note: objectStoreNamespace and objectStoreName are configured by the chart
-        region: us-west-1
-        objectStoreName: ceph-objectstore
+        # region: us-west-1
+        objectStoreName: s3
         objectStoreNamespace: storage
     ingress:
       # Enable an ingress for the ceph-objectstore
@@ -682,7 +678,8 @@ cephObjectStores:
       # The ingress port by default will be the object store's "securePort" (if set), or the gateway "port".
       # To override those defaults, set this ingress port to the desired port.
       port: 8443
-      annotations: {}
+      annotations:
+        cert-manager.io/cluster-issuer: comms-svc-int
       host:
         name: s3.breeze-blocks.net
         path: /
@@ -710,57 +707,57 @@ cephObjectStores:
 ## cephECBlockPools are disabled by default, please remove the comments and set desired values to enable it
 ## For erasure coded a replicated metadata pool is required.
 ## https://rook.io/docs/rook/latest/CRDs/Shared-Filesystem/ceph-filesystem-crd/#erasure-coded
-#cephECBlockPools:
-#  - name: ec-pool
-#    spec:
-#      metadataPool:
-#        replicated:
-#          size: 2
-#      dataPool:
-#        failureDomain: osd
-#        erasureCoded:
-#          dataChunks: 2
-#          codingChunks: 1
-#        deviceClass: hdd
-#
-#    parameters:
-#      # clusterID is the namespace where the rook cluster is running
-#      # If you change this namespace, also change the namespace below where the secret namespaces are defined
-#      clusterID: rook-ceph # namespace:cluster
-#      # (optional) mapOptions is a comma-separated list of map options.
-#      # For krbd options refer
-#      # https://docs.ceph.com/docs/latest/man/8/rbd/#kernel-rbd-krbd-options
-#      # For nbd options refer
-#      # https://docs.ceph.com/docs/latest/man/8/rbd-nbd/#options
-#      # mapOptions: lock_on_read,queue_depth=1024
-#
-#      # (optional) unmapOptions is a comma-separated list of unmap options.
-#      # For krbd options refer
-#      # https://docs.ceph.com/docs/latest/man/8/rbd/#kernel-rbd-krbd-options
-#      # For nbd options refer
-#      # https://docs.ceph.com/docs/latest/man/8/rbd-nbd/#options
-#      # unmapOptions: force
-#
-#      # RBD image format. Defaults to "2".
-#      imageFormat: "2"
-#
-#      # RBD image features, equivalent to OR'd bitfield value: 63
-#      # Available for imageFormat: "2". Older releases of CSI RBD
-#      # support only the `layering` feature. The Linux kernel (KRBD) supports the
-#      # full feature complement as of 5.4
-#      # imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
-#      imageFeatures: layering
-#
-#    storageClass:
-#      provisioner: rook-ceph.rbd.csi.ceph.com # csi-provisioner-name
-#      enabled: true
-#      name: rook-ceph-block
-#      isDefault: false
-#      annotations: { }
-#      labels: { }
-#      allowVolumeExpansion: true
-#      reclaimPolicy: Delete
+cephECBlockPools:
+  - name: ec-pool
+    spec:
+      metadataPool:
+        replicated:
+          size: 2
+      dataPool:
+        failureDomain: osd
+        erasureCoded:
+          dataChunks: 2
+          codingChunks: 1
+        deviceClass: hdd
+
+    parameters:
+      # clusterID is the namespace where the rook cluster is running
+      # If you change this namespace, also change the namespace below where the secret namespaces are defined
+      clusterID: storage:comms # namespace:cluster
+      # (optional) mapOptions is a comma-separated list of map options.
+      # For krbd options refer
+      # https://docs.ceph.com/docs/latest/man/8/rbd/#kernel-rbd-krbd-options
+      # For nbd options refer
+      # https://docs.ceph.com/docs/latest/man/8/rbd-nbd/#options
+      # mapOptions: lock_on_read,queue_depth=1024
+
+      # (optional) unmapOptions is a comma-separated list of unmap options.
+      # For krbd options refer
+      # https://docs.ceph.com/docs/latest/man/8/rbd/#kernel-rbd-krbd-options
+      # For nbd options refer
+      # https://docs.ceph.com/docs/latest/man/8/rbd-nbd/#options
+      # unmapOptions: force
+
+      # RBD image format. Defaults to "2".
+      imageFormat: "2"
+
+      # RBD image features, equivalent to OR'd bitfield value: 63
+      # Available for imageFormat: "2". Older releases of CSI RBD
+      # support only the `layering` feature. The Linux kernel (KRBD) supports the
+      # full feature complement as of 5.4
+      # imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
+      imageFeatures: layering
+
+    storageClass:
+      provisioner: rook-ceph.rbd.csi.ceph.com # csi-provisioner-name
+      enabled: true
+      name: ceph-block-ec
+      isDefault: false
+      annotations: {}
+      labels: {}
+      allowVolumeExpansion: true
+      reclaimPolicy: Delete
 
 # -- CSI driver name prefix for cephfs, rbd and nfs.
 # @default -- `namespace name where rook-ceph operator is deployed`
-csiDriverNamePrefix: "ceph"
+csiDriverNamePrefix: ""
