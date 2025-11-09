@@ -91,22 +91,22 @@ ceph-csi-operator:
 csi:
   rookUseCsiOperator: true
   # -- Enable Ceph CSI RBD driver
-  enableRbdDriver: false
+  enableRbdDriver: true
   # -- Enable Ceph CSI CephFS driver
-  enableCephfsDriver: false
+  enableCephfsDriver: true
   # -- Disable the CSI driver.
   disableCsiDriver: "false"
 
   # -- Enable host networking for CSI CephFS and RBD nodeplugins. This may be necessary
   # in some network configurations where the SDN does not provide access to an external cluster or
   # there is significant drop in read/write performance
-  enableCSIHostNetwork: false
+  enableCSIHostNetwork: true
   # -- Enable Snapshotter in CephFS provisioner pod
-  enableCephfsSnapshotter: false
+  enableCephfsSnapshotter: true
   # -- Enable Snapshotter in NFS provisioner pod
-  enableNFSSnapshotter: false
+  enableNFSSnapshotter: true
   # -- Enable Snapshotter in RBD provisioner pod
-  enableRBDSnapshotter: false
+  enableRBDSnapshotter: true
   # -- Enable Host mount for `/etc/selinux` directory for Ceph CSI nodeplugins
   enablePluginSelinuxHostMount: false
   # -- Enable Ceph CSI PVC encryption support
@@ -154,7 +154,7 @@ csi:
 
   # -- Cluster name identifier to set as metadata on the CephFS subvolume and RBD images. This will be useful
   # in cases like for example, when two container orchestrator clusters (Kubernetes/OCP) are using a single ceph cluster
-  clusterName: comms
+  clusterName: the-hard-way
 
   # -- Set logging level for cephCSI containers maintained by the cephCSI.
   # Supported values from 0 to 5. 0 for general useful logs, 5 for trace level verbosity.
@@ -167,7 +167,7 @@ csi:
 
   # -- CSI driver name prefix for cephfs, rbd and nfs.
   # @default -- `namespace name where rook-ceph operator is deployed`
-  csiDriverNamePrefix: ceph
+  csiDriverNamePrefix: storage
 
   # -- CSI RBD plugin daemonset update strategy, supported values are OnDelete and RollingUpdate
   # @default -- `RollingUpdate`
@@ -545,7 +545,7 @@ csi:
 
   csiAddons:
     # -- Enable CSIAddons
-    enabled: false
+    enabled: true
     # -- CSIAddons sidecar image repository
     repository: quay.io/csiaddons/k8s-sidecar
     # -- CSIAddons sidecar image tag
@@ -569,7 +569,7 @@ csi:
 
   crossNamespaceVolumeDataSource:
     # -- Enable cross namespace volume data source provisioning
-    enabled: true
+    enabled: false
 
   # -- Whether to skip any attach operation altogether for CephFS PVCs. See more details
   # [here](https://kubernetes-csi.github.io/docs/skip-attach.html#skip-attach-with-csi-driver-object).
