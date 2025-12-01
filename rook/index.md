@@ -26,7 +26,7 @@ more than that.
 
 ### Thing the first
 
-Since there's no getting around this operator we're going to have to make it work, 
+Since there's no getting around this operator we're going to have to make it work,
 we'll try to describe the simplest process for that here. Most likely we'll fail.
 
 ```{block-quote}
