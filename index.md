@@ -16,7 +16,8 @@ title: Storage Helm Chart
 ```{toctree}
 :caption: Helm Charts
 
-lvm/index
+csi-driver-lvm/index
+rook/index
 ```
 
 ```{contents}
@@ -134,8 +135,8 @@ Tolerations
 
 ## Local Chart Values
 
-:::{autoyaml} values.yaml
-:::
+```{autoyaml} values.yaml
+```
 
 ### Local Provisioner Plugin
 
