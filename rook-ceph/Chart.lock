@@ -1,0 +1,9 @@
+dependencies:
+- name: library
+  repository: file://../rook-ceph-cluster/library
+  version: 0.0.1
+- name: ceph-csi-operator
+  repository: https://ceph.github.io/ceph-csi-operator
+  version: 0.4.1
+digest: sha256:43b9999135a7075e6d77cf8467536194403b0d85f35973e360562ea7ab697fe4
+generated: "2025-10-25T14:40:34.643903834-07:00"

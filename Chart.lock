@@ -1,0 +1,12 @@
+dependencies:
+- name: lvm
+  repository: file://./lvm/
+  version: 0.7.0
+- name: rook-ceph
+  repository: file://./rook-ceph/
+  version: v1.18.4
+- name: rook-ceph-cluster
+  repository: file://./rook-ceph-cluster/
+  version: v1.18.4
+digest: sha256:8ecc2e3d3ce69fdc6151e2af2f3cd087dac97905590bb8d572f22051ec1166c2
+generated: "2025-10-19T10:08:48.094624541-07:00"
