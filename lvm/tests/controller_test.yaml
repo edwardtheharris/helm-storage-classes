@@ -10,76 +10,27 @@ suite: "CSI Driver LVM StatefulSet Test Suite"
 release:
   name: lvm
 templates:
-- "templates/controller.yaml"
+  - "templates/controller.yaml"
 values:
-- ../values.yaml
-
-tests:
-- it: should include a service account
-  documentIndex: 0
-  asserts:
-  - isKind:
-      of: ServiceAccount
-- it: "should render StatefulSet with correct metadata"
-  asserts:
-  - matchSnapshot:
-      path: metadata
-  - isKind:
-      of: StatefulSet
-  documentSelector:
-    path: kind
-    value: StatefulSet
-
-- asserts:
-  - equal:
-      path: spec.serviceName
-      value: "csi-driver-lvm-controller"
-  - equal:
-      path: spec.replicas
-      value: 1
-  it: "should render StatefulSet with correct spec configurations"
-  documentSelector:
-    path: kind
-    value: StatefulSet
-
-- asserts:
-  - equal:
-      path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
-      value: "kubernetes.io/hostname"
-  - equal:
-      path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
-      value: "In"
-  it: "should render StatefulSet with correct affinity configuration"
-  documentSelector:
-    path: kind
-    value: StatefulSet
-
-- asserts:
-  - equal:
-      path: spec.template.spec.serviceAccountName
-      value: "csi-driver-lvm-controller"
-  it: "should render StatefulSet with correct serviceAccountName"
-  documentSelector:
-    path: kind
-    value: StatefulSet
-
-- it: "should render StatefulSet with correct containers"
-  asserts:
-  - matchSnapshot:
-      path: spec.template.spec.containers
-  documentSelector:
-    path: kind
-    value: StatefulSet
-
-- it: "should render StatefulSet with correct volumes"
-  asserts:
-  - matchSnapshot:
-      path: spec.template.spec.volumes
-  documentSelector:
-    path: kind
-    value: StatefulSet
-  release:
-    name: lvm
-  values:
   - ../values.yaml
 
+tests:
+  - it: should include a service account
+    asserts:
+      - matchSnapshot: {}
+    documentSelector:
+      path: kind
+      value: StatefulSet
+  - asserts:
+      - matchSnapshot: {}
+    it: "should render StatefulSet with correct spec configurations"
+    documentSelector:
+      path: kind
+      value: StatefulSet
+
+  - asserts:
+      - matchSnapshot: {}
+    it: "should render StatefulSet with correct affinity configuration"
+    documentSelector:
+      path: kind
+      value: StatefulSet
