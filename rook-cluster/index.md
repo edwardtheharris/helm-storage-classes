@@ -25,5 +25,3 @@ so we hope you have one.
 
 Whatever the case, the [CephCluster CRD manual](https://rook.io/docs/rook/latest/CRDs/Cluster/ceph-cluster-crd/)
 will be something you'll want to keep handy as it is quite complex.
-
-

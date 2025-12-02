@@ -18,7 +18,6 @@ volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
   type: "linear"
-  fsType: "btrfs"
 {{ end }}
 ---
 {{- $storageClass := .Values.storageClasses.mirror -}}
