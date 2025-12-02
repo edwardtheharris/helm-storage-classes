@@ -559,7 +559,7 @@ csi:
     # -- domainLabels define which node labels to use as domains
     # for CSI nodeplugins to advertise their domains
     domainLabels:
-    # - kubernetes.io/hostname
+      - kubernetes.io/hostname
     # - topology.kubernetes.io/zone
     # - topology.rook.io/rack
 
@@ -612,9 +612,9 @@ scaleDownOperator: false
 discover:
   # -- Toleration for the discover pods.
   # Options: `NoSchedule`, `PreferNoSchedule` or `NoExecute`
-  toleration:
+  toleration: NoSchedule
   # -- The specific key of the taint to tolerate
-  tolerationKey:
+  tolerationKey: kubernetes.io/node-role
   # -- Array of tolerations in YAML format which will be added to discover deployment
   tolerations:
   #   - key: key
@@ -639,7 +639,7 @@ discover:
   #   '{"resources":{"requests":{"memory":"128Mi","cpu":"100m"},"limits":{"memory":"512Mi"}}}'
 
 # -- Custom label to identify node hostname. If not set `kubernetes.io/hostname` will be used
-customHostnameLabel:
+customHostnameLabel: ""
 
 # -- Runs Ceph Pods as privileged to be able to write to `hostPaths` in OpenShift with SELinux restrictions.
 hostpathRequiresPrivileged: false
@@ -654,10 +654,10 @@ disableDeviceHotplug: false
 revisionHistoryLimit: 5
 
 # -- Blacklist certain disks according to the regex provided.
-discoverDaemonUdev:
+discoverDaemonUdev: ""
 
 # -- imagePullSecrets option allow to pull docker images from private docker registry. Option will be passed to all service accounts.
-imagePullSecrets:
+imagePullSecrets: {}
 # - name: my-registry-secret
 
 # -- Whether the OBC provisioner should watch on the operator namespace or not, if not the namespace of the cluster will be used
