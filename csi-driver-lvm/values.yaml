@@ -166,9 +166,10 @@ storageClasses:
   # :end-before: "####"
   # ```
   linear:
-    additionalAnnotations: []
+    additionalAnnotations:
+      storageclass.kubernetes.io/is-default-class: "true"
     enabled: true
-    reclaimPolicy: Delete
+    reclaimPolicy: Retain
   ####
 
   ###
@@ -186,11 +187,10 @@ storageClasses:
     # ```{code-block} yaml
     # storageclass.kubernetes.io/is-default-class: "true"
     # ```
-    additionalAnnotations: []
-    enabled: false
-    reclaimPolicy: Delete
-  ###
-  # This will configure something like RAID 0 storage.
+    additionalAnnotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    enabled: true
+    reclaimPolicy: Retain
   #
   # ```{literalinclude} /csi-driver-lvm/values.yaml
   # :language: yaml
@@ -198,9 +198,10 @@ storageClasses:
   # :end-at: "    reclaimPolicy: Delete\n"
   # ```
   striped:
-    additionalAnnotations: []
-    enabled: false
-    reclaimPolicy: Delete
+    additionalAnnotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    enabled: true
+    reclaimPolicy: Retain
 #####
 
 ###
@@ -216,16 +217,16 @@ storageClasses:
 # ```
 tolerations:
   plugin:
-  # - key: node-role.kubernetes.io/master
-  #   operator: Exists
-  #   effect: NoSchedule
-  - key: node-role.kubernetes.io/control-plane
-    operator: Exists
-    effect: NoSchedule
+    # - key: node-role.kubernetes.io/master
+    #   operator: Exists
+    #   effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
   provisioner:
-# - key: node-role.kubernetes.io/master
-#   operator: Exists
-#   effect: NoSchedule
-  - key: node-role.kubernetes.io/control-plane
-    operator: Exists
-    effect: NoSchedule
+    # - key: node-role.kubernetes.io/master
+    #   operator: Exists
+    #   effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
