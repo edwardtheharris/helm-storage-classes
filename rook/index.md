@@ -56,12 +56,14 @@ on if experience is any guide. That is if the squirrels don't get us first.
    :caption: we'll call it rook for short
    helm repo add rook https://charts.rook.io/release
    ```
+
 2. Update your local repository list.
 
    ```{code-block} shell
    :caption: update the usual way
    helm repo update
    ```
+
 3. Configure your {file}`values.yaml`.
 
    ```{block-quote}
