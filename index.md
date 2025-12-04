@@ -17,6 +17,7 @@ title: Storage Helm Chart
 :caption: Helm Charts
 
 csi-driver-lvm/index
+rook/index
 ```
 
 ```{contents}

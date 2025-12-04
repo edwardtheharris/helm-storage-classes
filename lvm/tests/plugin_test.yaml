@@ -1,0 +1,17 @@
+# tests/daemonset_test_suite.yaml
+suite: "CSI Driver LVM DaemonSet Test Suite"
+release:
+  name: lvm
+  namespace: csi-driver-lvm
+values:
+  - ../values.yaml
+templates:
+  - "templates/plugin.yaml"
+
+tests:
+  - it: "should render DaemonSet with correct metadata"
+    asserts:
+      - matchSnapshot: {}
+    documentSelector:
+      path: kind
+      value: DaemonSet
