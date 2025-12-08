@@ -28,11 +28,11 @@
                 "logging"
             ],
             "hashes": [
-                "sha256:1bf229a21e28de6643cc57ab1e90fa6405957cbfd7e8e353fcf1c0a1bb2d9ffd",
-                "sha256:4dabb1ff2b70d4a0111998953e1d54a7fed80c2d7c25b2b165285c5af29458e5"
+                "sha256:bb62171be8caa2b52cf6c7d161e62fb4daa7313a1ecc3158da7ed5c0582436cd",
+                "sha256:c341d997a13bd4ac975cfeca6ef7db1438dcae5ba74861e7f85aaee22b0673a7"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.2.3"
+            "version": "==1.2.4"
         },
         "certifi": {
             "hashes": [
