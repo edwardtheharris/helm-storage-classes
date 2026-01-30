@@ -9,28 +9,10 @@
 suite: "CSI Driver LVM StatefulSet Test Suite"
 release:
   name: lvm
-templates:
-  - "templates/controller.yaml"
 values:
   - ../values.yaml
 
 tests:
-  - it: should include a service account
+  - it: should match a snapshot
     asserts:
       - matchSnapshot: {}
-    documentSelector:
-      path: kind
-      value: StatefulSet
-  - asserts:
-      - matchSnapshot: {}
-    it: "should render StatefulSet with correct spec configurations"
-    documentSelector:
-      path: kind
-      value: StatefulSet
-
-  - asserts:
-      - matchSnapshot: {}
-    it: "should render StatefulSet with correct affinity configuration"
-    documentSelector:
-      path: kind
-      value: StatefulSet

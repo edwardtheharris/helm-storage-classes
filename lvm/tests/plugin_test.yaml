@@ -5,13 +5,8 @@ release:
   namespace: csi-driver-lvm
 values:
   - ../values.yaml
-templates:
-  - "templates/plugin.yaml"
 
 tests:
   - it: "should render DaemonSet with correct metadata"
     asserts:
       - matchSnapshot: {}
-    documentSelector:
-      path: kind
-      value: DaemonSet
