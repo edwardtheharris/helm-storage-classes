@@ -1,15 +1,19 @@
 apiVersion: v1
+kind: Endpoints
+metadata:
+  name: glusterfs-cluster
+subsets:
+- addresses:
+  - ip: 192.168.5.97
+  - ip: 192.168.5.99
+  - ip: 192.168.5.101
+  ports:
+  - port: 1
+---
+apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "gluster.fullname" . }}
-  labels:
-    {{- include "gluster.labels" . | nindent 4 }}
+  name: glusterfs-cluster
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "gluster.selectorLabels" . | nindent 4 }}
+  - port: 1
