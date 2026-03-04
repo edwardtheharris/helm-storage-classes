@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: glusterfs-client
+spec:
+  selector:
+    matchLabels:
+      name: glusterfs-client
+  template:
+    metadata:
+      labels:
+        name: glusterfs-client
+    spec:
+      hostNetwork: true
+      containers:
+      - name: glusterfs
+        image: gluster/gluster-centos:latest
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: glusterfs-cgroup
+          mountPath: /sys/fs/cgroup
+          readOnly: true
+        - name: glusterfs-heketi
+          mountPath: /var/lib/heketi
+        - name: glusterfs-run
+          mountPath: /run
+        - name: glusterfs-lvm
+          mountPath: /run/lvm
+        - name: glusterfs-etc
+          mountPath: /etc/glusterfs
+        - name: glusterfs-logs
+          mountPath: /var/log/glusterfs
+        - name: glusterfs-config
+          mountPath: /var/lib/glusterd
+        - name: glusterfs-dev
+          mountPath: /dev
+        - name: glusterfs-misc
+          mountPath: /var/lib/misc/glusterfsd
+      volumes:
+      - name: glusterfs-cgroup
+        hostPath:
+          path: /sys/fs/cgroup
+      - name: glusterfs-heketi
+        hostPath:
+          path: /var/lib/heketi
+      - name: glusterfs-run
+        emptyDir: {}
+      - name: glusterfs-lvm
+        hostPath:
+          path: /run/lvm
+      - name: glusterfs-etc
+        hostPath:
+          path: /etc/glusterfs
+      - name: glusterfs-logs
+        hostPath:
+          path: /var/log/glusterfs
+      - name: glusterfs-config
+        hostPath:
+          path: /var/lib/glusterd
+      - name: glusterfs-dev
+        hostPath:
+          path: /dev
+      - name: glusterfs-misc
+        hostPath:
+          path: /var/lib/misc/glusterfsd
