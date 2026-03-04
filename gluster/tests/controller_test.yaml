@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+###
+# ```{rubric} StatefulSet Test Suite
+# ```
+#
+# ```{literalinclude} csi-driver-lvm/tests/controller_test.yaml
+# ```
+# tests/controller_test.yaml
+suite: "CSI Driver LVM StatefulSet Test Suite"
+release:
+  name: lvm
+templates:
+  - "templates/controller.yaml"
+values:
+  - ../values.yaml
+
+tests:
+  - it: should include a service account
+    asserts:
+      - matchSnapshot: {}
+    documentSelector:
+      path: kind
+      value: StatefulSet
+  - asserts:
+      - matchSnapshot: {}
+    it: "should render StatefulSet with correct spec configurations"
+    documentSelector:
+      path: kind
+      value: StatefulSet
+
+  - asserts:
+      - matchSnapshot: {}
+    it: "should render StatefulSet with correct affinity configuration"
+    documentSelector:
+      path: kind
+      value: StatefulSet
