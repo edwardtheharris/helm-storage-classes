@@ -1,5 +1,5 @@
 env.POD_LABEL="helm"
-env.PROJECT_NAME="gluster"
+env.PROJECT_NAME="lvm"
 stage('checkout') {
   podTemplate(agentContainer: 'helm', cloud: 'the-hard-way',
               containers: [
