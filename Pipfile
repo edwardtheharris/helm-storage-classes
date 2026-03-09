@@ -6,11 +6,11 @@ name = "pypi"
 [packages]
 gitpython = "*"
 loguru = "*"
+pipenv = "*"
+pre-commit = "*"
 python-redis = "*"
 redis = "*"
 version-query = "*"
-pre-commit = "*"
-pipenv = "*"
 
 [dev-packages]
 myst-parser = {extras = ["linkify"], version = "*"}

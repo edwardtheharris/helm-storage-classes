@@ -1,0 +1,35 @@
+###
+# ```{rubric} Storage Classes Helm Chart
+# ```
+# ---
+# This file contains the settings required to set up {term}`StorageClass`es that
+# support dynamically provisioned storage on bare metal k8s.
+#
+# Enable, if you want to install storage classes with v0.3.x
+# backward-compatible `csi-lvm-sc-*` names
+#
+# ```{literalinclude} /csi-driver-lvm/Chart.yaml
+# :language: yaml
+# ```
+apiVersion: v2
+appVersion: v0.6.0
+dependencies:
+  - condition: lvm.enabled
+    name: lvm
+    repository: file://./lvm/
+    version: v0.7.0
+  - alias: rook-cluster
+    condition: rook-cluster.enabled
+    name: rook-cluster
+    repository: file://./rook-cluster/
+    version: v1.18.4
+description: Storage classes for bare metal clusters
+home: https://metal-stack.io
+keywords:
+  - storage
+  - block-storage
+  - volume
+name: csi-drivers
+sources:
+  - https://github.com/metal-stack
+version: 0.7.0

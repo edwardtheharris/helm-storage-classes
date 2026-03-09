@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ceph-dash
+  namespace: cert-manager
+spec:
+  isCA: true
+  commonName: ceph-dash.breeze-blocks.net
+  secretName: ceph-dash-tls
+  privateKey:
+    algorithm: RSA
+    size: 4096
+  issuerRef:
+    name: comms-svc-ca
+    kind: ClusterIssuer
+    group: cert-manager.io

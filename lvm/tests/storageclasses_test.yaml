@@ -1,0 +1,17 @@
+# tests/storageclasses_test_suite.yaml
+suite: "CSI Driver LVM StorageClasses Test Suite"
+release:
+  name: lvm
+values:
+  - ../values.yaml
+templates:
+  - "templates/storageclasses.yaml"
+
+tests:
+  - it: "should render StorageClass csi-driver-lvm-linear with correct configurations"
+    set:
+      storageClasses:
+        linear:
+          enabled: true
+    asserts:
+      - matchSnapshot: {}

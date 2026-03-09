@@ -5,6 +5,8 @@ _build/
 .DS_Store
 .git/
 .gitignore
+lvm/
+rook-ceph/
 .gnupg
 .hg/
 .hgignore

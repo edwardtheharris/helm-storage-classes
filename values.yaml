@@ -8,7 +8,7 @@
 # Enable, if you want to install storage classes with v0.3.x
 # backward-compatible `csi-lvm-sc-*` names
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "compat03x: false\n"
 # :end-before: "####"
@@ -41,6 +41,22 @@ customCSISidecars:
 kubernetes:
   kubeletPath: /var/lib/kubelet
 ####
+enabled: true
+storageClasses:
+  linear:
+    enabled: true
+    name: csi-lvm-linear
+    reclaimPolicy: Retain
+  mirror:
+    enabled: true
+    name: csi-lvm-mirror
+    reclaimPolicy: Retain
+  striped:
+    enabled: true
+    name: csi-lvm-striped
+    reclaimPolicy: Delete
+  btrfs:
+    enabled: false
 
 ###
 # ```{rubric} Logical Volume Manager
@@ -49,7 +65,7 @@ kubernetes:
 # This is where you will define the {term}`StorageClass` for this driver along
 # with a few other settings.
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "lvm:\n"
 # :end-before: "####"
@@ -76,7 +92,7 @@ lvm:
 # The plugin {term}`DaemonSet` will run on all nodes if it has a toleration,
 # so it is not necessary to set a nodeSelector for it.
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "nodeSelector:\n"
 # :end-before: "####"
@@ -94,7 +110,7 @@ nodeSelector:
 # ---
 # Use this to configure settings for the CSI Plugin Image.
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "pluginImage:\n"
 # :end-before: "####\n"
@@ -102,14 +118,14 @@ nodeSelector:
 pluginImage:
   pullPolicy: IfNotPresent
   repository: ghcr.io/metal-stack/csi-driver-lvm
-  tag: v0.5.2
+  tag: latest
 ###
 # ```{rubric} Provisioner Image
 # ```
 # ---
 # Use this to configure settings for the CSI Provisioner Image
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "provisionerImage:\n"
 # :end-at: "  tag: v0.5.2\n"
@@ -117,14 +133,14 @@ pluginImage:
 provisionerImage:
   pullPolicy: IfNotPresent
   repository: ghcr.io/metal-stack/csi-driver-lvm-provisioner
-  tag: v0.5.2
+  tag: latest
 ###
 # ```{rubric} Role Based Access Control
 # ```
 # ---
 # Set `create: true` if you want to enable this.
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "rbac:\n"
 # :end-at: "  pspEnabled: true\n"
@@ -203,19 +219,6 @@ sidecarImages:
   rbac:
     create: true
     pspEnabled: true
-  storageClasses:
-    linear:
-      enabled: true
-      name: csi-lvm-linear
-      reclaimPolicy: Retain
-    mirror:
-      enabled: true
-      name: csi-lvm-mirror
-      reclaimPolicy: Retain
-    striped:
-      enabled: true
-      name: csi-lvm-striped
-      reclaimPolicy: Delete
     tolerations:
       plugin:
         - effect: Schedule
@@ -232,7 +235,7 @@ sidecarImages:
 # Configure the driver to run on control plane or other tainted nodes by
 # adding {term}`Tolerations` here.
 #
-# ```{literalinclude} /csi-driver-lvm/values.yaml
+# ```{literalinclude} /lvm/values.yaml
 # :language: yaml
 # :start-at: "tolerations:\n"
 # ```
