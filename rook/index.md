@@ -90,8 +90,3 @@ on if experience is any guide. That is if the squirrels don't get us first.
 
    ```{code-block} shell
    ```
-
-## Rook Operator Chart Values
-
-```{autoyaml} /rook/values.yaml
-```
