@@ -16,7 +16,7 @@ title: Storage Helm Chart
 ```{toctree}
 :caption: Helm Charts
 
-csi-driver-lvm/index
+lvm/index
 rook/index
 ```
 
@@ -36,7 +36,6 @@ rook/index
 changelog
 license
 readme
-security
 ```
 
 ### Glossary

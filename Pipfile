@@ -11,6 +11,7 @@ pre-commit = "*"
 python-redis = "*"
 redis = "*"
 version-query = "*"
+myst-parser = "*"
 
 [dev-packages]
 myst-parser = {extras = ["linkify"], version = "*"}
