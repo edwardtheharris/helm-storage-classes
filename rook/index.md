@@ -10,12 +10,9 @@ it is likely that the
 may be of more use.
 ```
 
-```{block-quote}
-We promise not to turn it into a thing if you decide to use the actual docs instead of
-this blank-ass shit right here. Pinky swear.
-
--- ed
-```
+> We promise not to turn it into a thing if you decide to use the actual docs instead of
+> this blank-ass shit right here. Pinky swear.
+> -- ed
 
 ## Getting started
 
@@ -29,7 +26,7 @@ more than that.
 Since there's no getting around this operator we're going to have to make it work,
 we'll try to describe the simplest process for that here. Most likely we'll fail.
 
-```{block-quote}
+```{topic} A note from the editorial board
 The editorial board would like to note that there is only one author of this document
 as well as our frequent and ignored suggestions that the second-person isn't necessarily
 the best, uh, person in which to write documentation.
@@ -37,12 +34,9 @@ the best, uh, person in which to write documentation.
 -- ed
 ```
 
-```{block-quote}
-The author would like to tell the editorial board to fuck off as he'll be using whichever
-. . . person he pleases while writing this filthy document. Ban this sick filth.
-
--- author
-```
+> The author would like to tell the editorial board to fuck off as he'll be using whichever
+> . . . person he pleases while writing this filthy document. Ban this sick filth.
+> -- author
 
 On the surface the process should be simple enough. You'll need to add the helm repository for
 the rook operator chart (which also contains the ceph cluster chart), to your local
@@ -66,15 +60,13 @@ on if experience is any guide. That is if the squirrels don't get us first.
 
 3. Configure your {file}`values.yaml`.
 
-   ```{block-quote}
-   We're not here to tell you how to do this, after all there are a near infinite
-   varieties of text editors to choose from, so you should probably just use
-   whatever makes sense to you. Just know that if that's not some version of VIM,
-   we'll know and you should also know that we know that revenge is a dish best
-   served with text editors from the 70's, or cold or whatever. Go to hell.
-
-   -- author
-   ```
+   > We're not here to tell you how to do this, after all there are a near infinite
+   > varieties of text editors to choose from, so you should probably just use
+   > whatever makes sense to you. Just know that if that's not some version of VIM,
+   > we'll know and you should also know that we know that revenge is a dish best
+   > served with text editors from the 70's, or cold or whatever. Go to hell.
+   >
+   > -- author
 
 4. Create a namespace on your cluster called `rook-ceph`.
 
@@ -98,8 +90,3 @@ on if experience is any guide. That is if the squirrels don't get us first.
 
    ```{code-block} shell
    ```
-
-## Rook Operator Chart Values
-
-```{autoyaml} /rook/values.yaml
-```
