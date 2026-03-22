@@ -12,9 +12,7 @@ may be of more use.
 
 > We promise not to turn it into a thing if you decide to use the actual docs instead of
 > this blank-ass shit right here. Pinky swear.
->
 > -- ed
-```
 
 ## Getting started
 
@@ -28,18 +26,17 @@ more than that.
 Since there's no getting around this operator we're going to have to make it work,
 we'll try to describe the simplest process for that here. Most likely we'll fail.
 
-> The editorial board would like to note that there is only one author of this document
-> as well as our frequent and ignored suggestions that the second-person isn't necessarily
-> the best, uh, person in which to write documentation.
->
-> -- ed
+```{topic} A note from the editorial board
+The editorial board would like to note that there is only one author of this document
+as well as our frequent and ignored suggestions that the second-person isn't necessarily
+the best, uh, person in which to write documentation.
+
+-- ed
 ```
 
 > The author would like to tell the editorial board to fuck off as he'll be using whichever
 > . . . person he pleases while writing this filthy document. Ban this sick filth.
->
 > -- author
-```
 
 On the surface the process should be simple enough. You'll need to add the helm repository for
 the rook operator chart (which also contains the ceph cluster chart), to your local
