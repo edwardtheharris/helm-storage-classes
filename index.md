@@ -132,11 +132,6 @@ Tolerations
    [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 ```
 
-## Local Chart Values
-
-```{autoyaml} values.yaml
-```
-
 ### Local Provisioner Plugin
 
 This chart depends on the static local provisioner plugin described in detail
