@@ -60,15 +60,13 @@ on if experience is any guide. That is if the squirrels don't get us first.
 
 3. Configure your {file}`values.yaml`.
 
-   ```{block-quote}
-   We're not here to tell you how to do this, after all there are a near infinite
-   varieties of text editors to choose from, so you should probably just use
-   whatever makes sense to you. Just know that if that's not some version of VIM,
-   we'll know and you should also know that we know that revenge is a dish best
-   served with text editors from the 70's, or cold or whatever. Go to hell.
-
-   -- author
-   ```
+   > We're not here to tell you how to do this, after all there are a near infinite
+   > varieties of text editors to choose from, so you should probably just use
+   > whatever makes sense to you. Just know that if that's not some version of VIM,
+   > we'll know and you should also know that we know that revenge is a dish best
+   > served with text editors from the 70's, or cold or whatever. Go to hell.
+   >
+   > -- author
 
 4. Create a namespace on your cluster called `rook-ceph`.
 
