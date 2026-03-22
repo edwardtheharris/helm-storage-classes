@@ -16,7 +16,7 @@ title: Storage Helm Chart
 ```{toctree}
 :caption: Helm Charts
 
-csi-driver-lvm/index
+lvm/index
 rook/index
 ```
 
@@ -36,7 +36,6 @@ rook/index
 changelog
 license
 readme
-security
 ```
 
 ### Glossary
@@ -131,11 +130,6 @@ Tolerations
    to allow certain workloads to ignore a {term}`Taint` that has been applied
    to a node. More information is available
    [here](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
-```
-
-## Local Chart Values
-
-```{autoyaml} values.yaml
 ```
 
 ### Local Provisioner Plugin
