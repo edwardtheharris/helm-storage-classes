@@ -1,0 +1,26 @@
+externalSnapshotter:
+  enabled: true
+controller:
+  runOnControlPlane: true
+  replicas: 1
+storageClasses:
+  - name: nfs-delete
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    parameters:
+      server: cms00.breeze-blocks.net
+      share: /srv/nfs
+    reclaimPolicy: Delete
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1
+  - name: nfs-retain
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "true"
+    parameters:
+      server: cms00.breeze-blocks.net
+      share: /srv/nfs
+    reclaimPolicy: Retain
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1

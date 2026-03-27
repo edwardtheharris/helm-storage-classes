@@ -47,15 +47,19 @@ storageClasses:
     enabled: true
     additionalAnnotations:
       # this might be used to mark one of the StorageClasses as default:
-      storageclass.kubernetes.io/is-default-class: "true"
+      storageclass.kubernetes.io/is-default-class: "false"
     reclaimPolicy: Retain
   striped:
     enabled: true
-    additionalAnnotations: []
+    additionalAnnotations:
+      # this might be used to mark one of the StorageClasses as default:
+      storageclass.kubernetes.io/is-default-class: "false"
     reclaimPolicy: Retain
   mirror:
     enabled: true
-    additionalAnnotations: []
+    additionalAnnotations:
+      # this might be used to mark one of the StorageClasses as default:
+      storageclass.kubernetes.io/is-default-class: "false"
     reclaimPolicy: Retain
 
 nodeSelector:
