@@ -9,7 +9,7 @@ storageClasses:
       storageclass.kubernetes.io/is-default-class: "false"
     parameters:
       server: cms00.breeze-blocks.net
-      share: /srv/nfs
+      share: /srv/nfs/cms00
     reclaimPolicy: Delete
     volumeBindingMode: WaitForFirstConsumer
     mountOptions:
@@ -19,7 +19,47 @@ storageClasses:
       storageclass.kubernetes.io/is-default-class: "true"
     parameters:
       server: cms00.breeze-blocks.net
-      share: /srv/nfs
+      share: /srv/nfs/cms00
+    reclaimPolicy: Retain
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1
+  - name: nfs-retain-cms01
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    parameters:
+      server: cms01.breeze-blocks.net
+      share: /srv/nfs/cms01
+    reclaimPolicy: Retain
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1
+  - name: nfs-retain-cms02
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    parameters:
+      server: cms02.breeze-blocks.net
+      share: /srv/nfs/cms02
+    reclaimPolicy: Retain
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1
+  - name: nfs-retain-cms03
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    parameters:
+      server: cms03.breeze-blocks.net
+      share: /srv/nfs/cms03
+    reclaimPolicy: Retain
+    volumeBindingMode: WaitForFirstConsumer
+    mountOptions:
+      - nfsvers=4.1
+  - name: nfs-retain-cms04
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    parameters:
+      server: cms04.breeze-blocks.net
+      share: /srv/nfs/cms04
     reclaimPolicy: Retain
     volumeBindingMode: WaitForFirstConsumer
     mountOptions:
