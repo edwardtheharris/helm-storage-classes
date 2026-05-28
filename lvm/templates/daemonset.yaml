@@ -152,6 +152,13 @@ spec:
         app: csi-driver-lvm
     spec:
       serviceAccountName: csi-driver-lvm
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 128Mi
 {{- if .Values.tolerations.plugin }}
       tolerations:
 {{ toYaml .Values.tolerations.plugin | indent 8 }}
