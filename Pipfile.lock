@@ -167,10 +167,12 @@
         },
         "python-redis": {
             "hashes": [
-                "sha256:ee7106fcc2ca01438ebe1f8c9eade0b470cdc008f7a6646b3502e31d3eec0752"
+                "sha256:392191fd76b0c7fd2e4054875f29edcdd2dd4e4dd015e2c8cdf6a49c41751647",
+                "sha256:9e3a2a12f2e7e1fa121eb3851d407d4ed1143eceee52c7687c519ad2dc0252c4"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "markers": "python_version >= '3.9'",
+            "version": "==0.4.1"
         },
         "pyyaml": {
             "hashes": [
