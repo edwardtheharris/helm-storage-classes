@@ -18,8 +18,8 @@ storageClasses:
     annotations:
       storageclass.kubernetes.io/is-default-class: "true"
     parameters:
-      server: thw00.breeze-blocks.net
-      share: /srv/nfs
+      server: thw00
+      share: /srv/nfs/thw00
     reclaimPolicy: Retain
     volumeBindingMode: WaitForFirstConsumer
     mountOptions:
