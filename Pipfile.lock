@@ -142,12 +142,12 @@
         },
         "pre-commit": {
             "hashes": [
-                "sha256:03e809865c7d178b9979d06c761fcbfe6808fdaded8581a745bb110e52050421",
-                "sha256:0e3b2942510d1fb34eec167a3ec57331bf8442122f1153a9fb8b58f5c49b2717"
+                "sha256:8f5d7bfb021ecdbcd9d49d89847082dd24172ccde534390081a679ad046e2441",
+                "sha256:e2dde9a75d3bce11bd3831c26d134df00a2803c1d818be6a0383c3dcda25dc4e"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==4.6.1"
+            "version": "==4.6.2"
         },
         "python-discovery": {
             "hashes": [
@@ -247,12 +247,12 @@
         },
         "redis": {
             "hashes": [
-                "sha256:47daa35a058c23468d6437f17a8c76882cb316b838ef763036af99b96cedd743",
-                "sha256:afc5a7a2f5a084f5b1880dec548dd45be17db7e43c82a30d84f952aefb05cfb0"
+                "sha256:6e1a19beef9225c83efd689c7e6b7da2d5215b1f42cd13b7fc3714d0a09c7b25",
+                "sha256:a4fe1aac3d3b3cc791d4b3d5931c5a956045dc951ee74d1c913ee3ac4d2ee9fb"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==8.0.1"
+            "version": "==8.1.0"
         },
         "semver": {
             "hashes": [
