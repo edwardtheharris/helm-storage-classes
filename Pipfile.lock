@@ -83,12 +83,12 @@
         },
         "gitpython": {
             "hashes": [
-                "sha256:39548bffb8fa0f3a548133348868bb4838e79d73283052207dc97781a569b6b4",
-                "sha256:e936431879fa85581b4311fa63492ea52251909e2d655b6529c704c904ddcc24"
+                "sha256:8ab28c9da863cdd9e7d7694ec46cf3e6c9a12d8a30a1acd3447aec11975d530c",
+                "sha256:f51c24d8c0f733a195447385f5774a5dfe8767f5acfd7994a33755644c6ecc95"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==3.1.60"
+            "version": "==3.1.61"
         },
         "identify": {
             "hashes": [
